@@ -19,5 +19,17 @@
   },
   "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).ipynb": {
     "2023-03-19-00. 코드잇 기업분석 (1).html": "93164acd"
+  },
+  "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.ipynb": {
+    "00. Intro.html": "843ad058"
+  },
+  "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.ipynb": {
+    "01. numpy.html": "4a9d814d"
+  },
+  "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.ipynb": {
+    "02. pandas.html": "1a1be30d"
+  },
+  "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.ipynb": {
+    "extra 00. R vs Python.html": "56ac3254"
   }
 }

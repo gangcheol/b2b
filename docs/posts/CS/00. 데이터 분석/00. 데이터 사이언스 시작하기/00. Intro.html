@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="GC">
-<meta name="dcterms.date" content="2023-02-25">
+<meta name="dcterms.date" content="2024-04-14">
 
-<title>끄적끄적 - 00. B2B 세일즈</title>
+<title>끄적끄적 - 00. Intro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" rel="next">
-<link href="../../about.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" rel="next">
+<link href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" rel="prev">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,37 +105,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -111,7 +116,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">끄적끄적</span>
     </a>
   </div>
@@ -137,7 +142,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">B2b</a></li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">00. B2B 세일즈</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. Intro</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +164,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -174,22 +179,22 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">B2b</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. B2B 세일즈</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. 제안전략수립</span></a>
   </div>
 </li>
@@ -206,7 +211,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. 코드잇 기업분석 (1)</span></a>
   </div>
 </li>
@@ -214,52 +219,52 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">CS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">00. 데이터 분석</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">00. 데이터 사이언스 시작하기</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. numpy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. pandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">extra 00. R vs Python</span></a>
   </div>
 </li>
@@ -281,23 +286,36 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#b2b-세일즈" id="toc-b2b-세일즈" class="nav-link active" data-scroll-target="#b2b-세일즈">B2B 세일즈</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#오해" id="toc-오해" class="nav-link" data-scroll-target="#오해">오해</a>
   <ul class="collapse">
-  <li><a href="#b2b-vs-b2c" id="toc-b2b-vs-b2c" class="nav-link" data-scroll-target="#b2b-vs-b2c">B2B vs B2C</a></li>
-  <li><a href="#마케팅-vs-세일즈" id="toc-마케팅-vs-세일즈" class="nav-link" data-scroll-target="#마케팅-vs-세일즈">마케팅 vs 세일즈</a></li>
-  <li><a href="#구매자-여정에서-세일즈의-위치" id="toc-구매자-여정에서-세일즈의-위치" class="nav-link" data-scroll-target="#구매자-여정에서-세일즈의-위치">구매자 여정에서 세일즈의 위치</a></li>
-  <li><a href="#b2b-세일즈에-다양한-역할" id="toc-b2b-세일즈에-다양한-역할" class="nav-link" data-scroll-target="#b2b-세일즈에-다양한-역할">B2B 세일즈에 다양한 역할</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">summary</a></li>
+  <li><a href="#오해-1" id="toc-오해-1" class="nav-link" data-scroll-target="#오해-1">오해 1</a></li>
+  <li><a href="#오해-2" id="toc-오해-2" class="nav-link" data-scroll-target="#오해-2">오해 2</a></li>
   </ul></li>
+  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python">Why, python?</a>
+  <ul class="collapse">
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#내-생각" id="toc-내-생각" class="nav-link" data-scroll-target="#내-생각">내 생각</a></li>
+  </ul></li>
+  <li><a href="#데이터-사이언스-단계" id="toc-데이터-사이언스-단계" class="nav-link" data-scroll-target="#데이터-사이언스-단계">데이터 사이언스 단계</a>
+  <ul class="collapse">
+  <li><a href="#문제-정의하기" id="toc-문제-정의하기" class="nav-link" data-scroll-target="#문제-정의하기">1. 문제 정의하기</a></li>
+  <li><a href="#데이터-모으기" id="toc-데이터-모으기" class="nav-link" data-scroll-target="#데이터-모으기">2. 데이터 모으기</a></li>
+  <li><a href="#데이터-다듬기" id="toc-데이터-다듬기" class="nav-link" data-scroll-target="#데이터-다듬기">3. 데이터 다듬기</a></li>
+  <li><a href="#데이터-분석" id="toc-데이터-분석" class="nav-link" data-scroll-target="#데이터-분석">4. 데이터 분석</a></li>
+  <li><a href="#커뮤니케이션" id="toc-커뮤니케이션" class="nav-link" data-scroll-target="#커뮤니케이션">5. 커뮤니케이션</a></li>
+  </ul></li>
+  <li><a href="#실습" id="toc-실습" class="nav-link" data-scroll-target="#실습">실습</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">B2b</a></li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">00. B2B 세일즈</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. Intro</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">00. B2B 세일즈</h1>
+<h1 class="title">00. Intro</h1>
 </div>
 
 
@@ -314,7 +332,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 25, 2023</p>
+      <p class="date">April 14, 2024</p>
     </div>
   </div>
   
@@ -326,180 +344,112 @@ window.Quarto = {
 </header>
 
 
-<section id="b2b-세일즈" class="level1">
-<h1>B2B 세일즈</h1>
-<p><code>-</code> 정의 : 기업이 기업을 대상으로 제품이나 서비스를 영업하는 것</p>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p><code>1</code> 데이터 사이언스를 배워야 하는 이유</p>
 <ul>
-<li>자신 또는 자사의 제품이 고객이 가지고 있는 <strong>pain point</strong>를 해결하는데 어떻게 활용될 수 있는지 제시하는 것!</li>
+<li>분야를 막론하고 데이터는 너무나 중요하게 여겨지고 있음(음악 추천, 대선 예측 등등….)</li>
 </ul>
-<p><code>-</code> 미션</p>
+<p><code>2</code> 정의 : 한 가지로 정의되어 있지 않음</p>
+<ul>
+<li><p>위키피디아 : 데이터 마이닝과 유사하게 정형, 비정형 형태를 포함한 <code>다양한 데이터</code>로부터 <code>지식</code>과 <code>인사이트</code>를 추출하는데 과학적 방법론, 프로세스 알고리즘, 시스템을 동원하는 융합 분야다.</p></li>
+<li><p>journal of Data Science : 데이터와 연관된 모든 것을 의미.</p></li>
+<li><p>Drew Conway : 프로그래밍, 수학과 통계, 특정분야에 대한 전문성을 가지고 데이터로부터 현실 문제를 해결하는 것</p></li>
+<li><p>결론 : 가치를 더할 수 있는일을 데이터를 활용하여 해결하는 것!</p></li>
+</ul>
+<hr>
+</section>
+<section id="오해" class="level1">
+<h1>오해</h1>
+<section id="오해-1" class="level2">
+<h2 class="anchored" data-anchor-id="오해-1">오해 1</h2>
+<p>인공지능과 딥러닝만이 DS가 아니다!</p>
+<p><code>-</code> DS 단계</p>
 <ol type="1">
-<li><p>왕성한 영업 활동? (X) <span class="math inline">\(\to\)</span> 활동 &lt; 결과</p></li>
-<li><p>고객과의 관계? (X) <span class="math inline">\(\to\)</span> 중요하지만 주가 되지 않음</p></li>
-<li><p>좋은 콘텐츠 만들기? (X)</p></li>
-<li><p><strong>기.승.전 매출 (O)</strong></p></li>
+<li><p>데이터 수집</p></li>
+<li><p>데이터를 옮기고 저장</p></li>
+<li><p>데이터를 정리</p></li>
+<li><p>데이터 분석, A/B test</p></li>
+<li><p>인공지능, 딥러닝</p></li>
 </ol>
-<section id="b2b-vs-b2c" class="level2">
-<h2 class="anchored" data-anchor-id="b2b-vs-b2c">B2B vs B2C</h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">B2B</th>
-<th style="text-align: center;">B2C</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">대상</td>
-<td style="text-align: center;">기업(조직)</td>
-<td style="text-align: center;">개인</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">의사 결정자</td>
-<td style="text-align: center;">현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함</td>
-<td style="text-align: center;">개인</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">구매 동기</td>
-<td style="text-align: center;">이윤추구</td>
-<td style="text-align: center;">개인 삶의 질 향상</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">구매 결정 프로세스</td>
-<td style="text-align: center;">복잡함</td>
-<td style="text-align: center;">관여도에 따라 다르지만, 상대적으로 짧고 간단함</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">기존 제품 / 서비스 교체</td>
-<td style="text-align: center;">복잡합</td>
-<td style="text-align: center;">간단</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="마케팅-vs-세일즈" class="level2">
-<h2 class="anchored" data-anchor-id="마케팅-vs-세일즈">마케팅 vs 세일즈</h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">마케팅</th>
-<th style="text-align: center;">세일즈</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">대상</td>
-<td style="text-align: center;">불특정 다수(1:다)</td>
-<td style="text-align: center;">잠재고객 (1:1)</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">목적</td>
-<td style="text-align: center;">알리기</td>
-<td style="text-align: center;">매출 전환(Conversation)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">활동 예시</td>
-<td style="text-align: center;">검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등</td>
-<td style="text-align: center;">가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Call to Action(고객 유도 행동)</td>
-<td style="text-align: center;">홈페이지 방문, 소개서, 다운로드</td>
-<td style="text-align: center;">문의, 미팅 및 견적 요청</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="구매자-여정에서-세일즈의-위치" class="level2">
-<h2 class="anchored" data-anchor-id="구매자-여정에서-세일즈의-위치">구매자 여정에서 세일즈의 위치</h2>
-<center>
-<img src="1.png" width="800">
-</center>
-<hr>
-<p><code>1</code> VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴</p>
 <ul>
-<li>우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)</li>
+<li><p><code>1</code> ~ <code>3</code>은 데이터 엔지니어의 역할이기도 하다.</p></li>
+<li><p>또한, 실제 기업에서는 <code>1</code> ~ <code>4</code> 까지만 가도 유의미한 가치를 창출할 수 있다.</p></li>
 </ul>
-<p><code>2</code> PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림</p>
-<ul>
-<li>잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상</li>
-</ul>
-<p><code>3</code> CLIENT (세일즈 영역) : 협상/계약</p>
-<ul>
-<li>우리가 제공하는 제품/서비스를 사용하고 있는 기업</li>
-</ul>
-<p><code>4</code> LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개</p>
-<p><span class="math inline">\(\divideontimes\)</span> 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림</p>
-<center>
-<img src="2.png" width="800">
-</center>
+</section>
+<section id="오해-2" class="level2">
+<h2 class="anchored" data-anchor-id="오해-2">오해 2</h2>
+<p>다시 말하지만, 데이터 사이언스는 단순히 <code>수학, 통계, 컴퓨팅 능력</code>이 아닌 <code>해당 비즈니스 영역에서 협업</code>을 통해 <code>문제를 해결</code>할 줄 알아야한다.</p>
 <hr>
 </section>
-<section id="b2b-세일즈에-다양한-역할" class="level2">
-<h2 class="anchored" data-anchor-id="b2b-세일즈에-다양한-역할">B2B 세일즈에 다양한 역할</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">HUNTER</th>
-<th style="text-align: center;">FARMER</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">정의</td>
-<td style="text-align: center;">지속적인 새로운 고객 발굴</td>
-<td style="text-align: center;">기존 고객과 기존 영역 성장</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">목표</td>
-<td style="text-align: center;">새로운 고객발굴을 통한 매출 증대</td>
-<td style="text-align: center;">기존 고객의 매출 성장</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">고객 발굴 상황</td>
-<td style="text-align: center;">Outbound</td>
-<td style="text-align: center;">Inbound</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">세일즈 상대</td>
-<td style="text-align: center;">새로운 잠재 기업</td>
-<td style="text-align: center;">기존 사용 부서 및 새 구매 부서</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">성과 측정</td>
-<td style="text-align: center;">새 기업 고객 수, 매출액</td>
-<td style="text-align: center;">실 사용 부서(사용자) 수, 매출액</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">이름</td>
-<td style="text-align: center;">New Sales, 고객 개발</td>
-<td style="text-align: center;">어카운트 매니저, Client Success</td>
-</tr>
-</tbody>
-</table>
+</section>
+<section id="why-python" class="level1">
+<h1>Why, python?</h1>
+<section id="r" class="level2">
+<h2 class="anchored" data-anchor-id="r">R</h2>
+<p><code>1</code> 통계와 시각화에 특화된 언어</p>
+<p><code>2</code> 그러나, R을 배운다고 다른 프로그래밍을 잘하는 것은 아님…</p>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<p><code>1</code> 웹사이트 개발, 이미지 처리, 업무 자동화, 데이터 시각화, 게임 개발, 앱 서버 개발 등 다른 영역에 다채롭게 활용할 수 있음</p>
+<p><code>2</code> DS 토픽에 한정해서는 R이 인기가 많았으나, numpy, pandas, tensorflow의 등장으로 python이 R을 앞지름</p>
+</section>
+<section id="내-생각" class="level2">
+<h2 class="anchored" data-anchor-id="내-생각">내 생각</h2>
+<p><code>1</code> 흠…. 이건 좀 내 의견은 반대이다.. 내가 둘 다 배워봐서 그런걸 수도 있지만, R이 tidyverse, tidymodel에 등장으로 훨씬 처음에 배우기 좋은 것 같음</p>
+<p><code>2</code> 그리고 도메인, 개별 성향에 따라 다르기 때문에 무작정 어떤 언어가 더 쉽다고 말할 순 없는 것 같다..</p>
+<p><code>3</code> 그냥, python으로 할 수 있는 범위가 많기 때문에 사람들이 배우기 더 쉬워하는 것 같다.</p>
 <hr>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">summary</h2>
-<p><code>1</code> B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.</p>
-<p><code>2</code> 마케팅과 세일즈의 차이는 마케팅은 <strong>알리기(Awareness)</strong> 가 핵심, <strong>세일즈는 문의를 늘려 매출로 전환</strong>하는 것이 핵심이다.</p>
+</section>
+<section id="데이터-사이언스-단계" class="level1">
+<h1>데이터 사이언스 단계</h1>
+<section id="문제-정의하기" class="level2">
+<h2 class="anchored" data-anchor-id="문제-정의하기">1. 문제 정의하기</h2>
+<p><code>1</code> 목표 설정</p>
+<p><code>2</code> 기간 설정</p>
+<p><code>3</code> 평가 방법 설정</p>
+<p><code>4</code> 필요한 데이터 설정</p>
+</section>
+<section id="데이터-모으기" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-모으기">2. 데이터 모으기</h2>
+<p><code>1</code> 웹 크롤링, 자료 모으기, 파일 읽고 쓰기</p>
+</section>
+<section id="데이터-다듬기" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-다듬기">3. 데이터 다듬기</h2>
+<p><code>1</code> 데이터 관찰, 오류 제거, 정리</p>
+</section>
+<section id="데이터-분석" class="level2">
+<h2 class="anchored" data-anchor-id="데이터-분석">4. 데이터 분석</h2>
+<p><code>1</code> 데이터 파악, 변형, 통계 분석, 인사이트 도출</p>
+</section>
+<section id="커뮤니케이션" class="level2">
+<h2 class="anchored" data-anchor-id="커뮤니케이션">5. 커뮤니케이션</h2>
+<p><code>1</code> 다양한 시각화, 커뮤니케이션, 리포트를 활용해 구성원들과 소통하며 문제 해결</p>
+<hr>
+</section>
+</section>
+<section id="실습" class="level1">
+<h1>실습</h1>
+<p>“토마토”나 “기러기”처럼 거꾸로 읽어도 똑같은 단어를 <code>팔린드롬(palindrome)</code>이라고 부릅니다. 문자열 word가 팔린드롬인지 확인하는 함수 <code>is_palindrome</code>를 쓰세요. is_palindrome은 word가 팔린드롬이면 True를, 팔린드롬이 아니면 False를 리턴합니다.</p>
+<div id="16398d1d-b4a6-4e6a-86ca-42ac348ebd9a" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> is_palindrome(word):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co"># 문자열을 거꾸로 뒤집어서 비교합니다.</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> word <span class="op">==</span> word[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># 예시를 통해 함수를 테스트합니다.</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="bu">print</span>(is_palindrome(<span class="st">"토마토"</span>))  <span class="co"># True</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="bu">print</span>(is_palindrome(<span class="st">"기러기"</span>))  <span class="co"># True</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="bu">print</span>(is_palindrome(<span class="st">"hello"</span>))   <span class="co"># False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+True
+False</code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -914,13 +864,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../about.html" class="pagination-link" aria-label="About">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+      <a href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="pagination-link" aria-label="00. 코드잇 기업분석 (1)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">00. 코드잇 기업분석 (1)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="pagination-link" aria-label="01. 제안전략수립">
-        <span class="nav-page-text">01. 제안전략수립</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="pagination-link" aria-label="01. numpy">
+        <span class="nav-page-text">01. numpy</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

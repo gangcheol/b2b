@@ -2,7 +2,7 @@ project:
   type: website
   output-dir : docs  
 website:
-  title: "Growth Marketing"
+  title: "끄적끄적"
   page-navigation: true
   navbar:
     right:

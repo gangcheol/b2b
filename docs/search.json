@@ -1,10 +1,276 @@
 [
   {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)\n\n\n\n1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.\n\n\n\n\n1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 이건 진짜 개인적인 내 생각\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 이건 진짜 개인적인 내 생각\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
+    "title": "extra 00. R vs Python",
+    "section": "샘플데이터 생성",
+    "text": "샘플데이터 생성\n- 비교를 위해 가짜 데이터를 만들어 보자(백만개만)\n\nimport pandas as pd\nimport numpy as np\n\n\nX = np.random.random((1000000,10))\nX = pd.DataFrame(X)\n\nname = [\"X\"+str(i) for i in range(10)]\nX.columns = name\n\n\nX.to_csv(\"X.csv\",index = False)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
+    "title": "extra 00. R vs Python",
+    "section": "데이터 로드",
+    "text": "데이터 로드\n\npython\n\nimport time\n\n\nstart = time.time()\ndf = pd.read_csv(\"X.csv\")\nend  = time.time()\n\n\ntotal = end-start\ntotal\n\n1.315992832183838\n\n\n\nprint(f\"데이터 로드 시간(python) : {total}\")\n\n데이터 로드 시간(python) : 1.315992832183838\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\nstart &lt;- Sys.time()\ndf &lt;- fread(\"X.csv\")\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 로드 시간(R) : \",total))\n\n[1] \"데이터 로드 시간(R) :  0.220276832580566\"\n\n\n\n오, 대략 6배 가량 차이남!",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
+    "title": "extra 00. R vs Python",
+    "section": "데이터 전처리(filter,select)",
+    "text": "데이터 전처리(filter,select)\n- 저장한 데이터에서 x1 ~ x5 까지만 컬럼을 선택하고, x1이 0보다 큰 데이터만 추출해보자\n\npython\n\nimport pandas as pd\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\nstart = time.time()\n\nselect_col = [\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]\n\ndf[select_col].loc[df.X1&gt;0,:]\n\nend  = time.time()\n\n\ntotal = end-start\nprint(f\"데이터 전처리 시간(python) : {total}\")\n\n데이터 전처리 시간(python) : 0.03211045265197754\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\ndf &lt;- fread(\"X.csv\")\n\n\nstart &lt;- Sys.time()\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 전처리 시간(R) : \",total))\n\n[1] \"데이터 전처리 시간(R) :  0.0224010944366455\"\n\n\n- 전처리도 미세하게 R이 더 빠르다.\n- 심지어 코드 가독성도 R이 더 좋은 것 같음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
+    "title": "extra 00. R vs Python",
+    "section": "다중회귀모형 적합",
+    "text": "다중회귀모형 적합\n\\[x_5 = \\beta_1 x_1+\\beta_2 x_2+\\beta_1 x_3+\\beta_1 x_4+\\beta_1 x_5\\]\n\npython\n\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\ndf = df[[\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]]\n\n\nx5 = df[\"X5\"]\nX = df.drop(\"X5\", axis = 1)\n\n\nstart = time.time()\n\nmodel = LinearRegression()\n\nmodel.fit(X,x5)\n\nx5_pred = model.predict(X)\n\nend = time.time()\n\n\ntotal = end-start\n\n\nprint(f\"모형 적합 및 예측 시간(python) : {total}\")\n\n모형 적합 및 예측 시간(python) : 0.1069481372833252\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\ndf &lt;- fread(\"X.csv\")\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\n\n\nstart &lt;- Sys.time()\n\nmodel &lt;- lm(X5~. ,data = df)\n\nx5_pred &lt;- predict(model, df)\n\nend &lt;- Sys.time()\n\n\ntotal = end - start\nprint(paste(\"모형 적합 및 예측 시간(R) : \",total))\n\n[1] \"모형 적합 및 예측 시간(R) :  0.293954849243164\"\n\n\n\n간단한 회귀모형 적합에서는 python이 3배 가량 더 빨랐다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "extra 00. R vs Python"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html",
+    "title": "01. numpy",
+    "section": "",
+    "text": "- numpy (numerical python)\n\npython에서 복잡한 수식 계산을 위해 만든 모듈\narray라는 데이터 형태를 통해 많은 양의 데이터들을 손쉽게 계산할 수 있음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#파이썬-리스트를-통해-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#파이썬-리스트를-통해-생성",
+    "title": "01. numpy",
+    "section": "1. 파이썬 리스트를 통해 생성",
+    "text": "1. 파이썬 리스트를 통해 생성\n1 모듈 불러오기\n\nimport numpy\n\n2 파라미터로 python list 전달\n\na1 = numpy.array([2,3,5,7,11,13,17,19,23,29,31])\na1\n\narray([ 2,  3,  5,  7, 11, 13, 17, 19, 23, 29, 31])\n\n\n3 type확인\n\nndarray? n-dimensional array\n\n\ntype(a1)\n\nnumpy.ndarray\n\n\n4 shape 확인\n\na1.shape\n\n(11,)\n\n\n5 2차원 array\n\na2 = numpy.array([[2,3,5,7],[11,13,17,19],[23,29,31,33]])\na2\n\narray([[ 2,  3,  5,  7],\n       [11, 13, 17, 19],\n       [23, 29, 31, 33]])\n\n\n\ntype(a2)\n\nnumpy.ndarray\n\n\n\na2.shape\n\n(3, 4)\n\n\n5 요소개수 확인\n\na1.size\n\n11\n\n\n\na2.size\n\n12",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#균일한-값으로-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#균일한-값으로-생성",
+    "title": "01. numpy",
+    "section": "2. 균일한 값으로 생성",
+    "text": "2. 균일한 값으로 생성\n\nnumpy.full(6,7)\n\narray([7, 7, 7, 7, 7, 7])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#모든-값을-0으로-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#모든-값을-0으로-생성",
+    "title": "01. numpy",
+    "section": "3. 모든 값을 0으로 생성",
+    "text": "3. 모든 값을 0으로 생성\n\nnumpy.full(6,0)\n\narray([0, 0, 0, 0, 0, 0])\n\n\n\nnumpy.zeros(6, dtype = int)\n\narray([0, 0, 0, 0, 0, 0])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#모든-값을-1로-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#모든-값을-1로-생성",
+    "title": "01. numpy",
+    "section": "4. 모든 값을 1로 생성",
+    "text": "4. 모든 값을 1로 생성\n\nnumpy.full(6,1)\n\narray([1, 1, 1, 1, 1, 1])\n\n\n\nnumpy.ones(6, dtype = int)\n\narray([1, 1, 1, 1, 1, 1])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#랜덤한-값들로-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#랜덤한-값들로-생성",
+    "title": "01. numpy",
+    "section": "5. 랜덤한 값들로 생성",
+    "text": "5. 랜덤한 값들로 생성\n\nnumpy.random.random(6)\n\narray([0.01877569, 0.64836263, 0.24382533, 0.15821645, 0.10587735,\n       0.0708292 ])\n\n\n\nnumpy.random.random(6)\n\narray([0.08551933, 0.79689483, 0.61449187, 0.55877517, 0.59213215,\n       0.59484228])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#연속된-배열-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#연속된-배열-생성",
+    "title": "01. numpy",
+    "section": "6. 연속된 배열 생성",
+    "text": "6. 연속된 배열 생성\n\nnumpy.arange(6)\n\narray([0, 1, 2, 3, 4, 5])\n\n\n\nnumpy.arange(1,7)\n\narray([1, 2, 3, 4, 5, 6])\n\n\n\nnumpy.arange(1,7,2)\n\narray([1, 3, 5])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#최댓값-최솟값",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#최댓값-최솟값",
+    "title": "01. numpy",
+    "section": "1. 최댓값, 최솟값",
+    "text": "1. 최댓값, 최솟값\n\nimport numpy as np\n\narray1 = np.array([14, 6, 13, 21, 23, 31, 9, 5])\n\nprint(array1.max()) # 최댓값\nprint(array1.min()) # 최솟값\n\n31\n5",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#평균",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#평균",
+    "title": "01. numpy",
+    "section": "2. 평균",
+    "text": "2. 평균\n\nimport numpy as np\n\narray1 = np.array([14, 6, 13, 21, 23, 31, 9, 5])\n\nprint(array1.mean()) # 평균값\n\n15.25",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#중앙값",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#중앙값",
+    "title": "01. numpy",
+    "section": "3. 중앙값",
+    "text": "3. 중앙값\n\nimport numpy as np\n\narray1 = np.array([8, 12, 9, 15, 16])\narray2 = np.array([14, 6, 13, 21, 23, 31, 9, 5])\n\nprint(np.median(array1)) # 중앙값\nprint(np.median(array2)) # 중앙값\n\n12.0\n13.5",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#표준편차-분산",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html#표준편차-분산",
+    "title": "01. numpy",
+    "section": "4. 표준편차, 분산",
+    "text": "4. 표준편차, 분산\n\nimport numpy as np\n\narray1 = np.array([14, 6, 13, 21, 23, 31, 9, 5])\n\nprint(array1.std()) # 표준 편차\nprint(array1.var()) # 분산\n\n8.496322733983215\n72.1875",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "01. numpy"
+    ]
+  },
+  {
     "objectID": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
     "href": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
     "title": "00. 코드잇 기업분석 (1)",
     "section": "",
-    "text": "코드잇 소개\n- 구독형 교육 서비스를 제공하는 기업\n\n넷플릭스, 멜론처럼 구독 시 원하는 강의를 무제한으로 들을 수 있는 서비스를 제공한다. (굉장히 신선함)\n넷플릭스와 다른점은 콘텐츠를 내부 콘텐츠 팀에서 제작하는 방식!\n그렇기 때문에 커리큘럼에 대한 고민을 많이 한다…(맞는 말임)\n다른 플랫폼들은 외주 형식으로 강의를 만드는데 일관적이지 않다.\n코드잇은 하나의 큰 그림을 그려놓고 세부적으로 기획을 해서 제작하기 때문에 일관성이 높다.(ㅇㅇ 확실히 외주를 맡기면 강사마다 강의하는 방식과 사용하는 함수 같은 것들이 다르니 좀 혼동 될 때가 많았음)\n또한, 코드잇은 강의를 짬내서 만드는 게 아닌 풀타임으로 콘텐츠 제작에 몰두하기 때문에 강의 퀄리티가 높을 수 밖에 없는 것 같음\n새로운 사람이 와도 일관되게 좋은 강의가 나오도록 가이드를 계속해서 개선을 하고 있다.\n\n\n\n\n콘텐츠 프로듀서?\n- 흔히 있는 강사를 말하는 것이 아니다!!\n- 강사가 아닌 콘텐츠 프로듀서라고 이름을 붙인 이유!\n\n단순히 강의를 하는 포지션이 아니라 정제된 콘텐츠를 만드는 것이 핵심\n해당 분야에 대한 리서치, 관련된 강의, 이를 통해 어떻게 최적화된 커리큘럼을 만들 수 있는지!\n주요 업무는 리서치, 공부, 기획, 콘텐츠 제작인 것 같다….!\n학원 강사와의 차이점 : 팀으로 움직인다. \\(\\to\\) 한 가지 주제에 대해서 두 명의 프로듀서가 참여를 한다던지, 영상 편집은 디자이너… 이렇게 팀으로 움직이기 때문에 이러한 점이 강사와의 차이점이다.\n애니메이션을 주로 활용해서 컨텐츠를 제작함.(필요에 따라 사람이 직접 나오는 영상을 촬영함)\n\n\n\n강의 체계\n- 토픽이라는 단위로 구성\n- 하나의 토픽 안에 영상들이 들어가 있음\n\n보통 2, 3개월 정도에 걸려서 하나의 토픽을 만든다.\n일단, 강의를 몇 개 들어보고 차별성을 직접 느껴보는 게 좋을 것 같음.",
+    "text": "코드잇 소개\n- 구독형 교육 서비스를 제공하는 기업\n\n넷플릭스, 멜론처럼 구독 시 원하는 강의를 무제한으로 들을 수 있는 서비스를 제공한다. (굉장히 신선함)\n넷플릭스와 다른점은 콘텐츠를 내부 콘텐츠 팀에서 제작하는 방식!\n그렇기 때문에 커리큘럼에 대한 고민을 많이 한다…(맞는 말임)\n다른 플랫폼들은 외주 형식으로 강의를 만드는데 일관적이지 않다.\n코드잇은 하나의 큰 그림을 그려놓고 세부적으로 기획을 해서 제작하기 때문에 일관성이 높다.(ㅇㅇ 확실히 외주를 맡기면 강사마다 강의하는 방식과 사용하는 함수 같은 것들이 다르니 좀 혼동 될 때가 많았음)\n또한, 코드잇은 강의를 짬내서 만드는 게 아닌 풀타임으로 콘텐츠 제작에 몰두하기 때문에 강의 퀄리티가 높을 수 밖에 없는 것 같음\n새로운 사람이 와도 일관되게 좋은 강의가 나오도록 가이드를 계속해서 개선을 하고 있다.\n\n\n\n\n콘텐츠 프로듀서?\n- 흔히 있는 강사를 말하는 것이 아니다!!\n- 강사가 아닌 콘텐츠 프로듀서라고 이름을 붙인 이유!\n\n단순히 강의를 하는 포지션이 아니라 정제된 콘텐츠를 만드는 것이 핵심\n해당 분야에 대한 리서치, 관련된 강의, 이를 통해 어떻게 최적화된 커리큘럼을 만들 수 있는지!\n주요 업무는 리서치, 공부, 기획, 콘텐츠 제작인 것 같다….!\n학원 강사와의 차이점 : 팀으로 움직인다. \\(\\to\\) 한 가지 주제에 대해서 두 명의 프로듀서가 참여를 한다던지, 영상 편집은 디자이너… 이렇게 팀으로 움직이기 때문에 이러한 점이 강사와의 차이점이다.\n애니메이션을 주로 활용해서 컨텐츠를 제작함.(필요에 따라 사람이 직접 나오는 영상을 촬영함)\n\n\n\n강의 체계\n- 토픽이라는 단위로 구성\n- 하나의 토픽 안에 영상들이 들어가 있음\n\n보통 2, 3개월 정도에 걸려서 하나의 토픽을 만든다.\n일단, 강의를 몇 개 들어보고 차별성을 직접 느껴보는 게 좋을 것 같음.\n\n\\(x+y\\)\n\\(2x + y\\)",
     "crumbs": [
       "Posts",
       "CA",
@@ -96,9 +362,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Growth marketing",
+    "title": "끄적끄적",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMar 18, 2024\n\n\n00. 코드잇 기업분석 (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. 코드잇 기업분석 (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html",
@@ -206,6 +472,230 @@
       "Posts",
       "B2b",
       "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
+    "title": "00. Intro",
+    "section": "",
+    "text": "1 데이터 사이언스를 배워야 하는 이유\n\n분야를 막론하고 데이터는 너무나 중요하게 여겨지고 있음(음악 추천, 대선 예측 등등….)\n\n2 정의 : 한 가지로 정의되어 있지 않음\n\n위키피디아 : 데이터 마이닝과 유사하게 정형, 비정형 형태를 포함한 다양한 데이터로부터 지식과 인사이트를 추출하는데 과학적 방법론, 프로세스 알고리즘, 시스템을 동원하는 융합 분야다.\njournal of Data Science : 데이터와 연관된 모든 것을 의미.\nDrew Conway : 프로그래밍, 수학과 통계, 특정분야에 대한 전문성을 가지고 데이터로부터 현실 문제를 해결하는 것\n결론 : 가치를 더할 수 있는일을 데이터를 활용하여 해결하는 것!",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
+    "title": "00. Intro",
+    "section": "오해 1",
+    "text": "오해 1\n인공지능과 딥러닝만이 DS가 아니다!\n- DS 단계\n\n데이터 수집\n데이터를 옮기고 저장\n데이터를 정리\n데이터 분석, A/B test\n인공지능, 딥러닝\n\n\n1 ~ 3은 데이터 엔지니어의 역할이기도 하다.\n또한, 실제 기업에서는 1 ~ 4 까지만 가도 유의미한 가치를 창출할 수 있다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
+    "title": "00. Intro",
+    "section": "오해 2",
+    "text": "오해 2\n다시 말하지만, 데이터 사이언스는 단순히 수학, 통계, 컴퓨팅 능력이 아닌 해당 비즈니스 영역에서 협업을 통해 문제를 해결할 줄 알아야한다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
+    "title": "00. Intro",
+    "section": "R",
+    "text": "R\n1 통계와 시각화에 특화된 언어\n2 그러나, R을 배운다고 다른 프로그래밍을 잘하는 것은 아님…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
+    "title": "00. Intro",
+    "section": "Python",
+    "text": "Python\n1 웹사이트 개발, 이미지 처리, 업무 자동화, 데이터 시각화, 게임 개발, 앱 서버 개발 등 다른 영역에 다채롭게 활용할 수 있음\n2 DS 토픽에 한정해서는 R이 인기가 많았으나, numpy, pandas, tensorflow의 등장으로 python이 R을 앞지름",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
+    "title": "00. Intro",
+    "section": "내 생각",
+    "text": "내 생각\n1 흠…. 이건 좀 내 의견은 반대이다.. 내가 둘 다 배워봐서 그런걸 수도 있지만, R이 tidyverse, tidymodel에 등장으로 훨씬 처음에 배우기 좋은 것 같음\n2 그리고 도메인, 개별 성향에 따라 다르기 때문에 무작정 어떤 언어가 더 쉽다고 말할 순 없는 것 같다..\n3 그냥, python으로 할 수 있는 범위가 많기 때문에 사람들이 배우기 더 쉬워하는 것 같다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
+    "title": "00. Intro",
+    "section": "1. 문제 정의하기",
+    "text": "1. 문제 정의하기\n1 목표 설정\n2 기간 설정\n3 평가 방법 설정\n4 필요한 데이터 설정",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
+    "title": "00. Intro",
+    "section": "2. 데이터 모으기",
+    "text": "2. 데이터 모으기\n1 웹 크롤링, 자료 모으기, 파일 읽고 쓰기",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
+    "title": "00. Intro",
+    "section": "3. 데이터 다듬기",
+    "text": "3. 데이터 다듬기\n1 데이터 관찰, 오류 제거, 정리",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
+    "title": "00. Intro",
+    "section": "4. 데이터 분석",
+    "text": "4. 데이터 분석\n1 데이터 파악, 변형, 통계 분석, 인사이트 도출",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
+    "title": "00. Intro",
+    "section": "5. 커뮤니케이션",
+    "text": "5. 커뮤니케이션\n1 다양한 시각화, 커뮤니케이션, 리포트를 활용해 구성원들과 소통하며 문제 해결",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
+    "title": "02. pandas",
+    "section": "",
+    "text": "- numpy를 이용해서 만들어진 모듈\n- 데이터를 읽고, 쓰고, 저장하고 시각화하는 기능이 포함되어 있음\n- 표 형식의 데이터(데이터프레임)를 다루는데 필수적인 모듈!\n- numpy와 달리 다양한 자료형을 표 형식으로 저장할 수 있음!(\\(\\star\\star\\))",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
+    "title": "02. pandas",
+    "section": "1. 리스트",
+    "text": "1. 리스트\n\nimport pandas as pd\nimport numpy as np\n\n\nl = [[\"a\", 50, 86], [\"b\", 89, 31], [\"ikjoong\", 68, 91]]\n\npd.DataFrame(l)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
+    "title": "02. pandas",
+    "section": "2. numpy",
+    "text": "2. numpy\n\npd.DataFrame(np.array(l))\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
+    "title": "02. pandas",
+    "section": "3. Series",
+    "text": "3. Series\n\nl2 = [\n    pd.Series([\"a\", 50, 86]),\n    pd.Series([\"b\", 89, 31]),\n    pd.Series([\"c\", 68, 91]),\n        \n]\n\npd.DataFrame(l2)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
+    "title": "02. pandas",
+    "section": "4. Dictionary",
+    "text": "4. Dictionary\n\ndic = {\"name\" : [\"a\",\"b\",\"c\"],\n       \"s1\" : [50,89,68],\n       \"s2\" : [86,31,91]}\n\ndf = pd.DataFrame(dic)\ndf\n\n\n\n\n\n\n\n\n\nname\ns1\ns2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91\n\n\n\n\n\n\n\n\n\ndf.set_index(\"name\")\n\n\n\n\n\n\n\n\n\ns1\ns2\n\n\nname\n\n\n\n\n\n\na\n50\n86\n\n\nb\n89\n31\n\n\nc\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
     ]
   }
 ]

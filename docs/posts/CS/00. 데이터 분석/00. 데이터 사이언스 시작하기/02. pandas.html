@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="GC">
-<meta name="dcterms.date" content="2023-02-25">
+<meta name="author" content="gc">
+<meta name="dcterms.date" content="2024-04-14">
 
-<title>끄적끄적 - 00. B2B 세일즈</title>
+<title>끄적끄적 - 02. pandas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" rel="next">
-<link href="../../about.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" rel="next">
+<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" rel="prev">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,6 +104,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -101,7 +138,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -111,7 +148,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">끄적끄적</span>
     </a>
   </div>
@@ -137,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">B2b</a></li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">00. B2B 세일즈</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html">02. pandas</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -159,7 +196,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -174,22 +211,22 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">B2b</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. B2B 세일즈</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. 제안전략수립</span></a>
   </div>
 </li>
@@ -206,7 +243,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. 코드잇 기업분석 (1)</span></a>
   </div>
 </li>
@@ -214,52 +251,52 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">CS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">00. 데이터 분석</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">00. 데이터 사이언스 시작하기</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. numpy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">02. pandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">extra 00. R vs Python</span></a>
   </div>
 </li>
@@ -281,13 +318,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#b2b-세일즈" id="toc-b2b-세일즈" class="nav-link active" data-scroll-target="#b2b-세일즈">B2B 세일즈</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#dataframe-생성" id="toc-dataframe-생성" class="nav-link" data-scroll-target="#dataframe-생성">DataFrame 생성</a>
   <ul class="collapse">
-  <li><a href="#b2b-vs-b2c" id="toc-b2b-vs-b2c" class="nav-link" data-scroll-target="#b2b-vs-b2c">B2B vs B2C</a></li>
-  <li><a href="#마케팅-vs-세일즈" id="toc-마케팅-vs-세일즈" class="nav-link" data-scroll-target="#마케팅-vs-세일즈">마케팅 vs 세일즈</a></li>
-  <li><a href="#구매자-여정에서-세일즈의-위치" id="toc-구매자-여정에서-세일즈의-위치" class="nav-link" data-scroll-target="#구매자-여정에서-세일즈의-위치">구매자 여정에서 세일즈의 위치</a></li>
-  <li><a href="#b2b-세일즈에-다양한-역할" id="toc-b2b-세일즈에-다양한-역할" class="nav-link" data-scroll-target="#b2b-세일즈에-다양한-역할">B2B 세일즈에 다양한 역할</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">summary</a></li>
+  <li><a href="#리스트" id="toc-리스트" class="nav-link" data-scroll-target="#리스트">1. 리스트</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy">2. numpy</a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series">3. Series</a></li>
+  <li><a href="#dictionary" id="toc-dictionary" class="nav-link" data-scroll-target="#dictionary">4. Dictionary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -295,9 +332,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">B2b</a></li><li class="breadcrumb-item"><a href="../../posts/b2b/2024-02-25-00. B2B 세일즈.html">00. B2B 세일즈</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html">02. pandas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">00. B2B 세일즈</h1>
+<h1 class="title">02. pandas</h1>
 </div>
 
 
@@ -307,14 +344,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>GC </p>
+             <p>gc </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 25, 2023</p>
+      <p class="date">April 14, 2024</p>
     </div>
   </div>
   
@@ -326,177 +363,255 @@ window.Quarto = {
 </header>
 
 
-<section id="b2b-세일즈" class="level1">
-<h1>B2B 세일즈</h1>
-<p><code>-</code> 정의 : 기업이 기업을 대상으로 제품이나 서비스를 영업하는 것</p>
-<ul>
-<li>자신 또는 자사의 제품이 고객이 가지고 있는 <strong>pain point</strong>를 해결하는데 어떻게 활용될 수 있는지 제시하는 것!</li>
-</ul>
-<p><code>-</code> 미션</p>
-<ol type="1">
-<li><p>왕성한 영업 활동? (X) <span class="math inline">\(\to\)</span> 활동 &lt; 결과</p></li>
-<li><p>고객과의 관계? (X) <span class="math inline">\(\to\)</span> 중요하지만 주가 되지 않음</p></li>
-<li><p>좋은 콘텐츠 만들기? (X)</p></li>
-<li><p><strong>기.승.전 매출 (O)</strong></p></li>
-</ol>
-<section id="b2b-vs-b2c" class="level2">
-<h2 class="anchored" data-anchor-id="b2b-vs-b2c">B2B vs B2C</h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p><code>-</code> numpy를 이용해서 만들어진 모듈</p>
+<p><code>-</code> 데이터를 읽고, 쓰고, 저장하고 시각화하는 기능이 포함되어 있음</p>
+<p><code>-</code> 표 형식의 데이터(데이터프레임)를 다루는데 필수적인 모듈!</p>
+<p><code>-</code> numpy와 달리 다양한 자료형을 표 형식으로 저장할 수 있음!(<span class="math inline">\(\star\star\)</span>)</p>
+</section>
+<section id="dataframe-생성" class="level1">
+<h1>DataFrame 생성</h1>
+<section id="리스트" class="level2">
+<h2 class="anchored" data-anchor-id="리스트">1. 리스트</h2>
+<div id="dc9f812a-174c-46d5-83f0-f501ef3d4500" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="58c58db3-7a3c-4820-8a4a-7cced834b721" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>l <span class="op">=</span> [[<span class="st">"a"</span>, <span class="dv">50</span>, <span class="dv">86</span>], [<span class="st">"b"</span>, <span class="dv">89</span>, <span class="dv">31</span>], [<span class="st">"ikjoong"</span>, <span class="dv">68</span>, <span class="dv">91</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>pd.DataFrame(l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">B2B</th>
-<th style="text-align: center;">B2C</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">대상</td>
-<td style="text-align: center;">기업(조직)</td>
-<td style="text-align: center;">개인</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>50</td>
+<td>86</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">의사 결정자</td>
-<td style="text-align: center;">현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함</td>
-<td style="text-align: center;">개인</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>b</td>
+<td>89</td>
+<td>31</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">구매 동기</td>
-<td style="text-align: center;">이윤추구</td>
-<td style="text-align: center;">개인 삶의 질 향상</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">구매 결정 프로세스</td>
-<td style="text-align: center;">복잡함</td>
-<td style="text-align: center;">관여도에 따라 다르지만, 상대적으로 짧고 간단함</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">기존 제품 / 서비스 교체</td>
-<td style="text-align: center;">복잡합</td>
-<td style="text-align: center;">간단</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>ikjoong</td>
+<td>68</td>
+<td>91</td>
 </tr>
 </tbody>
 </table>
+
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="마케팅-vs-세일즈" class="level2">
-<h2 class="anchored" data-anchor-id="마케팅-vs-세일즈">마케팅 vs 세일즈</h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
+<section id="numpy" class="level2">
+<h2 class="anchored" data-anchor-id="numpy">2. numpy</h2>
+<div id="7df24d83-d9c5-478a-9951-0dad678e8966" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>pd.DataFrame(np.array(l))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">마케팅</th>
-<th style="text-align: center;">세일즈</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">대상</td>
-<td style="text-align: center;">불특정 다수(1:다)</td>
-<td style="text-align: center;">잠재고객 (1:1)</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>50</td>
+<td>86</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">목적</td>
-<td style="text-align: center;">알리기</td>
-<td style="text-align: center;">매출 전환(Conversation)</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>b</td>
+<td>89</td>
+<td>31</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">활동 예시</td>
-<td style="text-align: center;">검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등</td>
-<td style="text-align: center;">가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Call to Action(고객 유도 행동)</td>
-<td style="text-align: center;">홈페이지 방문, 소개서, 다운로드</td>
-<td style="text-align: center;">문의, 미팅 및 견적 요청</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>ikjoong</td>
+<td>68</td>
+<td>91</td>
 </tr>
 </tbody>
 </table>
-<hr>
+
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="구매자-여정에서-세일즈의-위치" class="level2">
-<h2 class="anchored" data-anchor-id="구매자-여정에서-세일즈의-위치">구매자 여정에서 세일즈의 위치</h2>
-<center>
-<img src="1.png" width="800">
-</center>
-<hr>
-<p><code>1</code> VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴</p>
-<ul>
-<li>우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)</li>
-</ul>
-<p><code>2</code> PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림</p>
-<ul>
-<li>잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상</li>
-</ul>
-<p><code>3</code> CLIENT (세일즈 영역) : 협상/계약</p>
-<ul>
-<li>우리가 제공하는 제품/서비스를 사용하고 있는 기업</li>
-</ul>
-<p><code>4</code> LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개</p>
-<p><span class="math inline">\(\divideontimes\)</span> 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림</p>
-<center>
-<img src="2.png" width="800">
-</center>
-<hr>
-</section>
-<section id="b2b-세일즈에-다양한-역할" class="level2">
-<h2 class="anchored" data-anchor-id="b2b-세일즈에-다양한-역할">B2B 세일즈에 다양한 역할</h2>
-<table class="table">
+<section id="series" class="level2">
+<h2 class="anchored" data-anchor-id="series">3. Series</h2>
+<div id="035c4634-7fea-48ca-b69e-e74a4e551641" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>l2 <span class="op">=</span> [</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    pd.Series([<span class="st">"a"</span>, <span class="dv">50</span>, <span class="dv">86</span>]),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    pd.Series([<span class="st">"b"</span>, <span class="dv">89</span>, <span class="dv">31</span>]),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    pd.Series([<span class="st">"c"</span>, <span class="dv">68</span>, <span class="dv">91</span>]),</span>
+<span id="cb4-5"><a href="#cb4-5"></a>        </span>
+<span id="cb4-6"><a href="#cb4-6"></a>]</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>pd.DataFrame(l2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th style="text-align: center;">목록</th>
-<th style="text-align: center;">HUNTER</th>
-<th style="text-align: center;">FARMER</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">정의</td>
-<td style="text-align: center;">지속적인 새로운 고객 발굴</td>
-<td style="text-align: center;">기존 고객과 기존 영역 성장</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>50</td>
+<td>86</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">목표</td>
-<td style="text-align: center;">새로운 고객발굴을 통한 매출 증대</td>
-<td style="text-align: center;">기존 고객의 매출 성장</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>b</td>
+<td>89</td>
+<td>31</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">고객 발굴 상황</td>
-<td style="text-align: center;">Outbound</td>
-<td style="text-align: center;">Inbound</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">세일즈 상대</td>
-<td style="text-align: center;">새로운 잠재 기업</td>
-<td style="text-align: center;">기존 사용 부서 및 새 구매 부서</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">성과 측정</td>
-<td style="text-align: center;">새 기업 고객 수, 매출액</td>
-<td style="text-align: center;">실 사용 부서(사용자) 수, 매출액</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">이름</td>
-<td style="text-align: center;">New Sales, 고객 개발</td>
-<td style="text-align: center;">어카운트 매니저, Client Success</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>c</td>
+<td>68</td>
+<td>91</td>
 </tr>
 </tbody>
 </table>
-<hr>
+
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">summary</h2>
-<p><code>1</code> B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.</p>
-<p><code>2</code> 마케팅과 세일즈의 차이는 마케팅은 <strong>알리기(Awareness)</strong> 가 핵심, <strong>세일즈는 문의를 늘려 매출로 전환</strong>하는 것이 핵심이다.</p>
+<section id="dictionary" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary">4. Dictionary</h2>
+<div id="32cffd86-9135-4792-9c14-bd9a9c2ad596" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>dic <span class="op">=</span> {<span class="st">"name"</span> : [<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>],</span>
+<span id="cb5-2"><a href="#cb5-2"></a>       <span class="st">"s1"</span> : [<span class="dv">50</span>,<span class="dv">89</span>,<span class="dv">68</span>],</span>
+<span id="cb5-3"><a href="#cb5-3"></a>       <span class="st">"s2"</span> : [<span class="dv">86</span>,<span class="dv">31</span>,<span class="dv">91</span>]}</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>df <span class="op">=</span> pd.DataFrame(dic)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">s1</th>
+<th data-quarto-table-cell-role="th">s2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>50</td>
+<td>86</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>b</td>
+<td>89</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>c</td>
+<td>68</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="996ae0ca-0b58-4e15-847c-84b3f043f079" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df.set_index(<span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">s1</th>
+<th data-quarto-table-cell-role="th">s2</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>50</td>
+<td>86</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>89</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">c</td>
+<td>68</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -914,13 +1029,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../about.html" class="pagination-link" aria-label="About">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="pagination-link" aria-label="01. numpy">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01. numpy</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="pagination-link" aria-label="01. 제안전략수립">
-        <span class="nav-page-text">01. 제안전략수립</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="pagination-link" aria-label="extra 00. R vs Python">
+        <span class="nav-page-text">extra 00. R vs Python</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

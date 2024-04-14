@@ -2,6 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
+      "/posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html",
+      "/posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
+      "/posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
       "/posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
       "/posts/b2b/2024-03-17-01. 제안전략수립.html",
       "/posts/b2b/2024-02-25-00. B2B 세일즈.html"
