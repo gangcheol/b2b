@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="GC">
-<meta name="dcterms.date" content="2024-04-14">
+<meta name="dcterms.date" content="2024-04-19">
 
-<title>끄적끄적 - 01. numpy</title>
+<title>끄적끄적 - 01. DataFrame 인덱싱</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,15 +59,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
-<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" rel="next">
-<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" rel="prev">
+<link href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html" rel="next">
+<link href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" rel="prev">
 <script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../../../styles.css">
@@ -142,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html">01. numpy</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html">01. DataFrame 다루기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html">01. DataFrame 인덱싱</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -237,13 +240,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
  <span class="menu-text">00. 데이터 사이언스 시작하기</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
@@ -252,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. numpy</span></a>
   </div>
 </li>
@@ -272,16 +275,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
  <span class="menu-text">01. DataFrame 다루기</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">01. DataFrame 인덱싱</span></a>
   </div>
 </li>
@@ -315,32 +318,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
-  <li><a href="#numpy-array-만들기" id="toc-numpy-array-만들기" class="nav-link" data-scroll-target="#numpy-array-만들기">numpy array 만들기</a>
-  <ul class="collapse">
-  <li><a href="#파이썬-리스트를-통해-생성" id="toc-파이썬-리스트를-통해-생성" class="nav-link" data-scroll-target="#파이썬-리스트를-통해-생성">1. 파이썬 리스트를 통해 생성</a></li>
-  <li><a href="#균일한-값으로-생성" id="toc-균일한-값으로-생성" class="nav-link" data-scroll-target="#균일한-값으로-생성">2. 균일한 값으로 생성</a></li>
-  <li><a href="#모든-값을-0으로-생성" id="toc-모든-값을-0으로-생성" class="nav-link" data-scroll-target="#모든-값을-0으로-생성">3. 모든 값을 0으로 생성</a></li>
-  <li><a href="#모든-값을-1로-생성" id="toc-모든-값을-1로-생성" class="nav-link" data-scroll-target="#모든-값을-1로-생성">4. 모든 값을 1로 생성</a></li>
-  <li><a href="#랜덤한-값들로-생성" id="toc-랜덤한-값들로-생성" class="nav-link" data-scroll-target="#랜덤한-값들로-생성">5. 랜덤한 값들로 생성</a></li>
-  <li><a href="#연속된-배열-생성" id="toc-연속된-배열-생성" class="nav-link" data-scroll-target="#연속된-배열-생성">6. 연속된 배열 생성</a></li>
-  </ul></li>
-  <li><a href="#numpy-기본-통계" id="toc-numpy-기본-통계" class="nav-link" data-scroll-target="#numpy-기본-통계">numpy 기본 통계</a>
-  <ul class="collapse">
-  <li><a href="#최댓값-최솟값" id="toc-최댓값-최솟값" class="nav-link" data-scroll-target="#최댓값-최솟값">1. 최댓값, 최솟값</a></li>
-  <li><a href="#평균" id="toc-평균" class="nav-link" data-scroll-target="#평균">2. 평균</a></li>
-  <li><a href="#중앙값" id="toc-중앙값" class="nav-link" data-scroll-target="#중앙값">3. 중앙값</a></li>
-  <li><a href="#표준편차-분산" id="toc-표준편차-분산" class="nav-link" data-scroll-target="#표준편차-분산">4. 표준편차, 분산</a></li>
-  </ul></li>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
+  <li><a href="#데이터-로드" id="toc-데이터-로드" class="nav-link" data-scroll-target="#데이터-로드">데이터 로드</a></li>
+  <li><a href="#인덱싱" id="toc-인덱싱" class="nav-link" data-scroll-target="#인덱싱">인덱싱</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/01. numpy.html">01. numpy</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html">01. DataFrame 다루기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html">01. DataFrame 인덱싱</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">01. numpy</h1>
+<h1 class="title">01. DataFrame 인덱싱</h1>
 </div>
 
 
@@ -357,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 14, 2024</p>
+      <p class="date">April 19, 2024</p>
     </div>
   </div>
   
@@ -369,225 +358,563 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="intro" class="level1">
-<h1>Intro</h1>
-<p><code>-</code> numpy (numerical python)</p>
-<ul>
-<li><p>python에서 복잡한 수식 계산을 위해 만든 모듈</p></li>
-<li><p>array라는 데이터 형태를 통해 많은 양의 데이터들을 손쉽게 계산할 수 있음</p></li>
-</ul>
-</section>
-<section id="numpy-array-만들기" class="level1">
-<h1>numpy array 만들기</h1>
-<section id="파이썬-리스트를-통해-생성" class="level2">
-<h2 class="anchored" data-anchor-id="파이썬-리스트를-통해-생성">1. 파이썬 리스트를 통해 생성</h2>
-<p><code>1</code> 모듈 불러오기</p>
-<div id="fdd5b13a-aa07-43f4-a369-d39bc39fa619" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>2</code> 파라미터로 python list 전달</p>
-<div id="78e7bb51-b0bf-46bb-9785-8ebba6cb1653" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>a1 <span class="op">=</span> numpy.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">13</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">23</span>,<span class="dv">29</span>,<span class="dv">31</span>])</span>
-<span id="cb2-2"><a href="#cb2-2"></a>a1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>array([ 2,  3,  5,  7, 11, 13, 17, 19, 23, 29, 31])</code></pre>
-</div>
-</div>
-<p><code>3</code> type확인</p>
-<ul>
-<li>ndarray? <code>n-dimensional array</code></li>
-</ul>
-<div id="b9c9f07c-3f6d-463d-8137-ee913986bc52" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">type</span>(a1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>numpy.ndarray</code></pre>
-</div>
-</div>
-<p><code>4</code> shape 확인</p>
-<div id="cee78d91-07b0-443e-bbac-6800d3eb94c5" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>a1.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>(11,)</code></pre>
-</div>
-</div>
-<p><code>5</code> 2차원 array</p>
-<div id="007698be-861f-43b8-92e8-172214d67f12" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>a2 <span class="op">=</span> numpy.array([[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>],[<span class="dv">11</span>,<span class="dv">13</span>,<span class="dv">17</span>,<span class="dv">19</span>],[<span class="dv">23</span>,<span class="dv">29</span>,<span class="dv">31</span>,<span class="dv">33</span>]])</span>
-<span id="cb8-2"><a href="#cb8-2"></a>a2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>array([[ 2,  3,  5,  7],
-       [11, 13, 17, 19],
-       [23, 29, 31, 33]])</code></pre>
-</div>
-</div>
-<div id="5d3bb1f4-de7d-4588-b123-3a57eaade371" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">type</span>(a2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>numpy.ndarray</code></pre>
-</div>
-</div>
-<div id="741bab97-c903-4d10-921b-34df8646adfc" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>a2.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(3, 4)</code></pre>
-</div>
-</div>
-<p><code>5</code> 요소개수 확인</p>
-<div id="8b3fd271-52e5-4c8d-bc85-0c2e6f60f47c" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>a1.size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>11</code></pre>
-</div>
-</div>
-<div id="e3b62365-45d0-4690-ba01-e33c00a385e6" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>a2.size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>12</code></pre>
-</div>
+<section id="import" class="level1">
+<h1>import</h1>
+<div id="c9597e4d-2700-419b-86f8-4e4f2a7c74fe" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="균일한-값으로-생성" class="level2">
-<h2 class="anchored" data-anchor-id="균일한-값으로-생성">2. 균일한 값으로 생성</h2>
-<div id="a4b67df1-536b-4b09-a9f8-9910633e43da" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>numpy.full(<span class="dv">6</span>,<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([7, 7, 7, 7, 7, 7])</code></pre>
+<section id="데이터-로드" class="level1">
+<h1>데이터 로드</h1>
+<div id="cf2a8dfc-8345-4199-8aff-b5f46ff22132" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/broadcast.csv"</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>, index_col <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</section>
-<section id="모든-값을-0으로-생성" class="level2">
-<h2 class="anchored" data-anchor-id="모든-값을-0으로-생성">3. 모든 값을 0으로 생성</h2>
-<div id="136d0339-9ac1-4504-b30d-8e9fc9d3a01f" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>numpy.full(<span class="dv">6</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>array([0, 0, 0, 0, 0, 0])</code></pre>
-</div>
-</div>
-<div id="5dee6f3f-438e-4c9c-8459-f59b5b92671c" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>numpy.zeros(<span class="dv">6</span>, dtype <span class="op">=</span> <span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>array([0, 0, 0, 0, 0, 0])</code></pre>
-</div>
-</div>
-</section>
-<section id="모든-값을-1로-생성" class="level2">
-<h2 class="anchored" data-anchor-id="모든-값을-1로-생성">4. 모든 값을 1로 생성</h2>
-<div id="9b2ae652-0a53-440f-ac1d-9e6113234391" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>numpy.full(<span class="dv">6</span>,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>array([1, 1, 1, 1, 1, 1])</code></pre>
-</div>
-</div>
-<div id="3a84006f-b3bb-42d1-a0b0-2395b89053fc" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>numpy.ones(<span class="dv">6</span>, dtype <span class="op">=</span> <span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>array([1, 1, 1, 1, 1, 1])</code></pre>
-</div>
-</div>
-</section>
-<section id="랜덤한-값들로-생성" class="level2">
-<h2 class="anchored" data-anchor-id="랜덤한-값들로-생성">5. 랜덤한 값들로 생성</h2>
-<div id="bcdefd21-5932-4c32-96e8-499170756d5c" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>numpy.random.random(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f0f2aa08-b52a-4dc2-994e-8379189305c7" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>array([0.01877569, 0.64836263, 0.24382533, 0.15821645, 0.10587735,
-       0.0708292 ])</code></pre>
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KBS</th>
+<th data-quarto-table-cell-role="th">MBC</th>
+<th data-quarto-table-cell-role="th">SBS</th>
+<th data-quarto-table-cell-role="th">TV CHOSUN</th>
+<th data-quarto-table-cell-role="th">JTBC</th>
+<th data-quarto-table-cell-role="th">Channel A</th>
+<th data-quarto-table-cell-role="th">MBN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>35.951</td>
+<td>18.374</td>
+<td>11.173</td>
+<td>9.102</td>
+<td>7.380</td>
+<td>3.771</td>
+<td>2.809</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2012</td>
+<td>36.163</td>
+<td>16.022</td>
+<td>11.408</td>
+<td>8.785</td>
+<td>7.878</td>
+<td>5.874</td>
+<td>3.310</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013</td>
+<td>31.989</td>
+<td>16.778</td>
+<td>9.673</td>
+<td>9.026</td>
+<td>7.810</td>
+<td>5.350</td>
+<td>3.825</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2014</td>
+<td>31.210</td>
+<td>15.663</td>
+<td>9.108</td>
+<td>9.440</td>
+<td>7.490</td>
+<td>5.776</td>
+<td>4.572</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2015</td>
+<td>27.777</td>
+<td>16.573</td>
+<td>9.099</td>
+<td>9.940</td>
+<td>7.267</td>
+<td>6.678</td>
+<td>5.520</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2016</td>
+<td>27.583</td>
+<td>14.982</td>
+<td>8.669</td>
+<td>9.829</td>
+<td>7.727</td>
+<td>6.624</td>
+<td>5.477</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017</td>
+<td>26.890</td>
+<td>12.465</td>
+<td>8.661</td>
+<td>8.886</td>
+<td>9.453</td>
+<td>6.056</td>
+<td>5.215</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="54f131c2-9267-428e-91d6-f2936c0f5681" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>numpy.random.random(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="인덱싱" class="level1">
+<h1>인덱싱</h1>
+<p><code>-</code> ex1. 2016년 kbs 시청률 받아오기</p>
+<div id="0c188898-f235-4004-a868-45197900451c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df.loc[<span class="dv">2016</span>, <span class="st">"KBS"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>27.583</code></pre>
+</div>
+</div>
+<p><code>-</code> ex2. JTBC의 시청률 확인</p>
+<div id="6c1c680d-3ed0-44d7-a8de-0ff5397f4e25" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df[<span class="st">"JTBC"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>array([0.08551933, 0.79689483, 0.61449187, 0.55877517, 0.59213215,
-       0.59484228])</code></pre>
+<pre><code>2011    7.380
+2012    7.878
+2013    7.810
+2014    7.490
+2015    7.267
+2016    7.727
+2017    9.453
+Name: JTBC, dtype: float64</code></pre>
 </div>
 </div>
-</section>
-<section id="연속된-배열-생성" class="level2">
-<h2 class="anchored" data-anchor-id="연속된-배열-생성">6. 연속된 배열 생성</h2>
-<div id="e918ea49-4694-4d7f-af1a-df4cdbf3843c" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>numpy.arange(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-</code> ex3. SBS와 JTBC의 시청률만 확인</p>
+<div id="e0e88006-bec9-4e50-9ffd-78105e9c078e" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df[[<span class="st">"SBS"</span>,<span class="st">"JTBC"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>array([0, 1, 2, 3, 4, 5])</code></pre>
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">SBS</th>
+<th data-quarto-table-cell-role="th">JTBC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>11.173</td>
+<td>7.380</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2012</td>
+<td>11.408</td>
+<td>7.878</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013</td>
+<td>9.673</td>
+<td>7.810</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2014</td>
+<td>9.108</td>
+<td>7.490</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2015</td>
+<td>9.099</td>
+<td>7.267</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2016</td>
+<td>8.669</td>
+<td>7.727</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017</td>
+<td>8.661</td>
+<td>9.453</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="1ddf1a16-bcc0-4094-b77c-ca7ffa06ce3a" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>numpy.arange(<span class="dv">1</span>,<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>array([1, 2, 3, 4, 5, 6])</code></pre>
 </div>
 </div>
-<div id="b76ab694-c299-47c5-b1b8-fa36da9ef756" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>numpy.arange(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>array([1, 3, 5])</code></pre>
+<p><code>-</code> ex4. 삼송카드, 현디카드 요일별 문화생활비 분석</p>
+<div id="b5daa476-22c0-4cd3-809b-5ef145a75a92" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>samsong_df <span class="op">=</span> pd.read_csv(<span class="st">'data/samsong.csv'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>hyundee_df <span class="op">=</span> pd.read_csv(<span class="st">'data/hyundee.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d202995f-ee12-4303-b230-28a4f248b395" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>samsong_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">요일</th>
+<th data-quarto-table-cell-role="th">식비</th>
+<th data-quarto-table-cell-role="th">교통비</th>
+<th data-quarto-table-cell-role="th">문화생활비</th>
+<th data-quarto-table-cell-role="th">기타</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>MON</td>
+<td>19420</td>
+<td>2560</td>
+<td>4308</td>
+<td>3541</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>TUE</td>
+<td>16970</td>
+<td>2499</td>
+<td>7644</td>
+<td>2903</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WED</td>
+<td>15091</td>
+<td>2511</td>
+<td>5674</td>
+<td>2015</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>THU</td>
+<td>17880</td>
+<td>2545</td>
+<td>8621</td>
+<td>3012</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>FRI</td>
+<td>27104</td>
+<td>2993</td>
+<td>23052</td>
+<td>2508</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>SAT</td>
+<td>29055</td>
+<td>2803</td>
+<td>15330</td>
+<td>4901</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>SUN</td>
+<td>23509</td>
+<td>1760</td>
+<td>19030</td>
+<td>4230</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<hr>
-</section>
-</section>
-<section id="numpy-기본-통계" class="level1">
-<h1>numpy 기본 통계</h1>
-<section id="최댓값-최솟값" class="level2">
-<h2 class="anchored" data-anchor-id="최댓값-최솟값">1. 최댓값, 최솟값</h2>
-<div id="6db9865b-6fb8-42df-a0b9-e0acc35d57e8" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb38-2"><a href="#cb38-2"></a></span>
-<span id="cb38-3"><a href="#cb38-3"></a>array1 <span class="op">=</span> np.array([<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">9</span>, <span class="dv">5</span>])</span>
-<span id="cb38-4"><a href="#cb38-4"></a></span>
-<span id="cb38-5"><a href="#cb38-5"></a><span class="bu">print</span>(array1.<span class="bu">max</span>()) <span class="co"># 최댓값</span></span>
-<span id="cb38-6"><a href="#cb38-6"></a><span class="bu">print</span>(array1.<span class="bu">min</span>()) <span class="co"># 최솟값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>31
-5</code></pre>
 </div>
 </div>
-</section>
-<section id="평균" class="level2">
-<h2 class="anchored" data-anchor-id="평균">2. 평균</h2>
-<div id="90a315f0-b257-4d93-b30d-3938eb8c113b" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb40-2"><a href="#cb40-2"></a></span>
-<span id="cb40-3"><a href="#cb40-3"></a>array1 <span class="op">=</span> np.array([<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">9</span>, <span class="dv">5</span>])</span>
-<span id="cb40-4"><a href="#cb40-4"></a></span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="bu">print</span>(array1.mean()) <span class="co"># 평균값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>15.25</code></pre>
+<div id="d9c37bcf-92bc-429e-b735-fd3b9b12d5da" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>hyundee_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">요일</th>
+<th data-quarto-table-cell-role="th">식비</th>
+<th data-quarto-table-cell-role="th">교통비</th>
+<th data-quarto-table-cell-role="th">문화생활비</th>
+<th data-quarto-table-cell-role="th">기타</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>MON</td>
+<td>22420</td>
+<td>2574</td>
+<td>5339</td>
+<td>5546</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>TUE</td>
+<td>19940</td>
+<td>2689</td>
+<td>3524</td>
+<td>2501</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WED</td>
+<td>18086</td>
+<td>2281</td>
+<td>5364</td>
+<td>2234</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>THU</td>
+<td>18863</td>
+<td>2155</td>
+<td>9942</td>
+<td>3252</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>FRI</td>
+<td>35144</td>
+<td>2463</td>
+<td>33511</td>
+<td>2342</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>SAT</td>
+<td>34952</td>
+<td>2812</td>
+<td>19397</td>
+<td>4324</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>SUN</td>
+<td>28513</td>
+<td>2680</td>
+<td>19925</td>
+<td>4577</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-</section>
-<section id="중앙값" class="level2">
-<h2 class="anchored" data-anchor-id="중앙값">3. 중앙값</h2>
-<div id="7d40bb0e-25d1-4a49-bde5-8301f3b6dacf" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb42-2"><a href="#cb42-2"></a></span>
-<span id="cb42-3"><a href="#cb42-3"></a>array1 <span class="op">=</span> np.array([<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">15</span>, <span class="dv">16</span>])</span>
-<span id="cb42-4"><a href="#cb42-4"></a>array2 <span class="op">=</span> np.array([<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">9</span>, <span class="dv">5</span>])</span>
-<span id="cb42-5"><a href="#cb42-5"></a></span>
-<span id="cb42-6"><a href="#cb42-6"></a><span class="bu">print</span>(np.median(array1)) <span class="co"># 중앙값</span></span>
-<span id="cb42-7"><a href="#cb42-7"></a><span class="bu">print</span>(np.median(array2)) <span class="co"># 중앙값</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>12.0
-13.5</code></pre>
 </div>
 </div>
-</section>
-<section id="표준편차-분산" class="level2">
-<h2 class="anchored" data-anchor-id="표준편차-분산">4. 표준편차, 분산</h2>
-<div id="8e6b0907-b16c-4648-b30a-3191f76c325e" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb44-2"><a href="#cb44-2"></a></span>
-<span id="cb44-3"><a href="#cb44-3"></a>array1 <span class="op">=</span> np.array([<span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">9</span>, <span class="dv">5</span>])</span>
-<span id="cb44-4"><a href="#cb44-4"></a></span>
-<span id="cb44-5"><a href="#cb44-5"></a><span class="bu">print</span>(array1.std()) <span class="co"># 표준 편차</span></span>
-<span id="cb44-6"><a href="#cb44-6"></a><span class="bu">print</span>(array1.var()) <span class="co"># 분산</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>8.496322733983215
-72.1875</code></pre>
+<div id="b209ae68-7458-4a30-a603-4241c26431a4" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>day <span class="op">=</span> samsong_df[<span class="st">"요일"</span>]</span>
+<span id="cb12-2"><a href="#cb12-2"></a>samsong <span class="op">=</span> samsong_df[<span class="st">"문화생활비"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3"></a>hyundee <span class="op">=</span> hyundee_df[<span class="st">"문화생활비"</span>]</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a>df <span class="op">=</span> pd.DataFrame([day,samsong,hyundee]).T</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>df.columns <span class="op">=</span> [<span class="st">"day"</span>, <span class="st">"samsong"</span>, <span class="st">"hyundee"</span>]</span>
+<span id="cb12-8"><a href="#cb12-8"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">samsong</th>
+<th data-quarto-table-cell-role="th">hyundee</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>MON</td>
+<td>4308</td>
+<td>5339</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>TUE</td>
+<td>7644</td>
+<td>3524</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>WED</td>
+<td>5674</td>
+<td>5364</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>THU</td>
+<td>8621</td>
+<td>9942</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>FRI</td>
+<td>23052</td>
+<td>33511</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>SAT</td>
+<td>15330</td>
+<td>19397</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>SUN</td>
+<td>19030</td>
+<td>19925</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p><code>-</code> ex5. <code>KBS ~ SBS</code>, <code>2012 ~ 2017</code> 까지의 시청률 데이터만 확인</p>
+<div id="941fce12-c119-4efb-919c-9466aa9f5d22" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/broadcast.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="57953f4a-cc1e-4824-9760-241d15b8f34f" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df.loc[<span class="dv">2012</span>:<span class="dv">2017</span>, <span class="st">"KBS"</span> : <span class="st">"SBS"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">KBS</th>
+<th data-quarto-table-cell-role="th">MBC</th>
+<th data-quarto-table-cell-role="th">SBS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2012</td>
+<td>36.163</td>
+<td>16.022</td>
+<td>11.408</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2013</td>
+<td>31.989</td>
+<td>16.778</td>
+<td>9.673</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2014</td>
+<td>31.210</td>
+<td>15.663</td>
+<td>9.108</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2015</td>
+<td>27.777</td>
+<td>16.573</td>
+<td>9.099</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2016</td>
+<td>27.583</td>
+<td>14.982</td>
+<td>8.669</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017</td>
+<td>26.890</td>
+<td>12.465</td>
+<td>8.661</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p><code>-</code> ex6. KBS 시청률이 30이 넘은 데이터만 확인해보기</p>
+<div id="9134d46a-4d7a-45da-9fcb-85b41219f400" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df.loc[df.KBS <span class="op">&gt;</span> <span class="dv">30</span>, <span class="st">"KBS"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>2011    35.951
+2012    36.163
+2013    31.989
+2014    31.210
+Name: KBS, dtype: float64</code></pre>
+</div>
+</div>
+<p><code>-</code> ex7. SBS가 TV CHOSUN보다 더 시청률이 낮았던 시기의 데이터 확인</p>
+<div id="bc0ef68d-d2d5-46d6-a47b-0f70ff7a7f29" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df.loc[df.SBS <span class="op">&lt;</span> df[<span class="st">"TV CHOSUN"</span>], [<span class="st">"SBS"</span>,<span class="st">"TV CHOSUN"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">SBS</th>
+<th data-quarto-table-cell-role="th">TV CHOSUN</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2014</td>
+<td>9.108</td>
+<td>9.440</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2015</td>
+<td>9.099</td>
+<td>9.940</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2016</td>
+<td>8.669</td>
+<td>9.829</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017</td>
+<td>8.661</td>
+<td>8.886</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1002,13 +1329,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html" class="pagination-link" aria-label="00. Intro">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">00. Intro</span>
+      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="pagination-link" aria-label="extra 00. R vs Python">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">extra 00. R vs Python</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html" class="pagination-link" aria-label="02. pandas">
-        <span class="nav-page-text">02. pandas</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html" class="pagination-link" aria-label="02. 데이터 변형하기">
+        <span class="nav-page-text">02. 데이터 변형하기</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
