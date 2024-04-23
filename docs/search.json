@@ -462,7 +462,7 @@
     "href": "index.html",
     "title": "끄적끄적",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. 코드잇 기업분석 (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 22, 2024\n\n\n00. 시각화와 그래프\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n01. Seaborn 시각화\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n02. 통계 기본 상식식\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. 코드잇 기업분석 (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nDec 4, 2023\n\n\n03. EDA\n\n\nGC \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -892,6 +892,246 @@
       "00. 데이터 분석",
       "01. DataFrame 다루기",
       "02. 데이터 변형하기"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html",
+    "title": "02. 통계 기본 상식식",
+    "section": "",
+    "text": "- 대게 일반적으로 많은 사람들에게 친숙한 단어임\n- 조금 전문적인 지식(통계, 수학적 지식이 포함된 정의)\n\n모든 데이터셋의 값을 더한 후, 그 개수만큼 나눈 것\n\n- 평균 구하기 예시 1\n\nx = [10.3, 9.7, 10.3, 9.5, 10.1, 10.8, 9.5, 9.4, 10.1, 10.3]\n\nsum(x)/len(x)\n\n10.0",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "02. 통계 기본 상식식"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
+    "title": "02. 통계 기본 상식식",
+    "section": "상관계수 시각화",
+    "text": "상관계수 시각화\n\n%matplotlib inline\nimport pandas as pd\nimport seaborn as sns\n\ndf = pd.read_csv('data/exam.csv')\n\ndf.corr()\n\n\n\n\n\n\n\n\n\nmath score\nreading score\nwriting score\n\n\n\n\nmath score\n1.000000\n0.817580\n0.802642\n\n\nreading score\n0.817580\n1.000000\n0.954598\n\n\nwriting score\n0.802642\n0.954598\n1.000000\n\n\n\n\n\n\n\n\n\nsns.heatmap(df.corr(), annot=True)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "02. 통계 기본 상식식"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html",
+    "title": "00. 시각화와 그래프",
+    "section": "",
+    "text": "- 목적 1 : 분석에 도움이 된다\n\n일반적인 데이터프레임을 보는 것 보다 그래프를 보고 패턴을 찾아내면 이후에 어떤 분석을 할 지 찾아낼 수 있다.\n또한, 보이지 않는 것(이상치, 영향치)들을 파악할 수 있음\n\n- 목적 2 : 리포팅에 도움이 된다.\n\nex : 기획팀에게 보고서를 전달할 때\n\n그래프를 기반으로 보고서를 작성해서 커뮤니케이션을 원할하게 함.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1. gdp 데이터",
+    "text": "실습 1. gdp 데이터\n한국(Korea_Rep), 미국(United_States), 영국(United_Kingdom), 독일(Germany), 중국(China), 일본(Japan)의 GDP 그래프 그리기\n\nimport pandas as pd\n\n%matplotlib inline\n\ndf = pd.read_csv(\"data/gdp.csv\",index_col = 0)\n\ndf.plot(y = [\"Korea_Rep\",\"United_States\", \n                \"United_Kingdom\",\"Germany\", \n                \"Germany\", \"China\", \"Japan\"])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1",
+    "text": "실습 1\n- 실리콘 밸리 남자 매지너의 인종 분포 그리기\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_summary.csv')\n\ndf.loc[(df[\"job_category\"] == \"Managers\") & (df.gender == \"Male\") & \n       (df[\"race_ethnicity\"] != \"All\"), \n                   [\"count\", \"race_ethnicity\"]].plot(kind = \"bar\", x = \"race_ethnicity\", y= \"count\")",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1",
+    "text": "실습 1\n어도비 전체 직원들의 직군 분포를 파이 그래프로 그리\n\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nsol1\n- 일단 내가 풀어봤는데 그래프가 살짝 각도가 이상하게 나옴\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_details.csv')\n\n\ndf1 = df.loc[(df[\"company\"] == \"Adobe\") & (df[\"race\"] == \"Overall_totals\") & (df[\"count\"] !=0)].\\\n        groupby(\"job_category\", as_index = False)[[\"count\"]].sum()\n\ndf1.loc[map(lambda x : x not in [\"Previous_totals\", \"Totals\"],\n        df1[\"job_category\"])].set_index(\"job_category\")\n\n\n\n\n\n\n\n\n\ncount\n\n\njob_category\n\n\n\n\n\nAdministrative support\n323\n\n\nExecutives\n93\n\n\nManagers\n2448\n\n\nProfessionals\n3028\n\n\nSales workers\n1270\n\n\n\n\n\n\n\n\n\n\nsol2\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv(\"data/silicon_valley_details.csv\")\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\ndf[boolean_adobe & boolean_all_races]\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n336\nAdobe\n2016\nOverall_totals\nNaN\nTechnicians\n0\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n339\nAdobe\n2016\nOverall_totals\nNaN\nCraft workers\n0\n\n\n340\nAdobe\n2016\nOverall_totals\nNaN\noperatives\n0\n\n\n341\nAdobe\n2016\nOverall_totals\nNaN\nlaborers and helpers\n0\n\n\n342\nAdobe\n2016\nOverall_totals\nNaN\nService workers\n0\n\n\n343\nAdobe\n2016\nOverall_totals\nNaN\nTotals\n7162\n\n\n344\nAdobe\n2016\nOverall_totals\nNaN\nPrevious_totals\n6581\n\n\n\n\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\nboolean_count = df['count'] != 0\nboolean_job_category = (df['job_category'] != 'Totals') & (df['job_category'] != 'Previous_totals')\n\ndf_adobe = df[boolean_adobe & boolean_all_races & boolean_count & boolean_job_category]\ndf_adobe\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n\n\n\n\n\n\n\ndf_adobe.set_index('job_category', inplace=True)\n\n\ndf_adobe.plot(kind='pie', y= 'count')\n\n\n\n\n\n\n\n\n- 틀린 이유 : 굳이 count가 되어 있는 테이블을 groupby로 sum하는 과정에서 계산이 잘못된 거 같음..\n\n항상 데이터를 먼저 뜯어보는 습관을 기르자…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1. 국가지표 분석하기",
+    "text": "실습 1. 국가지표 분석하기\n\nimport pandas as pd\n%matplotlib inline\n\ndf = pd.read_csv(\"data/world_indexes.csv\")\n\n\ndf.head()\n\n\n\n\n\n\n\n\n\nId\nHuman Development Index HDI-2014\nGini coefficient 2005-2013\nAdolescent birth rate 15-19 per 100k 20102015\nBirth registration funder age 5 2005-2013\nCarbon dioxide emissionsAverage annual growth\nCarbon dioxide emissions per capita 2011 Tones\nChange forest percentable 1900 to 2012\nChange mobile usage 2009 2014\nConsumer price index 2013\n...\nRenewable sources percentage of total 2012\nResearch and development expenditure 2005-2012\nSecondary 2008-2014\nShare of seats in parliament percentage held by womand 2014\nStock of immigrants percentage of population 2013\nTaxes on income profit and capital gain 205 2013\nTertiary -2008-2014\nTotal tax revenue of GDP 2005-2013\nTuberculosis rate per thousands 2012\nUnder-five Mortality 2013 thousands\n\n\n\n\n0\nNorway\n0.943877\n26.83\n7.834\n100.0\n0.778925\n9.192879\n11.914567\n5.22\n104.194175\n...\n47.752676\n1.65474\n111.06130\n39.644970\n13.772622\n31.798391\n74.10112\n27.288097\n0.14\n2.8\n\n\n1\nAustralia\n0.934958\n34.01\n12.059\n100.0\n1.090351\n16.519210\n-4.561812\n30.27\n107.789440\n...\n4.632202\n2.38562\n135.53543\n30.530974\n27.711793\n65.333748\n86.33409\n21.361426\n0.19\n4.0\n\n\n2\nSwitzerland\n0.929613\n32.35\n1.900\n100.0\n-1.101254\n4.625230\n8.567416\n16.72\n99.317229\n...\n49.659398\n2.87046\n96.30638\n28.455285\n28.906998\n22.673299\n55.56190\n9.759124\n0.22\n4.2\n\n\n3\nDenmark\n0.923328\n26.88\n5.101\n100.0\n-1.767733\n7.248329\n23.029974\n1.83\n106.057718\n...\n26.767245\n2.98416\n124.65927\n37.988827\n9.909512\n39.677938\n79.59763\n33.395651\n0.40\n3.5\n\n\n4\nNetherlands\n0.921794\n28.87\n6.165\n100.0\n-0.252734\n10.064490\n5.922602\n-4.31\n107.474154\n...\n6.671366\n2.15676\n129.91277\n36.888889\n11.724418\n23.533104\n77.34356\n19.724059\n0.17\n4.0\n\n\n\n\n5 rows × 66 columns\n\n\n\n\n다음 중 가장 연관성이 깊은 지표를 찾기!\n\n기대 수명 - 인터넷 사용자 비율\n숲 면적 비율 - 탄소 배출 증가율\n인터넷 사용자 비율 - 숲 면적 비율\n기대 수명 - 탄소 배출 증가율\n기대 수명 - 숲 면적 비율\n\n\nimport matplotlib.pyplot as plt\n\nfig, axes = plt.subplots(1,5 ,figsize = (12,4))\n\nax1,ax2,ax3,ax4,ax5 = axes\n\nax1.plot(\"Life expectancy at birth- years\",\n         'Internet users percentage of population 2014', \"b.\", data = df)\n\nax2.plot(\"Forest area percentage of total land area 2012\",\n         'Carbon dioxide emissionsAverage annual growth', \"b.\", data = df)\n\nax3.plot(\"Internet users percentage of population 2014\",\n         'Forest area percentage of total land area 2012', \"b.\", data = df)\n\nax4.plot( 'Life expectancy at birth- years',  \n         'Carbon dioxide emissionsAverage annual growth',  \"b.\", data = df)\n\nax5.plot( 'Life expectancy at birth- years',  \n         'Forest area percentage of total land area 2012',  \"b.\", data = df)\n\n\n\n\n\n\n\n\n- 그래프를 그려 시각화해본 결과 1. 기대수명-인터넷 사용자 비율이 가장 연관성이 있어 보인다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html",
+    "title": "01. Seaborn 시각화",
+    "section": "",
+    "text": "- 기존 pandas에서 제공하는 그래프보다 다양하고 근사한 그래프를 그릴 수 있다\n- Statistical Data Visualizaion 이라고 소개하고 있음\n- 용어 정리\n\nPDF(확률밀도함수) : 데이터셋의 분포를 나타낸다.\n\n특정 구간에 대한 확률값을 구하고 싶으면 해당 구간의 면적을 구하면 된다.\n그래프 아래의 모든 면적을 더하면 1이 된다.\n연속형 변수, 예를 들어 어떤 학생의 키가 173.5일 확률은 0이다. 왜냐하면 면적아래의 넓이를 특정값으로 구할 수 없기 때문이다.\n주사위, 동전을 던지는 예제에서는 특정 값에 대한 학률을 구할 수 있음!",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "01. Seaborn 시각화"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
+    "title": "01. Seaborn 시각화",
+    "section": "kde 활용 예시",
+    "text": "kde 활용 예시\n- 기존의 그래프 그리기\n\ndf.plot(kind = \"hist\", y = \"Height\", bins = 15)\n\n\n\n\n\n\n\n\n- seaborn을 사용하면 히스토그램위에 kde를 얹을 수 있다.\n\nsns.displot(df[\"Height\"], bins = 15, kde = True)\n\n\n\n\n\n\n\n\n- boxplot 그리기\n\n기존의 방식\n\n\ndf.plot(kind = \"box\", y = \"Height\")\n\n\n\n\n\n\n\n\n- 오 boxplot에서 kde plot 그리기 \\(\\to\\) sns.violinplot\n\n근데 난 별로…\n\n\nsns.violinplot(y = df[\"Height\"])\n\n\n\n\n\n\n\n\n- 키와 몸무게의 연광성 보기\n\n기존의 방식\n\n\ndf.plot(kind = \"scatter\", x = \"Height\", y = \"Weight\")\n\n\n\n\n\n\n\n\n- seaborn\n\nsns.kdeplot(df[\"Height\"], df[\"Weight\"])\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n등고선처럼 표시가 되어있다?\n\n- 각각에 대한 kde그리기\n\nsns.kdeplot(df[\"Height\"])\n\n\n\n\n\n\n\n\n\nsns.kdeplot(df[\"Weight\"])\n\n\n\n\n\n\n\n\n- 아 아래 그래프는 x축에는 키에 대한 kde, y축에는 몸무게에 대한 kde를 그린 것이다.\n\nsns.kdeplot(df[\"Height\"], df[\"Weight\"])\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n- 음… 한번에 보자\n\nfig, axes = plt.subplots(1,3, figsize = (12,4))\n\nax1,ax2,ax3 = axes\n\nsns.kdeplot(df[\"Height\"], ax = ax1)\nsns.kdeplot(df[\"Weight\"], ax = ax2)\nsns.kdeplot(df[\"Height\"], df[\"Weight\"], ax = ax3)\n\nfig.tight_layout()\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n3번쨰 그림 해석 : 선끼리 가까우면 가파르게 올라가는 것, 멀어지면 완만하게 올라가거나 내려가는 것을 의마한다.\n근데.. 이거 굳이 쓰지말자..해석하는데 머리 아프다..",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "01. Seaborn 시각화"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html",
+    "title": "03. EDA",
+    "section": "",
+    "text": "- Exploratory Data Analysis\n\n데이터셋을 다양한 관점에서 살펴보고 탐색하며 인사이트를 찾는 것!\n데이터의 분포, 연관성 등을 살펴보며 데이터를 분석한다.\n이를 통해 중요한 비즈니스 문제 등을 해결하기 위한 인사이트를 도출할 수 있다.\nEDA는 뚜렷한 공식이 없다. 그러나 시각화 기법이 가장 많이 사용된다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1",
+    "title": "03. EDA",
+    "section": "ex1",
+    "text": "ex1\noccupations.csv 을 보고, 여성분들이 가장 많이 종사하고 있는 직종이 무엇인지 파악해 보세요.\n- 상위직종 3개 골라보기\n\ndf = pd.read_csv(\"data/occupations.csv\")\n\ndf.loc[df.gender == \"F\"].occupation.value_counts()\n\nstudent          60\nother            36\nadministrator    36\nlibrarian        29\neducator         26\nwriter           19\nartist           13\nhealthcare       11\nmarketing        10\nhomemaker         6\nprogrammer        6\nnone              4\nexecutive         3\nscientist         3\nsalesman          3\nengineer          2\nlawyer            2\nentertainment     2\nretired           1\ntechnician        1\nName: occupation, dtype: int64",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2",
+    "title": "03. EDA",
+    "section": "ex2",
+    "text": "ex2\n- 남자는?\n\ndf.loc[df.gender == \"M\"].occupation.value_counts()\n\nstudent          136\nother             69\neducator          69\nengineer          65\nprogrammer        60\nadministrator     43\nexecutive         29\nscientist         28\ntechnician        26\nwriter            26\nlibrarian         22\nentertainment     16\nmarketing         16\nartist            15\nretired           13\nlawyer            10\nsalesman           9\ndoctor             7\nnone               5\nhealthcare         5\nhomemaker          1\nName: occupation, dtype: int64",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1-1",
+    "title": "03. EDA",
+    "section": "ex1",
+    "text": "ex1\n5라고 대답한 사람들은 아침에 일어나는 걸 아주 어려워 하는 사람들이고, 1이라고 대답한 사람들은 아침에 쉽게 일어난다.\n\n아침에 일찍 일어나느 사람들이 가장 좋아할 만한 음악 장르는 무엇인가?\n\n\ndf.corr()[\"Getting up\"][1:19].sort_values(ascending = True)\n\nOpera                      -0.071819\nSlow songs or fast songs   -0.052613\nFolk                       -0.049612\nPunk                       -0.029189\nMetal or Hardrock          -0.026769\nCountry                    -0.025315\nLatino                     -0.015060\nReggae, Ska                -0.008434\nMusical                     0.011869\nClassical music             0.014285\nSwing, Jazz                 0.019556\nTechno, Trance              0.019863\nDance                       0.027249\nAlternative                 0.027540\nRock n roll                 0.028889\nHiphop, Rap                 0.038980\nPop                         0.079101\nRock                        0.105245\nName: Getting up, dtype: float64",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1.-영화카페-운영하기",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1.-영화카페-운영하기",
+    "title": "03. EDA",
+    "section": "ex1. 영화카페 운영하기",
+    "text": "ex1. 영화카페 운영하기",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2.-영화장르-분석하기",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2.-영화장르-분석하기",
+    "title": "03. EDA",
+    "section": "ex2. 영화장르 분석하기",
+    "text": "ex2. 영화장르 분석하기",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex3.-타이타닉-eda",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex3.-타이타닉-eda",
+    "title": "03. EDA",
+    "section": "ex3. 타이타닉 EDA",
+    "text": "ex3. 타이타닉 EDA",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "데이터 분석과 시각화",
+      "03. EDA"
     ]
   }
 ]
