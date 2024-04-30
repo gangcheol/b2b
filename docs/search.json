@@ -1,8 +1,162 @@
 [
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html",
-    "title": "03. 큰 데이터 다루기",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html",
+    "title": "04. EDA",
+    "section": "",
+    "text": "import pandas as pd\n%matplotlib inline\n\nimport matplotlib.pyplot as plt\n\n\ndf = pd.read_csv(\"data/broadcast.csv\", index_col = 0)\ndf\n\n\n\n\n\n\n\n\n\nKBS\nMBC\nSBS\nTV CHOSUN\nJTBC\nChannel A\nMBN\n\n\n\n\n2011\n35.951\n18.374\n11.173\n9.102\n7.380\n3.771\n2.809\n\n\n2012\n36.163\n16.022\n11.408\n8.785\n7.878\n5.874\n3.310\n\n\n2013\n31.989\n16.778\n9.673\n9.026\n7.810\n5.350\n3.825\n\n\n2014\n31.210\n15.663\n9.108\n9.440\n7.490\n5.776\n4.572\n\n\n2015\n27.777\n16.573\n9.099\n9.940\n7.267\n6.678\n5.520\n\n\n2016\n27.583\n14.982\n8.669\n9.829\n7.727\n6.624\n5.477\n\n\n2017\n26.890\n12.465\n8.661\n8.886\n9.453\n6.056\n5.215\n\n\n\n\n\n\n\n\n\ndf.plot(figsize = (8, 4))\n\n\n\n\n\n\n\n\n- 컬럼 추가\n\n각 해의 전체 방송사의 시청율 더하기\n\n\ndf[\"total\"] = df.sum(axis = 1)\n\n- 흠, 시청율은 OTT서비스로 인해 절감하는 것을 볼 수 있다.\n\ndf.plot(y = \"total\", figsize = (8,4))\n\n\n\n\n\n\n\n\n- 지상파와 종편 시청율 구한 후, 컬럼 추가\n\ndf[\"Group 1\"] = df.loc[:, \"KBS\" : \"SBS\" ].sum(axis = 1)\ndf[\"Group 2\"] = df.loc[:, \"TV CHOSUN\" : \"MBN\" ].sum(axis = 1)\n\n\ndf.plot(y = [\"Group 1\", \"Group 2\"], figsize = (8,4))\n\n\n\n\n\n\n\n\n- 아 예전엔 지상파에 인기있는 드라마가 많았는데, 지금은 종편에 재밌는 드라마가 더 많나보다라고 인사이트를 도출할 수 있음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "04. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex1",
+    "title": "04. EDA",
+    "section": "ex1",
+    "text": "ex1\n- 시설명에 ‘대학’이 포함되어 있으면 ’대학’, 그렇지 않으면 ‘일반’으로 나누어 ’분류’ column에 입력한다.\n\ndf.시설명.str.contains?\n\nObject `df.시설명.str.contains` not found.\n\n\n\nimport warnings\n\nwarnings.filterwarnings(action = \"ignore\")\n\n\ndf = pd.read_csv(\"data/museum_1.csv\")\n\ndf[\"분류\"] = df.시설명.str.contains(\"대학\")\ndf[\"분류\"].replace([False, True], [\"일반\", \"대학\"], inplace = True)\n\n\ndf.head()\n\n\n\n\n\n\n\n\n\n시설명\n어른관람료\n운영기관전화번호\n분류\n\n\n\n\n0\n필암서원 유물전시관\n500\n061-390-7224\n일반\n\n\n1\n원주역사박물관\n0\n033-737-4371\n일반\n\n\n2\n뮤지엄산미술관\n15000\n033-730-9000\n일반\n\n\n3\n오랜미래신화미술관\n0\n033-746-5256\n일반\n\n\n4\n연세대학교 원주박물관\n0\n033-760-2731\n대학",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "04. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex1.-평균-나이가-어린-순으로-직업을-나열하기",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex1.-평균-나이가-어린-순으로-직업을-나열하기",
+    "title": "04. EDA",
+    "section": "ex1. 평균 나이가 어린 순으로 직업을 나열하기",
+    "text": "ex1. 평균 나이가 어린 순으로 직업을 나열하기\n\ndf = pd.read_csv('data/occupations.csv')\n\ndf.groupby(\"occupation\")[[\"age\"]].mean().sort_values(\"age\",ascending = True)\n\n\n\n\n\n\n\n\n\nage\n\n\noccupation\n\n\n\n\n\nstudent\n22.081633\n\n\nnone\n26.555556\n\n\nentertainment\n29.222222\n\n\nartist\n31.392857\n\n\nhomemaker\n32.571429\n\n\nprogrammer\n33.121212\n\n\ntechnician\n33.148148\n\n\nother\n34.523810\n\n\nscientist\n35.548387\n\n\nsalesman\n35.666667\n\n\nwriter\n36.311111\n\n\nengineer\n36.388060\n\n\nlawyer\n36.750000\n\n\nmarketing\n37.615385\n\n\nexecutive\n38.718750\n\n\nadministrator\n38.746835\n\n\nlibrarian\n40.000000\n\n\nhealthcare\n41.562500\n\n\neducator\n42.010526\n\n\ndoctor\n43.571429\n\n\nretired\n63.071429",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "04. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex2.-여성-비율이-높은-순으로-직업을-나열",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html#ex2.-여성-비율이-높은-순으로-직업을-나열",
+    "title": "04. EDA",
+    "section": "ex2. 여성 비율이 높은 순으로 직업을 나열",
+    "text": "ex2. 여성 비율이 높은 순으로 직업을 나열\n\ng1 = df.groupby(\"occupation\",as_index = False)[\"gender\"].value_counts(normalize = True)\ng1 = g1.loc[g1.gender == \"F\",[\"occupation\", \"proportion\"]].sort_values(\"proportion\", ascending = False).set_index(\"occupation\")\n\ng1[\"proportion\"]\n\noccupation\nhomemaker        0.857143\nhealthcare       0.687500\nlibrarian        0.568627\nartist           0.464286\nadministrator    0.455696\nnone             0.444444\nwriter           0.422222\nmarketing        0.384615\nother            0.342857\nstudent          0.306122\neducator         0.273684\nsalesman         0.250000\nlawyer           0.166667\nentertainment    0.111111\nscientist        0.096774\nexecutive        0.093750\nprogrammer       0.090909\nretired          0.071429\ntechnician       0.037037\nengineer         0.029851\nName: proportion, dtype: float64",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "04. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html",
+    "title": "02. 통계 기본 상식식",
+    "section": "",
+    "text": "- 대게 일반적으로 많은 사람들에게 친숙한 단어임\n- 조금 전문적인 지식(통계, 수학적 지식이 포함된 정의)\n\n모든 데이터셋의 값을 더한 후, 그 개수만큼 나눈 것\n\n- 평균 구하기 예시 1\n\nx = [10.3, 9.7, 10.3, 9.5, 10.1, 10.8, 9.5, 9.4, 10.1, 10.3]\n\nsum(x)/len(x)\n\n10.0",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "02. 통계 기본 상식식"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
+    "title": "02. 통계 기본 상식식",
+    "section": "상관계수 시각화",
+    "text": "상관계수 시각화\n\n%matplotlib inline\nimport pandas as pd\nimport seaborn as sns\n\ndf = pd.read_csv('data/exam.csv')\n\ndf.corr()\n\n\n\n\n\n\n\n\n\nmath score\nreading score\nwriting score\n\n\n\n\nmath score\n1.000000\n0.817580\n0.802642\n\n\nreading score\n0.817580\n1.000000\n0.954598\n\n\nwriting score\n0.802642\n0.954598\n1.000000\n\n\n\n\n\n\n\n\n\nsns.heatmap(df.corr(), annot=True)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "02. 통계 기본 상식식"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html",
+    "title": "00. 시각화와 그래프",
+    "section": "",
+    "text": "- 목적 1 : 분석에 도움이 된다\n\n일반적인 데이터프레임을 보는 것 보다 그래프를 보고 패턴을 찾아내면 이후에 어떤 분석을 할 지 찾아낼 수 있다.\n또한, 보이지 않는 것(이상치, 영향치)들을 파악할 수 있음\n\n- 목적 2 : 리포팅에 도움이 된다.\n\nex : 기획팀에게 보고서를 전달할 때\n\n그래프를 기반으로 보고서를 작성해서 커뮤니케이션을 원할하게 함.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1. gdp 데이터",
+    "text": "실습 1. gdp 데이터\n한국(Korea_Rep), 미국(United_States), 영국(United_Kingdom), 독일(Germany), 중국(China), 일본(Japan)의 GDP 그래프 그리기\n\nimport pandas as pd\n\n%matplotlib inline\n\ndf = pd.read_csv(\"data/gdp.csv\",index_col = 0)\n\ndf.plot(y = [\"Korea_Rep\",\"United_States\", \n                \"United_Kingdom\",\"Germany\", \n                \"Germany\", \"China\", \"Japan\"])",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1",
+    "text": "실습 1\n- 실리콘 밸리 남자 매지너의 인종 분포 그리기\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_summary.csv')\n\ndf.loc[(df[\"job_category\"] == \"Managers\") & (df.gender == \"Male\") & \n       (df[\"race_ethnicity\"] != \"All\"), \n                   [\"count\", \"race_ethnicity\"]].plot(kind = \"bar\", x = \"race_ethnicity\", y= \"count\")",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1",
+    "text": "실습 1\n어도비 전체 직원들의 직군 분포를 파이 그래프로 그리\n\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nsol1\n- 일단 내가 풀어봤는데 그래프가 살짝 각도가 이상하게 나옴\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_details.csv')\n\n\ndf1 = df.loc[(df[\"company\"] == \"Adobe\") & (df[\"race\"] == \"Overall_totals\") & (df[\"count\"] !=0)].\\\n        groupby(\"job_category\", as_index = False)[[\"count\"]].sum()\n\ndf1.loc[map(lambda x : x not in [\"Previous_totals\", \"Totals\"],\n        df1[\"job_category\"])].set_index(\"job_category\")\n\n\n\n\n\n\n\n\n\ncount\n\n\njob_category\n\n\n\n\n\nAdministrative support\n323\n\n\nExecutives\n93\n\n\nManagers\n2448\n\n\nProfessionals\n3028\n\n\nSales workers\n1270\n\n\n\n\n\n\n\n\n\n\nsol2\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv(\"data/silicon_valley_details.csv\")\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\ndf[boolean_adobe & boolean_all_races]\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n336\nAdobe\n2016\nOverall_totals\nNaN\nTechnicians\n0\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n339\nAdobe\n2016\nOverall_totals\nNaN\nCraft workers\n0\n\n\n340\nAdobe\n2016\nOverall_totals\nNaN\noperatives\n0\n\n\n341\nAdobe\n2016\nOverall_totals\nNaN\nlaborers and helpers\n0\n\n\n342\nAdobe\n2016\nOverall_totals\nNaN\nService workers\n0\n\n\n343\nAdobe\n2016\nOverall_totals\nNaN\nTotals\n7162\n\n\n344\nAdobe\n2016\nOverall_totals\nNaN\nPrevious_totals\n6581\n\n\n\n\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\nboolean_count = df['count'] != 0\nboolean_job_category = (df['job_category'] != 'Totals') & (df['job_category'] != 'Previous_totals')\n\ndf_adobe = df[boolean_adobe & boolean_all_races & boolean_count & boolean_job_category]\ndf_adobe\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n\n\n\n\n\n\n\ndf_adobe.set_index('job_category', inplace=True)\n\n\ndf_adobe.plot(kind='pie', y= 'count')\n\n\n\n\n\n\n\n\n- 틀린 이유 : 굳이 count가 되어 있는 테이블을 groupby로 sum하는 과정에서 계산이 잘못된 거 같음..\n\n항상 데이터를 먼저 뜯어보는 습관을 기르자…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
+    "title": "00. 시각화와 그래프",
+    "section": "실습 1. 국가지표 분석하기",
+    "text": "실습 1. 국가지표 분석하기\n\nimport pandas as pd\n%matplotlib inline\n\ndf = pd.read_csv(\"data/world_indexes.csv\")\n\n\ndf.head()\n\n\n\n\n\n\n\n\n\nId\nHuman Development Index HDI-2014\nGini coefficient 2005-2013\nAdolescent birth rate 15-19 per 100k 20102015\nBirth registration funder age 5 2005-2013\nCarbon dioxide emissionsAverage annual growth\nCarbon dioxide emissions per capita 2011 Tones\nChange forest percentable 1900 to 2012\nChange mobile usage 2009 2014\nConsumer price index 2013\n...\nRenewable sources percentage of total 2012\nResearch and development expenditure 2005-2012\nSecondary 2008-2014\nShare of seats in parliament percentage held by womand 2014\nStock of immigrants percentage of population 2013\nTaxes on income profit and capital gain 205 2013\nTertiary -2008-2014\nTotal tax revenue of GDP 2005-2013\nTuberculosis rate per thousands 2012\nUnder-five Mortality 2013 thousands\n\n\n\n\n0\nNorway\n0.943877\n26.83\n7.834\n100.0\n0.778925\n9.192879\n11.914567\n5.22\n104.194175\n...\n47.752676\n1.65474\n111.06130\n39.644970\n13.772622\n31.798391\n74.10112\n27.288097\n0.14\n2.8\n\n\n1\nAustralia\n0.934958\n34.01\n12.059\n100.0\n1.090351\n16.519210\n-4.561812\n30.27\n107.789440\n...\n4.632202\n2.38562\n135.53543\n30.530974\n27.711793\n65.333748\n86.33409\n21.361426\n0.19\n4.0\n\n\n2\nSwitzerland\n0.929613\n32.35\n1.900\n100.0\n-1.101254\n4.625230\n8.567416\n16.72\n99.317229\n...\n49.659398\n2.87046\n96.30638\n28.455285\n28.906998\n22.673299\n55.56190\n9.759124\n0.22\n4.2\n\n\n3\nDenmark\n0.923328\n26.88\n5.101\n100.0\n-1.767733\n7.248329\n23.029974\n1.83\n106.057718\n...\n26.767245\n2.98416\n124.65927\n37.988827\n9.909512\n39.677938\n79.59763\n33.395651\n0.40\n3.5\n\n\n4\nNetherlands\n0.921794\n28.87\n6.165\n100.0\n-0.252734\n10.064490\n5.922602\n-4.31\n107.474154\n...\n6.671366\n2.15676\n129.91277\n36.888889\n11.724418\n23.533104\n77.34356\n19.724059\n0.17\n4.0\n\n\n\n\n5 rows × 66 columns\n\n\n\n\n다음 중 가장 연관성이 깊은 지표를 찾기!\n\n기대 수명 - 인터넷 사용자 비율\n숲 면적 비율 - 탄소 배출 증가율\n인터넷 사용자 비율 - 숲 면적 비율\n기대 수명 - 탄소 배출 증가율\n기대 수명 - 숲 면적 비율\n\n\nimport matplotlib.pyplot as plt\n\nfig, axes = plt.subplots(1,5 ,figsize = (12,4))\n\nax1,ax2,ax3,ax4,ax5 = axes\n\nax1.plot(\"Life expectancy at birth- years\",\n         'Internet users percentage of population 2014', \"b.\", data = df)\n\nax2.plot(\"Forest area percentage of total land area 2012\",\n         'Carbon dioxide emissionsAverage annual growth', \"b.\", data = df)\n\nax3.plot(\"Internet users percentage of population 2014\",\n         'Forest area percentage of total land area 2012', \"b.\", data = df)\n\nax4.plot( 'Life expectancy at birth- years',  \n         'Carbon dioxide emissionsAverage annual growth',  \"b.\", data = df)\n\nax5.plot( 'Life expectancy at birth- years',  \n         'Forest area percentage of total land area 2012',  \"b.\", data = df)\n\n\n\n\n\n\n\n\n- 그래프를 그려 시각화해본 결과 1. 기대수명-인터넷 사용자 비율이 가장 연관성이 있어 보인다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "02. 데이터 분석과 시각화",
+      "00. 시각화와 그래프"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html",
+    "title": "02. 데이터 변형하기",
     "section": "",
     "text": "import pandas as pd",
     "crumbs": [
@@ -10,552 +164,175 @@
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
+      "02. 데이터 변형하기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#주어진-데이터에-총-몇개의-도시와-몇-개의-나라가-있는지-출력",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#주어진-데이터에-총-몇개의-도시와-몇-개의-나라가-있는지-출력",
-    "title": "03. 큰 데이터 다루기",
-    "section": "(1) 주어진 데이터에 총 몇개의 도시와 몇 개의 나라가 있는지 출력",
-    "text": "(1) 주어진 데이터에 총 몇개의 도시와 몇 개의 나라가 있는지 출력\n\nsol1\n\ndf = pd.read_csv('data/world_cities.csv')\n\nprint(f'{len(df[\"City / Urban area\"].unique())}/{len(df[\"Country\"].unique())}') \n\n249/61\n\n\n\n\nsol2\n\ndf['City / Urban area'].value_counts().shape\n\n(249,)\n\n\n\ndf['Country'].value_counts().shape\n\n(61,)",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도명sqkm-가-10000-이-넘는-도시는-총-몇-개인지-확인",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도명sqkm-가-10000-이-넘는-도시는-총-몇-개인지-확인",
-    "title": "03. 큰 데이터 다루기",
-    "section": "(2) 인구 밀도(명/sqKm) 가 10000 이 넘는 도시는 총 몇 개인지 확인",
-    "text": "(2) 인구 밀도(명/sqKm) 가 10000 이 넘는 도시는 총 몇 개인지 확인\n\nsol1\n\nsum((df[\"Population\"]/df[\"Land area (in sqKm)\"])&gt;10000)\n\n19",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도가-가장-높은-도시",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도가-가장-높은-도시",
-    "title": "03. 큰 데이터 다루기",
-    "section": "(3) 인구 밀도가 가장 높은 도시",
-    "text": "(3) 인구 밀도가 가장 높은 도시\n\nsol1\n\nmax_value = max(df[\"Population\"]/df[\"Land area (in sqKm)\"])\n\n\ndf.loc[df[\"Population\"]/df[\"Land area (in sqKm)\"] == max_value, \"City / Urban area\"]\n\n75    Mumbai\nName: City / Urban area, dtype: object",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#도시가-4개인-나라-출력",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#도시가-4개인-나라-출력",
-    "title": "03. 큰 데이터 다루기",
-    "section": "(4) 도시가 4개인 나라 출력",
-    "text": "(4) 도시가 4개인 나라 출력\n\nsol\n\ndf[\"Country\"].value_counts()[df[\"Country\"].value_counts() == 4]\n\nCountry\nItaly    4\nName: count, dtype: int64",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-2",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-2",
-    "title": "03. 큰 데이터 다루기",
-    "section": "sol2",
-    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_2.csv')\n\n# 과목별 인원 가져오기\nallowed = df[\"status\"] == \"allowed\"\ncourse_counts = df.loc[allowed, \"course name\"].value_counts()\n\n# 각 강의실 규모에 해당되는 과목 리스트 만들기\nauditorium_list = list(course_counts[course_counts &gt;= 80].index)\nlarge_room_list = list(course_counts[(80 &gt; course_counts) & (course_counts &gt;= 40)].index)\nmedium_room_list = list(course_counts[(40 &gt; course_counts) & (course_counts &gt;= 15)].index)\nsmall_room_list = list(course_counts[(15 &gt; course_counts) & (course_counts &gt; 4)].index)\n\n# not allowed 과목에 대해 값 지정해주기\nnot_allowed = df[\"status\"] == \"not allowed\"\ndf.loc[not_allowed, \"room assignment\"] = \"not assigned\"\n\n# allowed 과목에 대해 값 지정해주기\nfor course in auditorium_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Auditorium\"\n\nfor course in large_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Large room\"\n    \nfor course in medium_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Medium room\"\n    \nfor course in small_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Small room\"\n    \n# 정답 출력\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom assignment\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium\n\n\n4\n2777785\n1\nmba\nallowed\nSmall room\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium room\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium room\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium room\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium room\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium room\n\n\n\n\n2000 rows × 5 columns\n\n\n\n\n- 큼.. 이건 내 코드가 더 효율적인 것 같음(가독성도!)",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol1-5",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol1-5",
-    "title": "03. 큰 데이터 다루기",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1",
+    "title": "02. 데이터 변형하기",
     "section": "sol1",
-    "text": "sol1\n\nimport pandas as pd\nimport warnings\n\nwarnings.filterwarnings(action = \"ignore\")\ndf = pd.read_csv('data/enrolment_3.csv')\n\n\nallowed = df.status == \"allowed\"\n\n- 고유값만 출력\n\nu_df = df.loc[allowed,  [\"course name\", \"room assignment\"]].\\\n                drop_duplicates().sort_values([\"room assignment\",\"course name\"])\n\n\nu_df.head()\n\n\n\n\n\n\n\n\n\ncourse name\nroom assignment\n\n\n\n\n2\narts\nAuditorium\n\n\n60\ncommerce\nAuditorium\n\n\n1\nscience\nAuditorium\n\n\n202\neducation\nLarge room\n\n\n24\nenglish\nLarge room\n\n\n\n\n\n\n\n\n- room_index\n\nroom_index = u_df[\"room assignment\"].value_counts().index\nroom_values = u_df[\"room assignment\"].value_counts().values\n\nroom_index, room_values\n\n(Index(['Small room', 'Medium room', 'Auditorium', 'Large room'], dtype='object', name='room assignment'),\n array([53, 24,  3,  2], dtype=int64))\n\n\n- 룸 넘버링\n\nnew_df = pd.DataFrame()\nfor k in range(4) :\n    temp = u_df.loc[u_df[\"room assignment\"] == room_index[k],:]\n    temp[\"room number\"] = [i + \"-\" + str(j) for i,j in zip(temp[\"room assignment\"], range(1, room_values[k]+1))]\n    new_df = pd.concat([new_df,temp], axis = 0)\n\n\nnew_df = new_df[[\"course name\",\"room number\"]]\n\n\ndf1 = pd.merge(df, new_df, on = \"course name\",how = \"left\")\n\n\ndf1.loc[df1[\"room assignment\"] == \"not assigned\", \"room number\"] = \"not assigned\"\n\n\ndf1[\"room number\"] = [i.replace(\" room\", \"\") for i in df1[\"room number\"]]\ndf = df1.drop(\"room assignment\", axis = 1)\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns\n\n\n\n\n\n전체코드\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_3.csv')\n\n# 여기에 코드를 작성하세요\nallowed = df.status == \"allowed\"\nu_df = df.loc[allowed,  [\"course name\", \"room assignment\"]].\\\n                drop_duplicates().sort_values([\"room assignment\",\"course name\"])\nroom_index = u_df[\"room assignment\"].value_counts().index\nroom_values = u_df[\"room assignment\"].value_counts().values\n\nnew_df = pd.DataFrame()\nfor k in range(4) :\n    temp = u_df.loc[u_df[\"room assignment\"] == room_index[k],:]\n    temp[\"room number\"] = [i + \"-\" + str(j) for i,j in zip(temp[\"room assignment\"], range(1, room_values[k]+1))]\n    new_df = pd.concat([new_df,temp], axis = 0)\nnew_df = new_df[[\"course name\",\"room number\"]]\ndf1 = pd.merge(df, new_df, on = \"course name\",how = \"left\")\ndf1.loc[df1[\"room assignment\"] == \"not assigned\", \"room number\"] = \"not assigned\"\ndf1[\"room number\"] = [i.replace(\" room\", \"\") for i in df1[\"room number\"]]\ndf = df1.drop(\"room assignment\", axis = 1)\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns",
+    "text": "sol1\n\ndf[\"합격 여부\"] = [True if (i&gt;=250) & (j&gt;=250) & (i+j &gt;= 600) else False for i,j in zip(df.LC, df.RC)]  \n\n\ndf\n\n\n\n\n\n\n\n\n\nGender\nLC\nRC\n합격 여부\n\n\n\n\n0\nfemale\n315\n320\nTrue\n\n\n1\nfemale\n430\n245\nFalse\n\n\n2\nfemale\n430\n475\nTrue\n\n\n3\nmale\n180\n220\nFalse\n\n\n4\nmale\n325\n350\nTrue\n\n\n5\nfemale\n295\n400\nTrue\n\n\n6\nfemale\n405\n475\nTrue\n\n\n7\nmale\n155\n150\nFalse\n\n\n8\nmale\n280\n315\nFalse\n\n\n9\nfemale\n215\n475\nFalse",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
+      "02. 데이터 변형하기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-3",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-3",
-    "title": "03. 큰 데이터 다루기",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2",
+    "title": "02. 데이터 변형하기",
     "section": "sol2",
-    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_3.csv')\n\n# 과목별 인원 가져오기\nallowed = df[\"status\"] == \"allowed\"\ncourse_counts = df.loc[allowed, \"course name\"].value_counts()\n\n# 각 강의실 규모에 해당되는 과목 리스트 만들기\nauditorium_list = list(course_counts[course_counts &gt;= 80].index)\nlarge_room_list = list(course_counts[(80 &gt; course_counts) & (course_counts &gt;= 40)].index)\nmedium_room_list = list(course_counts[(40 &gt; course_counts) & (course_counts &gt;= 15)].index)\nsmall_room_list = list(course_counts[(15 &gt; course_counts) & (course_counts &gt; 4)].index)\n\n# 강의실 이름 붙이기\nfor i in range(len(auditorium_list)):\n    df.loc[(df[\"course name\"] == sorted(auditorium_list)[i]) & allowed, \"room assignment\"] = \"Auditorium-\" + str(i + 1)\n\nfor i in range(len(large_room_list)):\n    df.loc[(df[\"course name\"] == sorted(large_room_list)[i]) & allowed, \"room assignment\"] = \"Large-\" + str(i + 1)\n    \nfor i in range(len(medium_room_list)):\n    df.loc[(df[\"course name\"] == sorted(medium_room_list)[i]) & allowed, \"room assignment\"] = \"Medium-\" + str(i + 1)\n    \nfor i in range(len(small_room_list)):\n    df.loc[(df[\"course name\"] == sorted(small_room_list)[i]) & allowed, \"room assignment\"] = \"Small-\" + str(i + 1)\n\n# column 이름 바꾸기\ndf.rename(columns={\"room assignment\": \"room number\"}, inplace = True)\n    \n# 테스트 코드\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns",
+    "text": "sol2\n\npass_total = df['LC'] + df['RC'] &gt;= 600\npass_both = (df['LC'] &gt;= 250) & (df['RC'] &gt;= 250)\ndf['합격 여부'] = pass_total & pass_both\n\n\ndf\n\n\n\n\n\n\n\n\n\nGender\nLC\nRC\n합격 여부\n\n\n\n\n0\nfemale\n315\n320\nTrue\n\n\n1\nfemale\n430\n245\nFalse\n\n\n2\nfemale\n430\n475\nTrue\n\n\n3\nmale\n180\n220\nFalse\n\n\n4\nmale\n325\n350\nTrue\n\n\n5\nfemale\n295\n400\nTrue\n\n\n6\nfemale\n405\n475\nTrue\n\n\n7\nmale\n155\n150\nFalse\n\n\n8\nmale\n280\n315\nFalse\n\n\n9\nfemale\n215\n475\nFalse\n\n\n\n\n\n\n\n\n- cowork 할 떄는 리스트 컴프리헨션보다 저렇게 가독성 있는 코드를 짜는게 좋을 것 같다.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "03. 큰 데이터 다루기"
+      "02. 데이터 변형하기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html",
-    "title": "01. DataFrame 인덱싱",
-    "section": "",
-    "text": "import\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n\n데이터 로드\n\ndf = pd.read_csv(\"data/broadcast.csv\", encoding = \"utf-8\", index_col = 0)\n\n\ndf\n\n\n\n\n\n\n\n\n\nKBS\nMBC\nSBS\nTV CHOSUN\nJTBC\nChannel A\nMBN\n\n\n\n\n2011\n35.951\n18.374\n11.173\n9.102\n7.380\n3.771\n2.809\n\n\n2012\n36.163\n16.022\n11.408\n8.785\n7.878\n5.874\n3.310\n\n\n2013\n31.989\n16.778\n9.673\n9.026\n7.810\n5.350\n3.825\n\n\n2014\n31.210\n15.663\n9.108\n9.440\n7.490\n5.776\n4.572\n\n\n2015\n27.777\n16.573\n9.099\n9.940\n7.267\n6.678\n5.520\n\n\n2016\n27.583\n14.982\n8.669\n9.829\n7.727\n6.624\n5.477\n\n\n2017\n26.890\n12.465\n8.661\n8.886\n9.453\n6.056\n5.215\n\n\n\n\n\n\n\n\n\n\n인덱싱\n- ex1. 2016년 kbs 시청률 받아오기\n\ndf.loc[2016, \"KBS\"]\n\n27.583\n\n\n- ex2. JTBC의 시청률 확인\n\ndf[\"JTBC\"]\n\n2011    7.380\n2012    7.878\n2013    7.810\n2014    7.490\n2015    7.267\n2016    7.727\n2017    9.453\nName: JTBC, dtype: float64\n\n\n- ex3. SBS와 JTBC의 시청률만 확인\n\ndf[[\"SBS\",\"JTBC\"]]\n\n\n\n\n\n\n\n\n\nSBS\nJTBC\n\n\n\n\n2011\n11.173\n7.380\n\n\n2012\n11.408\n7.878\n\n\n2013\n9.673\n7.810\n\n\n2014\n9.108\n7.490\n\n\n2015\n9.099\n7.267\n\n\n2016\n8.669\n7.727\n\n\n2017\n8.661\n9.453\n\n\n\n\n\n\n\n\n- ex4. 삼송카드, 현디카드 요일별 문화생활비 분석\n\nsamsong_df = pd.read_csv('data/samsong.csv')\nhyundee_df = pd.read_csv('data/hyundee.csv')\n\n\nsamsong_df\n\n\n\n\n\n\n\n\n\n요일\n식비\n교통비\n문화생활비\n기타\n\n\n\n\n0\nMON\n19420\n2560\n4308\n3541\n\n\n1\nTUE\n16970\n2499\n7644\n2903\n\n\n2\nWED\n15091\n2511\n5674\n2015\n\n\n3\nTHU\n17880\n2545\n8621\n3012\n\n\n4\nFRI\n27104\n2993\n23052\n2508\n\n\n5\nSAT\n29055\n2803\n15330\n4901\n\n\n6\nSUN\n23509\n1760\n19030\n4230\n\n\n\n\n\n\n\n\n\nhyundee_df\n\n\n\n\n\n\n\n\n\n요일\n식비\n교통비\n문화생활비\n기타\n\n\n\n\n0\nMON\n22420\n2574\n5339\n5546\n\n\n1\nTUE\n19940\n2689\n3524\n2501\n\n\n2\nWED\n18086\n2281\n5364\n2234\n\n\n3\nTHU\n18863\n2155\n9942\n3252\n\n\n4\nFRI\n35144\n2463\n33511\n2342\n\n\n5\nSAT\n34952\n2812\n19397\n4324\n\n\n6\nSUN\n28513\n2680\n19925\n4577\n\n\n\n\n\n\n\n\n\nday = samsong_df[\"요일\"]\nsamsong = samsong_df[\"문화생활비\"]\nhyundee = hyundee_df[\"문화생활비\"]\n\ndf = pd.DataFrame([day,samsong,hyundee]).T\n\ndf.columns = [\"day\", \"samsong\", \"hyundee\"]\ndf\n\n\n\n\n\n\n\n\n\nday\nsamsong\nhyundee\n\n\n\n\n0\nMON\n4308\n5339\n\n\n1\nTUE\n7644\n3524\n\n\n2\nWED\n5674\n5364\n\n\n3\nTHU\n8621\n9942\n\n\n4\nFRI\n23052\n33511\n\n\n5\nSAT\n15330\n19397\n\n\n6\nSUN\n19030\n19925\n\n\n\n\n\n\n\n\n- ex5. KBS ~ SBS, 2012 ~ 2017 까지의 시청률 데이터만 확인\n\ndf = pd.read_csv('data/broadcast.csv', index_col=0)\n\n\ndf.loc[2012:2017, \"KBS\" : \"SBS\"]\n\n\n\n\n\n\n\n\n\nKBS\nMBC\nSBS\n\n\n\n\n2012\n36.163\n16.022\n11.408\n\n\n2013\n31.989\n16.778\n9.673\n\n\n2014\n31.210\n15.663\n9.108\n\n\n2015\n27.777\n16.573\n9.099\n\n\n2016\n27.583\n14.982\n8.669\n\n\n2017\n26.890\n12.465\n8.661\n\n\n\n\n\n\n\n\n- ex6. KBS 시청률이 30이 넘은 데이터만 확인해보기\n\ndf.loc[df.KBS &gt; 30, \"KBS\"]\n\n2011    35.951\n2012    36.163\n2013    31.989\n2014    31.210\nName: KBS, dtype: float64\n\n\n- ex7. SBS가 TV CHOSUN보다 더 시청률이 낮았던 시기의 데이터 확인\n\ndf.loc[df.SBS &lt; df[\"TV CHOSUN\"], [\"SBS\",\"TV CHOSUN\"]]\n\n\n\n\n\n\n\n\n\nSBS\nTV CHOSUN\n\n\n\n\n2014\n9.108\n9.440\n\n\n2015\n9.099\n9.940\n\n\n2016\n8.669\n9.829\n\n\n2017\n8.661\n8.886",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1-1",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1-1",
+    "title": "02. 데이터 변형하기",
+    "section": "sol1",
+    "text": "sol1\n1 첫 번째 컬럼에 2를 곱하기\n\ndf = pd.read_csv('data/Puzzle_before.csv')\n\n\ndf[\"A\"] = df[\"A\"]*2\n\n2 B~E 열 까지 80점 이상이면 1, 아니면 0으로 값 교체\n\ndf.loc[:,\"B\":\"E\"] = df.loc[:,\"B\":\"E\"].applymap(lambda x : 1 if x &gt;=80 else 0)\n\nC:\\Users\\rkdcj\\AppData\\Local\\Temp\\ipykernel_10248\\2975510319.py:1: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.\n  df.loc[:,\"B\":\"E\"] = df.loc[:,\"B\":\"E\"].applymap(lambda x : 1 if x &gt;=80 else 0)\n\n\n3 F열의 2번째 값을 99로 교체\n\ndf.loc[2, \"F\"] = 99\n\n\ndf\n\n\n\n\n\n\n\n\n\nA\nB\nC\nD\nE\nF\n\n\n\n\n0\n2\n0\n0\n1\n0\n13\n\n\n1\n4\n0\n0\n1\n0\n24\n\n\n2\n6\n1\n0\n1\n0\n99\n\n\n3\n8\n1\n1\n0\n1\n78\n\n\n4\n10\n0\n1\n0\n1\n61",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "01. DataFrame 인덱싱"
+      "02. 데이터 변형하기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
-    "title": "02. pandas",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2-1",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2-1",
+    "title": "02. 데이터 변형하기",
+    "section": "sol2",
+    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/Puzzle_before.csv')\n\ndf['A'] = df['A'] * 2\ndf[df.loc[:, 'B':'E'] &lt; 80] = 0\ndf[df.loc[:, 'B':'E'] &gt;= 80] = 1\ndf.loc[2, 'F'] = 99\n\n# 테스트 코드\ndf\n\n\n\n\n\n\n\n\n\nA\nB\nC\nD\nE\nF\n\n\n\n\n0\n2\n0\n0\n1\n0\n13\n\n\n1\n4\n0\n0\n1\n0\n24\n\n\n2\n6\n1\n0\n1\n0\n99\n\n\n3\n8\n1\n1\n0\n1\n78\n\n\n4\n10\n0\n1\n0\n1\n61",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "01. DataFrame 다루기",
+      "02. 데이터 변형하기"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
+    "title": "extra 00. R vs Python",
     "section": "",
-    "text": "- numpy를 이용해서 만들어진 모듈\n- 데이터를 읽고, 쓰고, 저장하고 시각화하는 기능이 포함되어 있음\n- 표 형식의 데이터(데이터프레임)를 다루는데 필수적인 모듈!\n- numpy와 달리 다양한 자료형을 표 형식으로 저장할 수 있음!(\\(\\star\\star\\))",
+    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)\n\n\n\n1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.\n\n\n\n\n1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 개인적인 경험\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "02. pandas"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
-    "title": "02. pandas",
-    "section": "1. 리스트",
-    "text": "1. 리스트\n\nimport pandas as pd\nimport numpy as np\n\n\nl = [[\"a\", 50, 86], [\"b\", 89, 31], [\"ikjoong\", 68, 91]]\n\npd.DataFrame(l)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "02. pandas"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
-    "title": "02. pandas",
-    "section": "2. numpy",
-    "text": "2. numpy\n\npd.DataFrame(np.array(l))\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "02. pandas"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
-    "title": "02. pandas",
-    "section": "3. Series",
-    "text": "3. Series\n\nl2 = [\n    pd.Series([\"a\", 50, 86]),\n    pd.Series([\"b\", 89, 31]),\n    pd.Series([\"c\", 68, 91]),\n        \n]\n\npd.DataFrame(l2)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "02. pandas"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
-    "title": "02. pandas",
-    "section": "4. Dictionary",
-    "text": "4. Dictionary\n\ndic = {\"name\" : [\"a\",\"b\",\"c\"],\n       \"s1\" : [50,89,68],\n       \"s2\" : [86,31,91]}\n\ndf = pd.DataFrame(dic)\ndf\n\n\n\n\n\n\n\n\n\nname\ns1\ns2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91\n\n\n\n\n\n\n\n\n\ndf.set_index(\"name\")\n\n\n\n\n\n\n\n\n\ns1\ns2\n\n\nname\n\n\n\n\n\n\na\n50\n86\n\n\nb\n89\n31\n\n\nc\n68\n91",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "02. pandas"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
-    "title": "00. Intro",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
+    "title": "extra 00. R vs Python",
     "section": "",
-    "text": "1 데이터 사이언스를 배워야 하는 이유\n\n분야를 막론하고 데이터는 너무나 중요하게 여겨지고 있음(음악 추천, 대선 예측 등등….)\n\n2 정의 : 한 가지로 정의되어 있지 않음\n\n위키피디아 : 데이터 마이닝과 유사하게 정형, 비정형 형태를 포함한 다양한 데이터로부터 지식과 인사이트를 추출하는데 과학적 방법론, 프로세스 알고리즘, 시스템을 동원하는 융합 분야다.\njournal of Data Science : 데이터와 연관된 모든 것을 의미.\nDrew Conway : 프로그래밍, 수학과 통계, 특정분야에 대한 전문성을 가지고 데이터로부터 현실 문제를 해결하는 것\n결론 : 가치를 더할 수 있는일을 데이터를 활용하여 해결하는 것!",
+    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
-    "title": "00. Intro",
-    "section": "오해 1",
-    "text": "오해 1\n인공지능과 딥러닝만이 DS가 아니다!\n- DS 단계\n\n데이터 수집\n데이터를 옮기고 저장\n데이터를 정리\n데이터 분석, A/B test\n인공지능, 딥러닝\n\n\n1 ~ 3은 데이터 엔지니어의 역할이기도 하다.\n또한, 실제 기업에서는 1 ~ 4 까지만 가도 유의미한 가치를 창출할 수 있다.",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
-    "title": "00. Intro",
-    "section": "오해 2",
-    "text": "오해 2\n다시 말하지만, 데이터 사이언스는 단순히 수학, 통계, 컴퓨팅 능력이 아닌 해당 비즈니스 영역에서 협업을 통해 문제를 해결할 줄 알아야한다.",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
+    "title": "extra 00. R vs Python",
+    "section": "",
+    "text": "1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 개인적인 경험\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
-    "title": "00. Intro",
-    "section": "R",
-    "text": "R\n1 통계와 시각화에 특화된 언어\n2 그러나, R을 배운다고 다른 프로그래밍을 잘하는 것은 아님…",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
+    "title": "extra 00. R vs Python",
+    "section": "샘플데이터 생성",
+    "text": "샘플데이터 생성\n- 비교를 위해 가짜 데이터를 만들어 보자(백만개만)\n\nimport pandas as pd\nimport numpy as np\n\n\nX = np.random.random((1000000,10))\nX = pd.DataFrame(X)\n\nname = [\"X\"+str(i) for i in range(10)]\nX.columns = name\n\n\nX.to_csv(\"X.csv\",index = False)",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
-    "title": "00. Intro",
-    "section": "Python",
-    "text": "Python\n1 웹사이트 개발, 이미지 처리, 업무 자동화, 데이터 시각화, 게임 개발, 앱 서버 개발 등 다른 영역에 다채롭게 활용할 수 있음\n2 DS 토픽에 한정해서는 R이 인기가 많았으나, numpy, pandas, tensorflow의 등장으로 python이 R을 앞지름",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
+    "title": "extra 00. R vs Python",
+    "section": "데이터 로드",
+    "text": "데이터 로드\n\npython\n\nimport time\n\n\nstart = time.time()\ndf = pd.read_csv(\"X.csv\")\nend  = time.time()\n\n\ntotal = end-start\ntotal\n\n1.315992832183838\n\n\n\nprint(f\"데이터 로드 시간(python) : {total}\")\n\n데이터 로드 시간(python) : 1.315992832183838\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\nstart &lt;- Sys.time()\ndf &lt;- fread(\"X.csv\")\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 로드 시간(R) : \",total))\n\n[1] \"데이터 로드 시간(R) :  0.220276832580566\"\n\n\n\n오, 대략 6배 가량 차이남!",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
-    "title": "00. Intro",
-    "section": "내 생각",
-    "text": "내 생각\n1 흠…. 이건 좀 내 의견은 반대이다.. 내가 둘 다 배워봐서 그런걸 수도 있지만, R이 tidyverse, tidymodel에 등장으로 훨씬 처음에 배우기 좋은 것 같음\n2 그리고 도메인, 개별 성향에 따라 다르기 때문에 무작정 어떤 언어가 더 쉽다고 말할 순 없는 것 같다..\n3 그냥, python으로 할 수 있는 범위가 많기 때문에 사람들이 배우기 더 쉬워하는 것 같다.",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
+    "title": "extra 00. R vs Python",
+    "section": "데이터 전처리(filter,select)",
+    "text": "데이터 전처리(filter,select)\n- 저장한 데이터에서 x1 ~ x5 까지만 컬럼을 선택하고, x1이 0보다 큰 데이터만 추출해보자\n\npython\n\nimport pandas as pd\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\nstart = time.time()\n\nselect_col = [\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]\n\ndf[select_col].loc[df.X1&gt;0,:]\n\nend  = time.time()\n\n\ntotal = end-start\nprint(f\"데이터 전처리 시간(python) : {total}\")\n\n데이터 전처리 시간(python) : 0.03211045265197754\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\ndf &lt;- fread(\"X.csv\")\n\n\nstart &lt;- Sys.time()\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 전처리 시간(R) : \",total))\n\n[1] \"데이터 전처리 시간(R) :  0.0224010944366455\"\n\n\n- 전처리도 미세하게 R이 더 빠르다.\n- 심지어 코드 가독성도 R이 더 좋은 것 같음",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
+      "extra 00. R vs Python"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
-    "title": "00. Intro",
-    "section": "1. 문제 정의하기",
-    "text": "1. 문제 정의하기\n1 목표 설정\n2 기간 설정\n3 평가 방법 설정\n4 필요한 데이터 설정",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
+    "title": "extra 00. R vs Python",
+    "section": "다중회귀모형 적합",
+    "text": "다중회귀모형 적합\n\\[x_5 = \\beta_1 x_1+\\beta_2 x_2+\\beta_1 x_3+\\beta_1 x_4+\\beta_1 x_5\\]\n\npython\n\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\ndf = df[[\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]]\n\n\nx5 = df[\"X5\"]\nX = df.drop(\"X5\", axis = 1)\n\n\nstart = time.time()\n\nmodel = LinearRegression()\n\nmodel.fit(X,x5)\n\nx5_pred = model.predict(X)\n\nend = time.time()\n\n\ntotal = end-start\n\n\nprint(f\"모형 적합 및 예측 시간(python) : {total}\")\n\n모형 적합 및 예측 시간(python) : 0.1069481372833252\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\ndf &lt;- fread(\"X.csv\")\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\n\n\nstart &lt;- Sys.time()\n\nmodel &lt;- lm(X5~. ,data = df)\n\nx5_pred &lt;- predict(model, df)\n\nend &lt;- Sys.time()\n\n\ntotal = end - start\nprint(paste(\"모형 적합 및 예측 시간(R) : \",total))\n\n[1] \"모형 적합 및 예측 시간(R) :  0.293954849243164\"\n\n\n\n간단한 회귀모형 적합에서는 python이 3배 가량 더 빨랐다.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "00. Intro"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
-    "title": "00. Intro",
-    "section": "2. 데이터 모으기",
-    "text": "2. 데이터 모으기\n1 웹 크롤링, 자료 모으기, 파일 읽고 쓰기",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "00. Intro"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
-    "title": "00. Intro",
-    "section": "3. 데이터 다듬기",
-    "text": "3. 데이터 다듬기\n1 데이터 관찰, 오류 제거, 정리",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "00. Intro"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
-    "title": "00. Intro",
-    "section": "4. 데이터 분석",
-    "text": "4. 데이터 분석\n1 데이터 파악, 변형, 통계 분석, 인사이트 도출",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "00. Intro"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
-    "title": "00. Intro",
-    "section": "5. 커뮤니케이션",
-    "text": "5. 커뮤니케이션\n1 다양한 시각화, 커뮤니케이션, 리포트를 활용해 구성원들과 소통하며 문제 해결",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "00. Intro"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html",
-    "title": "01. 제안전략수립",
-    "section": "",
-    "text": "- 사업의 개념과 도메인 지식이 필요\n- 문제정의\n\n\n\nB2B 산업의 환경구조 \\(\\to\\) 환경분석 프레임\n\n\n\n- 고객사에 대한 충분한 이해가 필요\n\n고객정의(구매센터) \\(\\to\\) 니즈 정의\n\n\n\n\n\n세분화 타겟팅 \\(\\to\\) 포지셔닝\n아이디어 도출\n\n\n\n\n\n가치제안서/실행전략 \\(\\to\\) 비즈니스 모델",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#제안컨설팅을-위한-사업화-프로세스",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#제안컨설팅을-위한-사업화-프로세스",
-    "title": "01. 제안전략수립",
-    "section": "",
-    "text": "- 사업의 개념과 도메인 지식이 필요\n- 문제정의\n\n\n\nB2B 산업의 환경구조 \\(\\to\\) 환경분석 프레임\n\n\n\n- 고객사에 대한 충분한 이해가 필요\n\n고객정의(구매센터) \\(\\to\\) 니즈 정의\n\n\n\n\n\n세분화 타겟팅 \\(\\to\\) 포지셔닝\n아이디어 도출\n\n\n\n\n\n가치제안서/실행전략 \\(\\to\\) 비즈니스 모델",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#biz-체계의-이해",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#biz-체계의-이해",
-    "title": "01. 제안전략수립",
-    "section": "Biz 체계의 이해",
-    "text": "Biz 체계의 이해\n- biz는 Business의 약자로 상품이나 서비스를 생산하고 판매하며, 수익을 얻는 활동을 의미함\n- biz 체계\n\n비즈니스의 전반적인 구조와 기능을 나타냄\n기업이 제품이나 서비스를 제공하고, 조직 구조, 프로세스, 기술, 인력 등을 포함한 다양한 요소를 통합하여 운영하는 방식을 의미한다\n\n- biz체게는 일반적으로 처음에는 고객중심으로 시작했다가 관리 중심으로 변환함\n\n관리 중심으로 시작한 기업은… 결과가 좋지않음 (관리가 고객의 이익을 침해하면 안됨…)\n\n기업의 존재 이유는 고객이고 기업의 목적은 시장을 창조하는 것이다 -피터 드리커-",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#b2b-사업의-본질",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#b2b-사업의-본질",
-    "title": "01. 제안전략수립",
-    "section": "B2B 사업의 본질",
-    "text": "B2B 사업의 본질\n- B2B : Bussiness-to-Bussiness의 약어로, 기업 간에 이루어지는 거래를 나타냄\n\nB2B 비즈니스는 B2B 고객의 성공적인 전략실행을 위한 솔루션을 제시하는 것이다.",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#문제의-종류",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#문제의-종류",
-    "title": "01. 제안전략수립",
-    "section": "문제의 종류",
-    "text": "문제의 종류\n\n(1) 발생형\n- 시간축 : 과거\n- 발생원인 : 기준이탈 \\(\\cdot\\) 미달\n- 성격 : 이미 일어나버린 문제\n\n\n(2) 탐색형\n- 시간축 : 현재\n- 발생원인 : 개선 \\(\\cdot\\) 개량 \\(\\cdot\\) 강화\n- 성격 : 더 잘해보고 싶은 문제\n\n\n(3) 설정형\n- 시간축 : 미래\n- 발생원인 : 개발 \\(\\cdot\\) 기획 \\(\\cdot\\) 리스크 회피\n- 성격 : 앞으로 어떻게 할 것인가의 문제\n\\(\\divideontimes\\) 우리는 일반적으로 설정형으로 문제를 정의하고 해결할 줄 알아야 한다.\n\n\n(4) 요약",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#example.-문제정의",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#example.-문제정의",
-    "title": "01. 제안전략수립",
-    "section": "example. 문제정의",
-    "text": "example. 문제정의",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#forecasting",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#forecasting",
-    "title": "01. 제안전략수립",
-    "section": "Forecasting",
-    "text": "Forecasting\n- 현재 시점에서 미래를 보는 사고법\n\n활용 가능 자료 수집 \\(\\to\\) 자료분석 \\(\\to\\) Ouput 도출\n\n- 자료 분석에 많은 시간을 들이고 정작 전략 수집에는 소홀하게 됨, 특히 기존 유사 프로젝트와 비슷한 결론이 나올 가능성이 높음",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#backcasting",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#backcasting",
-    "title": "01. 제안전략수립",
-    "section": "Backcasting",
-    "text": "Backcasting\n- 미래 시점에서 현재를 보는 사고법\n\nOuput 추론/상상 \\(\\to\\) Output 실현을 위한 조건과 가정 정의 \\(\\to\\) 조건과 가정을 구현하기 위한 방법 정의\n\n- 역가치사슬분석, 보도자료기반 가치정의\n\nProcess\n1 Awarensss : 이상상황 정의\n\n주요 참여자 정의\n이상적 가치 정의 \\(\\to\\) 전체 최적화를 고려 (풍선효과 등을 막기 위한 방안)\n\n\\(\\divideontimes\\) 풍선효과 : 풍선의 한쪽을 누르면 다른 쪽이 불룩 튀어나오는 모습을 빗댄 표현으로, 어떤 현상이나 문제를 억제하면 다른 현상이나 문제가 새로이 불거져 나오는 상황\n2 interests : 이해관계자 정의\n\n이상적 가치 제공 및 운영 시 참여/고려 되는 이해관계자 도출\n이해관계자 니즈 정의\n\n3 Down to Action : 목표 도달을 위한 활동/조건 정의\n\n이상목표 달성을 위한 세부활동 정의 : 참여자/조건 별\n\n4 Baseline : 현 상황 정의\n5 Gap Analysis : Gap 및 장애요소 도출\n6 핵심 성공요소 정의 및 세부 실행계획 정의",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#sic",
-    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#sic",
-    "title": "01. 제안전략수립",
-    "section": "SIC",
-    "text": "SIC\n- success image canvas\n- 고려사항 : 사람, 기술, 재료, 방법 등\n- 주요요소\n\n경쟁사/대체재의 미래 제시가치\n필요 인프라 (H/W 및 S/W)\n이해관계자 : 보안/협력자, 관련기관 등\n필요자원",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "01. 제안전략수립"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "끄적끄적",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 22, 2024\n\n\n00. 시각화와 그래프\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n01. Seaborn 시각화\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n02. 통계 기본 상식식\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. 코드잇 기업분석 (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nDec 4, 2023\n\n\n03. EDA\n\n\nGC \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "- 정의 : 기업이 기업을 대상으로 제품이나 서비스를 영업하는 것\n\n자신 또는 자사의 제품이 고객이 가지고 있는 pain point를 해결하는데 어떻게 활용될 수 있는지 제시하는 것!\n\n- 미션\n\n왕성한 영업 활동? (X) \\(\\to\\) 활동 &lt; 결과\n고객과의 관계? (X) \\(\\to\\) 중요하지만 주가 되지 않음\n좋은 콘텐츠 만들기? (X)\n기.승.전 매출 (O)\n\n\n\n\n\n\n\n\n\n\n\n목록\nB2B\nB2C\n\n\n\n\n대상\n기업(조직)\n개인\n\n\n의사 결정자\n현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함\n개인\n\n\n구매 동기\n이윤추구\n개인 삶의 질 향상\n\n\n구매 결정 프로세스\n복잡함\n관여도에 따라 다르지만, 상대적으로 짧고 간단함\n\n\n기존 제품 / 서비스 교체\n복잡합\n간단\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n목록\n마케팅\n세일즈\n\n\n\n\n대상\n불특정 다수(1:다)\n잠재고객 (1:1)\n\n\n목적\n알리기\n매출 전환(Conversation)\n\n\n활동 예시\n검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등\n가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대\n\n\nCall to Action(고객 유도 행동)\n홈페이지 방문, 소개서, 다운로드\n문의, 미팅 및 견적 요청\n\n\n\n\n\n\n\n\n\n\n\n1 VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴\n\n우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)\n\n2 PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림\n\n잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상\n\n3 CLIENT (세일즈 영역) : 협상/계약\n\n우리가 제공하는 제품/서비스를 사용하고 있는 기업\n\n4 LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개\n\\(\\divideontimes\\) 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림\n\n\n\n\n\n\n\n\n\n\n목록\nHUNTER\nFARMER\n\n\n\n\n정의\n지속적인 새로운 고객 발굴\n기존 고객과 기존 영역 성장\n\n\n목표\n새로운 고객발굴을 통한 매출 증대\n기존 고객의 매출 성장\n\n\n고객 발굴 상황\nOutbound\nInbound\n\n\n세일즈 상대\n새로운 잠재 기업\n기존 사용 부서 및 새 구매 부서\n\n\n성과 측정\n새 기업 고객 수, 매출액\n실 사용 부서(사용자) 수, 매출액\n\n\n이름\nNew Sales, 고객 개발\n어카운트 매니저, Client Success\n\n\n\n\n\n\n\n1 B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.\n2 마케팅과 세일즈의 차이는 마케팅은 알리기(Awareness) 가 핵심, 세일즈는 문의를 늘려 매출로 전환하는 것이 핵심이다.",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-vs-b2c",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-vs-b2c",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "목록\nB2B\nB2C\n\n\n\n\n대상\n기업(조직)\n개인\n\n\n의사 결정자\n현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함\n개인\n\n\n구매 동기\n이윤추구\n개인 삶의 질 향상\n\n\n구매 결정 프로세스\n복잡함\n관여도에 따라 다르지만, 상대적으로 짧고 간단함\n\n\n기존 제품 / 서비스 교체\n복잡합\n간단",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#마케팅-vs-세일즈",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#마케팅-vs-세일즈",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "목록\n마케팅\n세일즈\n\n\n\n\n대상\n불특정 다수(1:다)\n잠재고객 (1:1)\n\n\n목적\n알리기\n매출 전환(Conversation)\n\n\n활동 예시\n검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등\n가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대\n\n\nCall to Action(고객 유도 행동)\n홈페이지 방문, 소개서, 다운로드\n문의, 미팅 및 견적 요청",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#구매자-여정에서-세일즈의-위치",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#구매자-여정에서-세일즈의-위치",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "1 VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴\n\n우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)\n\n2 PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림\n\n잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상\n\n3 CLIENT (세일즈 영역) : 협상/계약\n\n우리가 제공하는 제품/서비스를 사용하고 있는 기업\n\n4 LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개\n\\(\\divideontimes\\) 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-세일즈에-다양한-역할",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-세일즈에-다양한-역할",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "목록\nHUNTER\nFARMER\n\n\n\n\n정의\n지속적인 새로운 고객 발굴\n기존 고객과 기존 영역 성장\n\n\n목표\n새로운 고객발굴을 통한 매출 증대\n기존 고객의 매출 성장\n\n\n고객 발굴 상황\nOutbound\nInbound\n\n\n세일즈 상대\n새로운 잠재 기업\n기존 사용 부서 및 새 구매 부서\n\n\n성과 측정\n새 기업 고객 수, 매출액\n실 사용 부서(사용자) 수, 매출액\n\n\n이름\nNew Sales, 고객 개발\n어카운트 매니저, Client Success",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#summary",
-    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#summary",
-    "title": "00. B2B 세일즈",
-    "section": "",
-    "text": "1 B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.\n2 마케팅과 세일즈의 차이는 마케팅은 알리기(Awareness) 가 핵심, 세일즈는 문의를 늘려 매출로 전환하는 것이 핵심이다.",
-    "crumbs": [
-      "Posts",
-      "B2b",
-      "00. B2B 세일즈"
-    ]
-  },
-  {
-    "objectID": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
-    "href": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
-    "title": "00. 코드잇 기업분석 (1)",
-    "section": "",
-    "text": "코드잇 소개\n- 구독형 교육 서비스를 제공하는 기업\n\n넷플릭스, 멜론처럼 구독 시 원하는 강의를 무제한으로 들을 수 있는 서비스를 제공한다. (굉장히 신선함)\n넷플릭스와 다른점은 콘텐츠를 내부 콘텐츠 팀에서 제작하는 방식!\n그렇기 때문에 커리큘럼에 대한 고민을 많이 한다…(맞는 말임)\n다른 플랫폼들은 외주 형식으로 강의를 만드는데 일관적이지 않다.\n코드잇은 하나의 큰 그림을 그려놓고 세부적으로 기획을 해서 제작하기 때문에 일관성이 높다.(ㅇㅇ 확실히 외주를 맡기면 강사마다 강의하는 방식과 사용하는 함수 같은 것들이 다르니 좀 혼동 될 때가 많았음)\n또한, 코드잇은 강의를 짬내서 만드는 게 아닌 풀타임으로 콘텐츠 제작에 몰두하기 때문에 강의 퀄리티가 높을 수 밖에 없는 것 같음\n새로운 사람이 와도 일관되게 좋은 강의가 나오도록 가이드를 계속해서 개선을 하고 있다.\n\n\n\n\n콘텐츠 프로듀서?\n- 흔히 있는 강사를 말하는 것이 아니다!!\n- 강사가 아닌 콘텐츠 프로듀서라고 이름을 붙인 이유!\n\n단순히 강의를 하는 포지션이 아니라 정제된 콘텐츠를 만드는 것이 핵심\n해당 분야에 대한 리서치, 관련된 강의, 이를 통해 어떻게 최적화된 커리큘럼을 만들 수 있는지!\n주요 업무는 리서치, 공부, 기획, 콘텐츠 제작인 것 같다….!\n학원 강사와의 차이점 : 팀으로 움직인다. \\(\\to\\) 한 가지 주제에 대해서 두 명의 프로듀서가 참여를 한다던지, 영상 편집은 디자이너… 이렇게 팀으로 움직이기 때문에 이러한 점이 강사와의 차이점이다.\n애니메이션을 주로 활용해서 컨텐츠를 제작함.(필요에 따라 사람이 직접 나오는 영상을 촬영함)\n\n\n\n강의 체계\n- 토픽이라는 단위로 구성\n- 하나의 토픽 안에 영상들이 들어가 있음\n\n보통 2, 3개월 정도에 걸려서 하나의 토픽을 만든다.\n일단, 강의를 몇 개 들어보고 차별성을 직접 느껴보는 게 좋을 것 같음.\n\n\\(x+y\\)\n\\(2x + y\\)",
-    "crumbs": [
-      "Posts",
-      "CA",
-      "00. 코드잇 기업분석 (1)"
+      "extra 00. R vs Python"
     ]
   },
   {
@@ -713,121 +490,456 @@
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html",
-    "title": "extra 00. R vs Python",
+    "objectID": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
+    "href": "posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html",
+    "title": "00. CA (1)",
     "section": "",
-    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)\n\n\n\n1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.\n\n\n\n\n1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 개인적인 경험\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
+    "text": "코드잇 소개\n- 구독형 교육 서비스를 제공하는 기업\n\n넷플릭스, 멜론처럼 구독 시 원하는 강의를 무제한으로 들을 수 있는 서비스를 제공한다. (굉장히 신선함)\n넷플릭스와 다른점은 콘텐츠를 내부 콘텐츠 팀에서 제작하는 방식!\n그렇기 때문에 커리큘럼에 대한 고민을 많이 한다…(맞는 말임)\n다른 플랫폼들은 외주 형식으로 강의를 만드는데 일관적이지 않다.\n코드잇은 하나의 큰 그림을 그려놓고 세부적으로 기획을 해서 제작하기 때문에 일관성이 높다.(ㅇㅇ 확실히 외주를 맡기면 강사마다 강의하는 방식과 사용하는 함수 같은 것들이 다르니 좀 혼동 될 때가 많았음)\n또한, 코드잇은 강의를 짬내서 만드는 게 아닌 풀타임으로 콘텐츠 제작에 몰두하기 때문에 강의 퀄리티가 높을 수 밖에 없는 것 같음\n새로운 사람이 와도 일관되게 좋은 강의가 나오도록 가이드를 계속해서 개선을 하고 있다.\n\n\n\n\n콘텐츠 프로듀서?\n- 흔히 있는 강사를 말하는 것이 아니다!!\n- 강사가 아닌 콘텐츠 프로듀서라고 이름을 붙인 이유!\n\n단순히 강의를 하는 포지션이 아니라 정제된 콘텐츠를 만드는 것이 핵심\n해당 분야에 대한 리서치, 관련된 강의, 이를 통해 어떻게 최적화된 커리큘럼을 만들 수 있는지!\n주요 업무는 리서치, 공부, 기획, 콘텐츠 제작인 것 같다….!\n학원 강사와의 차이점 : 팀으로 움직인다. \\(\\to\\) 한 가지 주제에 대해서 두 명의 프로듀서가 참여를 한다던지, 영상 편집은 디자이너… 이렇게 팀으로 움직이기 때문에 이러한 점이 강사와의 차이점이다.\n애니메이션을 주로 활용해서 컨텐츠를 제작함.(필요에 따라 사람이 직접 나오는 영상을 촬영함)\n\n\n\n강의 체계\n- 토픽이라는 단위로 구성\n- 하나의 토픽 안에 영상들이 들어가 있음\n\n보통 2, 3개월 정도에 걸려서 하나의 토픽을 만든다.\n일단, 강의를 몇 개 들어보고 차별성을 직접 느껴보는 게 좋을 것 같음.\n\n\\(x+y\\)\n\\(2x + y\\)",
     "crumbs": [
       "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "CA",
+      "00. CA (1)"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#r",
-    "title": "extra 00. R vs Python",
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html",
+    "title": "00. B2B 세일즈",
     "section": "",
-    "text": "1 통계분석을 위해 만들어진 언어\n\n1993년 뉴질랜드 오클랜드 대학의 통계학과 교수인 로버트 젠틀맨과 로스 이나카이라는 분이 만들었음(정말, 고마운 분들)\n\n2 통계분석과 시각화 측면에서는 python보다 좋다고 알려짐\n3 또한, 애초에 프로그래밍을 처음 배우는 사람도 손쉽게 배울 수 있도록 만들어짐(만들 당시 개발 목표)",
+    "text": "- 정의 : 기업이 기업을 대상으로 제품이나 서비스를 영업하는 것\n\n자신 또는 자사의 제품이 고객이 가지고 있는 pain point를 해결하는데 어떻게 활용될 수 있는지 제시하는 것!\n\n- 미션\n\n왕성한 영업 활동? (X) \\(\\to\\) 활동 &lt; 결과\n고객과의 관계? (X) \\(\\to\\) 중요하지만 주가 되지 않음\n좋은 콘텐츠 만들기? (X)\n기.승.전 매출 (O)\n\n\n\n\n\n\n\n\n\n\n\n목록\nB2B\nB2C\n\n\n\n\n대상\n기업(조직)\n개인\n\n\n의사 결정자\n현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함\n개인\n\n\n구매 동기\n이윤추구\n개인 삶의 질 향상\n\n\n구매 결정 프로세스\n복잡함\n관여도에 따라 다르지만, 상대적으로 짧고 간단함\n\n\n기존 제품 / 서비스 교체\n복잡합\n간단\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n목록\n마케팅\n세일즈\n\n\n\n\n대상\n불특정 다수(1:다)\n잠재고객 (1:1)\n\n\n목적\n알리기\n매출 전환(Conversation)\n\n\n활동 예시\n검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등\n가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대\n\n\nCall to Action(고객 유도 행동)\n홈페이지 방문, 소개서, 다운로드\n문의, 미팅 및 견적 요청\n\n\n\n\n\n\n\n\n\n\n\n1 VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴\n\n우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)\n\n2 PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림\n\n잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상\n\n3 CLIENT (세일즈 영역) : 협상/계약\n\n우리가 제공하는 제품/서비스를 사용하고 있는 기업\n\n4 LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개\n\\(\\divideontimes\\) 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림\n\n\n\n\n\n\n\n\n\n\n목록\nHUNTER\nFARMER\n\n\n\n\n정의\n지속적인 새로운 고객 발굴\n기존 고객과 기존 영역 성장\n\n\n목표\n새로운 고객발굴을 통한 매출 증대\n기존 고객의 매출 성장\n\n\n고객 발굴 상황\nOutbound\nInbound\n\n\n세일즈 상대\n새로운 잠재 기업\n기존 사용 부서 및 새 구매 부서\n\n\n성과 측정\n새 기업 고객 수, 매출액\n실 사용 부서(사용자) 수, 매출액\n\n\n이름\nNew Sales, 고객 개발\n어카운트 매니저, Client Success\n\n\n\n\n\n\n\n1 B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.\n2 마케팅과 세일즈의 차이는 마케팅은 알리기(Awareness) 가 핵심, 세일즈는 문의를 늘려 매출로 전환하는 것이 핵심이다.",
     "crumbs": [
       "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "B2b",
+      "00. B2B 세일즈"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#python",
-    "title": "extra 00. R vs Python",
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-vs-b2c",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-vs-b2c",
+    "title": "00. B2B 세일즈",
     "section": "",
-    "text": "1 python은 1991년 귀도 반 로섬이 크리스마스에 연구실 출근했다가 문 닫혀서 심심풀이로 만든 언어\n2 코미디 프로그램인 몬티 파이썬의 날아다니는 써커스 Monty Python's Flying Circus에서 python 이름을 따옴\n3 그리고, 데이터 사이언스에서 초기에는 R이 우세했으나 Python이 현재는 앞지름\n\n사실 앞질른 것은 맞는데, 요즘은 그런지 잘 모르겠음, 평가 기준도 애매함.",
+    "text": "목록\nB2B\nB2C\n\n\n\n\n대상\n기업(조직)\n개인\n\n\n의사 결정자\n현업, 구매부, 재무팀 등, 의사결정자, 이해관계자 포함\n개인\n\n\n구매 동기\n이윤추구\n개인 삶의 질 향상\n\n\n구매 결정 프로세스\n복잡함\n관여도에 따라 다르지만, 상대적으로 짧고 간단함\n\n\n기존 제품 / 서비스 교체\n복잡합\n간단",
     "crumbs": [
       "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "B2b",
+      "00. B2B 세일즈"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#일반적으로-알려진-사실에-대한-내-생각",
-    "title": "extra 00. R vs Python",
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#마케팅-vs-세일즈",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#마케팅-vs-세일즈",
+    "title": "00. B2B 세일즈",
     "section": "",
-    "text": "1 음… 일단 데이터 사이언스라는 직무를 보았을 때 numpy, pandas, tensorflow의 등장으로 python이 훨씬 편해진 것은 맞음\n2 그러나! tidyverse, tidymodel이라는 R의 필살 패키지의 등장으로 그 장벽을 어느 정도 허물은 것 같다.\n3 개인적인 경험\n\n파이프 연산자 %&gt;%는 진짜 너무 편함, python의 백엔드 연산처럼 너무 편하게 쓸 수 있음\nR이 시각화가 더 좋다고 하는데, plotly가 ggplot2보다 훨씬 코드짜기 편하고 그래프 가독성, 인터랙티브 측면에서도 훨씬 좋은 것 같음\n대용량 데이터를 읽어드릴 때 python은 pandas를 이용해서 읽어오는데, 백만 단위가 넘어가면 상당히 오래걸림\nR의 dplyr, data.frame 패키지를 이용하면 이러한 데이터들도 진짜 빨리 읽어올 수 있음!\n\n4 결론\n\n음… 본인에 입맛에 맞는 걸, 그때그때 적절히 사용하면 될 것 같음\n난 아직도, 데이터 50만건만 넘어가도 R로 데이터 전처리하니까…\n그리고 데이터 분석, 모델링이라는 게 결국 전처리가 95%는 차지하는 것 같음\n즉, 두 언어를 비교할 때, 전처리 패키지를 비교하는게 맞다고 생각한다.\nAI 모델 설계할 떄도 아직은 R의 tidymodel 패키지를 안 다루어 보았지만, tidyverse를 다루어 생각해보면 또 압도적이지 않을까라는 생각이 들음\n오늘 그래서, 두 언어에 쓰이는 데이터 로드, 전처리를 코드 길이, 속도 측면에서 비교해보고 싶음",
+    "text": "목록\n마케팅\n세일즈\n\n\n\n\n대상\n불특정 다수(1:다)\n잠재고객 (1:1)\n\n\n목적\n알리기\n매출 전환(Conversation)\n\n\n활동 예시\n검색엔진 최적화 콘텐츠 발행, 웹이나 기획 등\n가망 고객 발굴(Propecting), 이메일/콜링 캠페인, 데모, 응대\n\n\nCall to Action(고객 유도 행동)\n홈페이지 방문, 소개서, 다운로드\n문의, 미팅 및 견적 요청",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "00. B2B 세일즈"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#구매자-여정에서-세일즈의-위치",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#구매자-여정에서-세일즈의-위치",
+    "title": "00. B2B 세일즈",
+    "section": "",
+    "text": "1 VISTROR, LEAD(마케팅 영역) : 유용한 컨텐츠를 이용하여 잠재고객 발굴\n\n우리에게 관심을 가지고 마케팅 활동을 통해 연락처를 제공한 사람들(잠재고객)\n\n2 PROSPECT (세일즈 영역 ) : 데모, 미팅을 통해 제품/서비스의 혜택을 알리고 고객이 당면한 문제를 어떻게 해결할 수 있는지 알림\n\n잠재고객 중 실제 고객이 될 가능성이 높은 대상을 선별, 세일즈 활동을 활발하게 하는 대상\n\n3 CLIENT (세일즈 영역) : 협상/계약\n\n우리가 제공하는 제품/서비스를 사용하고 있는 기업\n\n4 LOYAL CLIENT (세일즈 영역) : 재구매, 서비스 연장 + 가치 있는 제품을 추가적으로 소개\n\\(\\divideontimes\\) 세일즈 퍼널 : 구매자가 여정을 거치면서 그 숫자가 줄어두는 것이 깔대기 모양과 비슷하여 ’퍼널’이라고 불림",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "00. B2B 세일즈"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-세일즈에-다양한-역할",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#b2b-세일즈에-다양한-역할",
+    "title": "00. B2B 세일즈",
+    "section": "",
+    "text": "목록\nHUNTER\nFARMER\n\n\n\n\n정의\n지속적인 새로운 고객 발굴\n기존 고객과 기존 영역 성장\n\n\n목표\n새로운 고객발굴을 통한 매출 증대\n기존 고객의 매출 성장\n\n\n고객 발굴 상황\nOutbound\nInbound\n\n\n세일즈 상대\n새로운 잠재 기업\n기존 사용 부서 및 새 구매 부서\n\n\n성과 측정\n새 기업 고객 수, 매출액\n실 사용 부서(사용자) 수, 매출액\n\n\n이름\nNew Sales, 고객 개발\n어카운트 매니저, Client Success",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "00. B2B 세일즈"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-02-25-00. B2B 세일즈.html#summary",
+    "href": "posts/b2b/2024-02-25-00. B2B 세일즈.html#summary",
+    "title": "00. B2B 세일즈",
+    "section": "",
+    "text": "1 B2B와 B2C의 가장 큰 차이는 대상이며, 구매 결정 프로세스와 서비스 교체에 있어서 B2B가 상대적으로 복잡하다.\n2 마케팅과 세일즈의 차이는 마케팅은 알리기(Awareness) 가 핵심, 세일즈는 문의를 늘려 매출로 전환하는 것이 핵심이다.",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "00. B2B 세일즈"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "끄적끄적",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nDec 4, 2026\n\n\n04. EDA\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n00. 시각화와 그래프\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n01. Seaborn 시각화\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n02. 통계 기본 상식식\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. CA (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nDec 4, 2023\n\n\n03. EDA\n\n\nGC \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html",
+    "title": "01. 제안전략수립",
+    "section": "",
+    "text": "- 사업의 개념과 도메인 지식이 필요\n- 문제정의\n\n\n\nB2B 산업의 환경구조 \\(\\to\\) 환경분석 프레임\n\n\n\n- 고객사에 대한 충분한 이해가 필요\n\n고객정의(구매센터) \\(\\to\\) 니즈 정의\n\n\n\n\n\n세분화 타겟팅 \\(\\to\\) 포지셔닝\n아이디어 도출\n\n\n\n\n\n가치제안서/실행전략 \\(\\to\\) 비즈니스 모델",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#제안컨설팅을-위한-사업화-프로세스",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#제안컨설팅을-위한-사업화-프로세스",
+    "title": "01. 제안전략수립",
+    "section": "",
+    "text": "- 사업의 개념과 도메인 지식이 필요\n- 문제정의\n\n\n\nB2B 산업의 환경구조 \\(\\to\\) 환경분석 프레임\n\n\n\n- 고객사에 대한 충분한 이해가 필요\n\n고객정의(구매센터) \\(\\to\\) 니즈 정의\n\n\n\n\n\n세분화 타겟팅 \\(\\to\\) 포지셔닝\n아이디어 도출\n\n\n\n\n\n가치제안서/실행전략 \\(\\to\\) 비즈니스 모델",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#biz-체계의-이해",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#biz-체계의-이해",
+    "title": "01. 제안전략수립",
+    "section": "Biz 체계의 이해",
+    "text": "Biz 체계의 이해\n- biz는 Business의 약자로 상품이나 서비스를 생산하고 판매하며, 수익을 얻는 활동을 의미함\n- biz 체계\n\n비즈니스의 전반적인 구조와 기능을 나타냄\n기업이 제품이나 서비스를 제공하고, 조직 구조, 프로세스, 기술, 인력 등을 포함한 다양한 요소를 통합하여 운영하는 방식을 의미한다\n\n- biz체게는 일반적으로 처음에는 고객중심으로 시작했다가 관리 중심으로 변환함\n\n관리 중심으로 시작한 기업은… 결과가 좋지않음 (관리가 고객의 이익을 침해하면 안됨…)\n\n기업의 존재 이유는 고객이고 기업의 목적은 시장을 창조하는 것이다 -피터 드리커-",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#b2b-사업의-본질",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#b2b-사업의-본질",
+    "title": "01. 제안전략수립",
+    "section": "B2B 사업의 본질",
+    "text": "B2B 사업의 본질\n- B2B : Bussiness-to-Bussiness의 약어로, 기업 간에 이루어지는 거래를 나타냄\n\nB2B 비즈니스는 B2B 고객의 성공적인 전략실행을 위한 솔루션을 제시하는 것이다.",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#문제의-종류",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#문제의-종류",
+    "title": "01. 제안전략수립",
+    "section": "문제의 종류",
+    "text": "문제의 종류\n\n(1) 발생형\n- 시간축 : 과거\n- 발생원인 : 기준이탈 \\(\\cdot\\) 미달\n- 성격 : 이미 일어나버린 문제\n\n\n(2) 탐색형\n- 시간축 : 현재\n- 발생원인 : 개선 \\(\\cdot\\) 개량 \\(\\cdot\\) 강화\n- 성격 : 더 잘해보고 싶은 문제\n\n\n(3) 설정형\n- 시간축 : 미래\n- 발생원인 : 개발 \\(\\cdot\\) 기획 \\(\\cdot\\) 리스크 회피\n- 성격 : 앞으로 어떻게 할 것인가의 문제\n\\(\\divideontimes\\) 우리는 일반적으로 설정형으로 문제를 정의하고 해결할 줄 알아야 한다.\n\n\n(4) 요약",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#example.-문제정의",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#example.-문제정의",
+    "title": "01. 제안전략수립",
+    "section": "example. 문제정의",
+    "text": "example. 문제정의",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#forecasting",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#forecasting",
+    "title": "01. 제안전략수립",
+    "section": "Forecasting",
+    "text": "Forecasting\n- 현재 시점에서 미래를 보는 사고법\n\n활용 가능 자료 수집 \\(\\to\\) 자료분석 \\(\\to\\) Ouput 도출\n\n- 자료 분석에 많은 시간을 들이고 정작 전략 수집에는 소홀하게 됨, 특히 기존 유사 프로젝트와 비슷한 결론이 나올 가능성이 높음",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#backcasting",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#backcasting",
+    "title": "01. 제안전략수립",
+    "section": "Backcasting",
+    "text": "Backcasting\n- 미래 시점에서 현재를 보는 사고법\n\nOuput 추론/상상 \\(\\to\\) Output 실현을 위한 조건과 가정 정의 \\(\\to\\) 조건과 가정을 구현하기 위한 방법 정의\n\n- 역가치사슬분석, 보도자료기반 가치정의\n\nProcess\n1 Awarensss : 이상상황 정의\n\n주요 참여자 정의\n이상적 가치 정의 \\(\\to\\) 전체 최적화를 고려 (풍선효과 등을 막기 위한 방안)\n\n\\(\\divideontimes\\) 풍선효과 : 풍선의 한쪽을 누르면 다른 쪽이 불룩 튀어나오는 모습을 빗댄 표현으로, 어떤 현상이나 문제를 억제하면 다른 현상이나 문제가 새로이 불거져 나오는 상황\n2 interests : 이해관계자 정의\n\n이상적 가치 제공 및 운영 시 참여/고려 되는 이해관계자 도출\n이해관계자 니즈 정의\n\n3 Down to Action : 목표 도달을 위한 활동/조건 정의\n\n이상목표 달성을 위한 세부활동 정의 : 참여자/조건 별\n\n4 Baseline : 현 상황 정의\n5 Gap Analysis : Gap 및 장애요소 도출\n6 핵심 성공요소 정의 및 세부 실행계획 정의",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html#sic",
+    "href": "posts/b2b/2024-03-17-01. 제안전략수립.html#sic",
+    "title": "01. 제안전략수립",
+    "section": "SIC",
+    "text": "SIC\n- success image canvas\n- 고려사항 : 사람, 기술, 재료, 방법 등\n- 주요요소\n\n경쟁사/대체재의 미래 제시가치\n필요 인프라 (H/W 및 S/W)\n이해관계자 : 보안/협력자, 관련기관 등\n필요자원",
+    "crumbs": [
+      "Posts",
+      "B2b",
+      "01. 제안전략수립"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html",
+    "title": "00. Intro",
+    "section": "",
+    "text": "1 데이터 사이언스를 배워야 하는 이유\n\n분야를 막론하고 데이터는 너무나 중요하게 여겨지고 있음(음악 추천, 대선 예측 등등….)\n\n2 정의 : 한 가지로 정의되어 있지 않음\n\n위키피디아 : 데이터 마이닝과 유사하게 정형, 비정형 형태를 포함한 다양한 데이터로부터 지식과 인사이트를 추출하는데 과학적 방법론, 프로세스 알고리즘, 시스템을 동원하는 융합 분야다.\njournal of Data Science : 데이터와 연관된 모든 것을 의미.\nDrew Conway : 프로그래밍, 수학과 통계, 특정분야에 대한 전문성을 가지고 데이터로부터 현실 문제를 해결하는 것\n결론 : 가치를 더할 수 있는일을 데이터를 활용하여 해결하는 것!",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "00. Intro"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#샘플데이터-생성",
-    "title": "extra 00. R vs Python",
-    "section": "샘플데이터 생성",
-    "text": "샘플데이터 생성\n- 비교를 위해 가짜 데이터를 만들어 보자(백만개만)\n\nimport pandas as pd\nimport numpy as np\n\n\nX = np.random.random((1000000,10))\nX = pd.DataFrame(X)\n\nname = [\"X\"+str(i) for i in range(10)]\nX.columns = name\n\n\nX.to_csv(\"X.csv\",index = False)",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-1",
+    "title": "00. Intro",
+    "section": "오해 1",
+    "text": "오해 1\n인공지능과 딥러닝만이 DS가 아니다!\n- DS 단계\n\n데이터 수집\n데이터를 옮기고 저장\n데이터를 정리\n데이터 분석, A/B test\n인공지능, 딥러닝\n\n\n1 ~ 3은 데이터 엔지니어의 역할이기도 하다.\n또한, 실제 기업에서는 1 ~ 4 까지만 가도 유의미한 가치를 창출할 수 있다.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "00. Intro"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-로드",
-    "title": "extra 00. R vs Python",
-    "section": "데이터 로드",
-    "text": "데이터 로드\n\npython\n\nimport time\n\n\nstart = time.time()\ndf = pd.read_csv(\"X.csv\")\nend  = time.time()\n\n\ntotal = end-start\ntotal\n\n1.315992832183838\n\n\n\nprint(f\"데이터 로드 시간(python) : {total}\")\n\n데이터 로드 시간(python) : 1.315992832183838\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\nstart &lt;- Sys.time()\ndf &lt;- fread(\"X.csv\")\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 로드 시간(R) : \",total))\n\n[1] \"데이터 로드 시간(R) :  0.220276832580566\"\n\n\n\n오, 대략 6배 가량 차이남!",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#오해-2",
+    "title": "00. Intro",
+    "section": "오해 2",
+    "text": "오해 2\n다시 말하지만, 데이터 사이언스는 단순히 수학, 통계, 컴퓨팅 능력이 아닌 해당 비즈니스 영역에서 협업을 통해 문제를 해결할 줄 알아야한다.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "00. Intro"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#데이터-전처리filterselect",
-    "title": "extra 00. R vs Python",
-    "section": "데이터 전처리(filter,select)",
-    "text": "데이터 전처리(filter,select)\n- 저장한 데이터에서 x1 ~ x5 까지만 컬럼을 선택하고, x1이 0보다 큰 데이터만 추출해보자\n\npython\n\nimport pandas as pd\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\nstart = time.time()\n\nselect_col = [\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]\n\ndf[select_col].loc[df.X1&gt;0,:]\n\nend  = time.time()\n\n\ntotal = end-start\nprint(f\"데이터 전처리 시간(python) : {total}\")\n\n데이터 전처리 시간(python) : 0.03211045265197754\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\ndf &lt;- fread(\"X.csv\")\n\n\nstart &lt;- Sys.time()\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\nend &lt;- Sys.time()\n\n\ntotal = end-start\nprint(paste(\"데이터 전처리 시간(R) : \",total))\n\n[1] \"데이터 전처리 시간(R) :  0.0224010944366455\"\n\n\n- 전처리도 미세하게 R이 더 빠르다.\n- 심지어 코드 가독성도 R이 더 좋은 것 같음",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#r",
+    "title": "00. Intro",
+    "section": "R",
+    "text": "R\n1 통계와 시각화에 특화된 언어\n2 그러나, R을 배운다고 다른 프로그래밍을 잘하는 것은 아님…",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "00. Intro"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
-    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html#다중회귀모형-적합",
-    "title": "extra 00. R vs Python",
-    "section": "다중회귀모형 적합",
-    "text": "다중회귀모형 적합\n\\[x_5 = \\beta_1 x_1+\\beta_2 x_2+\\beta_1 x_3+\\beta_1 x_4+\\beta_1 x_5\\]\n\npython\n\nimport pandas as pd\nfrom sklearn.linear_model import LinearRegression\nimport time\n\n\ndf = pd.read_csv(\"X.csv\")\n\n\ndf = df[[\"X1\",\"X2\",\"X3\",\"X4\",\"X5\"]]\n\n\nx5 = df[\"X5\"]\nX = df.drop(\"X5\", axis = 1)\n\n\nstart = time.time()\n\nmodel = LinearRegression()\n\nmodel.fit(X,x5)\n\nx5_pred = model.predict(X)\n\nend = time.time()\n\n\ntotal = end-start\n\n\nprint(f\"모형 적합 및 예측 시간(python) : {total}\")\n\n모형 적합 및 예측 시간(python) : 0.1069481372833252\n\n\n\n\nR\n\nlibrary(data.table)\nlibrary(tidyverse)\n\n\ndf &lt;- fread(\"X.csv\")\ndf = df %&gt;% select(X1,X2,X3,X4,X5)  %&gt;% \n            filter(X1 &gt; 0)\n\n\nstart &lt;- Sys.time()\n\nmodel &lt;- lm(X5~. ,data = df)\n\nx5_pred &lt;- predict(model, df)\n\nend &lt;- Sys.time()\n\n\ntotal = end - start\nprint(paste(\"모형 적합 및 예측 시간(R) : \",total))\n\n[1] \"모형 적합 및 예측 시간(R) :  0.293954849243164\"\n\n\n\n간단한 회귀모형 적합에서는 python이 3배 가량 더 빨랐다.",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#python",
+    "title": "00. Intro",
+    "section": "Python",
+    "text": "Python\n1 웹사이트 개발, 이미지 처리, 업무 자동화, 데이터 시각화, 게임 개발, 앱 서버 개발 등 다른 영역에 다채롭게 활용할 수 있음\n2 DS 토픽에 한정해서는 R이 인기가 많았으나, numpy, pandas, tensorflow의 등장으로 python이 R을 앞지름",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "00. 데이터 사이언스 시작하기",
-      "extra 00. R vs Python"
+      "00. Intro"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html",
-    "title": "02. 데이터 변형하기",
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#내-생각",
+    "title": "00. Intro",
+    "section": "내 생각",
+    "text": "내 생각\n1 흠…. 이건 좀 내 의견은 반대이다.. 내가 둘 다 배워봐서 그런걸 수도 있지만, R이 tidyverse, tidymodel에 등장으로 훨씬 처음에 배우기 좋은 것 같음\n2 그리고 도메인, 개별 성향에 따라 다르기 때문에 무작정 어떤 언어가 더 쉽다고 말할 순 없는 것 같다..\n3 그냥, python으로 할 수 있는 범위가 많기 때문에 사람들이 배우기 더 쉬워하는 것 같다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#문제-정의하기",
+    "title": "00. Intro",
+    "section": "1. 문제 정의하기",
+    "text": "1. 문제 정의하기\n1 목표 설정\n2 기간 설정\n3 평가 방법 설정\n4 필요한 데이터 설정",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-모으기",
+    "title": "00. Intro",
+    "section": "2. 데이터 모으기",
+    "text": "2. 데이터 모으기\n1 웹 크롤링, 자료 모으기, 파일 읽고 쓰기",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-다듬기",
+    "title": "00. Intro",
+    "section": "3. 데이터 다듬기",
+    "text": "3. 데이터 다듬기\n1 데이터 관찰, 오류 제거, 정리",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#데이터-분석",
+    "title": "00. Intro",
+    "section": "4. 데이터 분석",
+    "text": "4. 데이터 분석\n1 데이터 파악, 변형, 통계 분석, 인사이트 도출",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/00. Intro.html#커뮤니케이션",
+    "title": "00. Intro",
+    "section": "5. 커뮤니케이션",
+    "text": "5. 커뮤니케이션\n1 다양한 시각화, 커뮤니케이션, 리포트를 활용해 구성원들과 소통하며 문제 해결",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html",
+    "title": "02. pandas",
+    "section": "",
+    "text": "- numpy를 이용해서 만들어진 모듈\n- 데이터를 읽고, 쓰고, 저장하고 시각화하는 기능이 포함되어 있음\n- 표 형식의 데이터(데이터프레임)를 다루는데 필수적인 모듈!\n- numpy와 달리 다양한 자료형을 표 형식으로 저장할 수 있음!(\\(\\star\\star\\))",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#리스트",
+    "title": "02. pandas",
+    "section": "1. 리스트",
+    "text": "1. 리스트\n\nimport pandas as pd\nimport numpy as np\n\n\nl = [[\"a\", 50, 86], [\"b\", 89, 31], [\"ikjoong\", 68, 91]]\n\npd.DataFrame(l)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#numpy",
+    "title": "02. pandas",
+    "section": "2. numpy",
+    "text": "2. numpy\n\npd.DataFrame(np.array(l))\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nikjoong\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#series",
+    "title": "02. pandas",
+    "section": "3. Series",
+    "text": "3. Series\n\nl2 = [\n    pd.Series([\"a\", 50, 86]),\n    pd.Series([\"b\", 89, 31]),\n    pd.Series([\"c\", 68, 91]),\n        \n]\n\npd.DataFrame(l2)\n\n\n\n\n\n\n\n\n\n0\n1\n2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
+    "href": "posts/CS/00. 데이터 분석/00. 데이터 사이언스 시작하기/02. pandas.html#dictionary",
+    "title": "02. pandas",
+    "section": "4. Dictionary",
+    "text": "4. Dictionary\n\ndic = {\"name\" : [\"a\",\"b\",\"c\"],\n       \"s1\" : [50,89,68],\n       \"s2\" : [86,31,91]}\n\ndf = pd.DataFrame(dic)\ndf\n\n\n\n\n\n\n\n\n\nname\ns1\ns2\n\n\n\n\n0\na\n50\n86\n\n\n1\nb\n89\n31\n\n\n2\nc\n68\n91\n\n\n\n\n\n\n\n\n\ndf.set_index(\"name\")\n\n\n\n\n\n\n\n\n\ns1\ns2\n\n\nname\n\n\n\n\n\n\na\n50\n86\n\n\nb\n89\n31\n\n\nc\n68\n91",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "00. 데이터 사이언스 시작하기",
+      "02. pandas"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/01. DataFrame 인덱싱.html",
+    "title": "01. DataFrame 인덱싱",
+    "section": "",
+    "text": "import\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n\n데이터 로드\n\ndf = pd.read_csv(\"data/broadcast.csv\", encoding = \"utf-8\", index_col = 0)\n\n\ndf\n\n\n\n\n\n\n\n\n\nKBS\nMBC\nSBS\nTV CHOSUN\nJTBC\nChannel A\nMBN\n\n\n\n\n2011\n35.951\n18.374\n11.173\n9.102\n7.380\n3.771\n2.809\n\n\n2012\n36.163\n16.022\n11.408\n8.785\n7.878\n5.874\n3.310\n\n\n2013\n31.989\n16.778\n9.673\n9.026\n7.810\n5.350\n3.825\n\n\n2014\n31.210\n15.663\n9.108\n9.440\n7.490\n5.776\n4.572\n\n\n2015\n27.777\n16.573\n9.099\n9.940\n7.267\n6.678\n5.520\n\n\n2016\n27.583\n14.982\n8.669\n9.829\n7.727\n6.624\n5.477\n\n\n2017\n26.890\n12.465\n8.661\n8.886\n9.453\n6.056\n5.215\n\n\n\n\n\n\n\n\n\n\n인덱싱\n- ex1. 2016년 kbs 시청률 받아오기\n\ndf.loc[2016, \"KBS\"]\n\n27.583\n\n\n- ex2. JTBC의 시청률 확인\n\ndf[\"JTBC\"]\n\n2011    7.380\n2012    7.878\n2013    7.810\n2014    7.490\n2015    7.267\n2016    7.727\n2017    9.453\nName: JTBC, dtype: float64\n\n\n- ex3. SBS와 JTBC의 시청률만 확인\n\ndf[[\"SBS\",\"JTBC\"]]\n\n\n\n\n\n\n\n\n\nSBS\nJTBC\n\n\n\n\n2011\n11.173\n7.380\n\n\n2012\n11.408\n7.878\n\n\n2013\n9.673\n7.810\n\n\n2014\n9.108\n7.490\n\n\n2015\n9.099\n7.267\n\n\n2016\n8.669\n7.727\n\n\n2017\n8.661\n9.453\n\n\n\n\n\n\n\n\n- ex4. 삼송카드, 현디카드 요일별 문화생활비 분석\n\nsamsong_df = pd.read_csv('data/samsong.csv')\nhyundee_df = pd.read_csv('data/hyundee.csv')\n\n\nsamsong_df\n\n\n\n\n\n\n\n\n\n요일\n식비\n교통비\n문화생활비\n기타\n\n\n\n\n0\nMON\n19420\n2560\n4308\n3541\n\n\n1\nTUE\n16970\n2499\n7644\n2903\n\n\n2\nWED\n15091\n2511\n5674\n2015\n\n\n3\nTHU\n17880\n2545\n8621\n3012\n\n\n4\nFRI\n27104\n2993\n23052\n2508\n\n\n5\nSAT\n29055\n2803\n15330\n4901\n\n\n6\nSUN\n23509\n1760\n19030\n4230\n\n\n\n\n\n\n\n\n\nhyundee_df\n\n\n\n\n\n\n\n\n\n요일\n식비\n교통비\n문화생활비\n기타\n\n\n\n\n0\nMON\n22420\n2574\n5339\n5546\n\n\n1\nTUE\n19940\n2689\n3524\n2501\n\n\n2\nWED\n18086\n2281\n5364\n2234\n\n\n3\nTHU\n18863\n2155\n9942\n3252\n\n\n4\nFRI\n35144\n2463\n33511\n2342\n\n\n5\nSAT\n34952\n2812\n19397\n4324\n\n\n6\nSUN\n28513\n2680\n19925\n4577\n\n\n\n\n\n\n\n\n\nday = samsong_df[\"요일\"]\nsamsong = samsong_df[\"문화생활비\"]\nhyundee = hyundee_df[\"문화생활비\"]\n\ndf = pd.DataFrame([day,samsong,hyundee]).T\n\ndf.columns = [\"day\", \"samsong\", \"hyundee\"]\ndf\n\n\n\n\n\n\n\n\n\nday\nsamsong\nhyundee\n\n\n\n\n0\nMON\n4308\n5339\n\n\n1\nTUE\n7644\n3524\n\n\n2\nWED\n5674\n5364\n\n\n3\nTHU\n8621\n9942\n\n\n4\nFRI\n23052\n33511\n\n\n5\nSAT\n15330\n19397\n\n\n6\nSUN\n19030\n19925\n\n\n\n\n\n\n\n\n- ex5. KBS ~ SBS, 2012 ~ 2017 까지의 시청률 데이터만 확인\n\ndf = pd.read_csv('data/broadcast.csv', index_col=0)\n\n\ndf.loc[2012:2017, \"KBS\" : \"SBS\"]\n\n\n\n\n\n\n\n\n\nKBS\nMBC\nSBS\n\n\n\n\n2012\n36.163\n16.022\n11.408\n\n\n2013\n31.989\n16.778\n9.673\n\n\n2014\n31.210\n15.663\n9.108\n\n\n2015\n27.777\n16.573\n9.099\n\n\n2016\n27.583\n14.982\n8.669\n\n\n2017\n26.890\n12.465\n8.661\n\n\n\n\n\n\n\n\n- ex6. KBS 시청률이 30이 넘은 데이터만 확인해보기\n\ndf.loc[df.KBS &gt; 30, \"KBS\"]\n\n2011    35.951\n2012    36.163\n2013    31.989\n2014    31.210\nName: KBS, dtype: float64\n\n\n- ex7. SBS가 TV CHOSUN보다 더 시청률이 낮았던 시기의 데이터 확인\n\ndf.loc[df.SBS &lt; df[\"TV CHOSUN\"], [\"SBS\",\"TV CHOSUN\"]]\n\n\n\n\n\n\n\n\n\nSBS\nTV CHOSUN\n\n\n\n\n2014\n9.108\n9.440\n\n\n2015\n9.099\n9.940\n\n\n2016\n8.669\n9.829\n\n\n2017\n8.661\n8.886",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "01. DataFrame 다루기",
+      "01. DataFrame 인덱싱"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html",
+    "title": "03. 큰 데이터 다루기",
     "section": "",
     "text": "import pandas as pd",
     "crumbs": [
@@ -835,173 +947,110 @@
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "02. 데이터 변형하기"
+      "03. 큰 데이터 다루기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1",
-    "title": "02. 데이터 변형하기",
-    "section": "sol1",
-    "text": "sol1\n\ndf[\"합격 여부\"] = [True if (i&gt;=250) & (j&gt;=250) & (i+j &gt;= 600) else False for i,j in zip(df.LC, df.RC)]  \n\n\ndf\n\n\n\n\n\n\n\n\n\nGender\nLC\nRC\n합격 여부\n\n\n\n\n0\nfemale\n315\n320\nTrue\n\n\n1\nfemale\n430\n245\nFalse\n\n\n2\nfemale\n430\n475\nTrue\n\n\n3\nmale\n180\n220\nFalse\n\n\n4\nmale\n325\n350\nTrue\n\n\n5\nfemale\n295\n400\nTrue\n\n\n6\nfemale\n405\n475\nTrue\n\n\n7\nmale\n155\n150\nFalse\n\n\n8\nmale\n280\n315\nFalse\n\n\n9\nfemale\n215\n475\nFalse",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#주어진-데이터에-총-몇개의-도시와-몇-개의-나라가-있는지-출력",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#주어진-데이터에-총-몇개의-도시와-몇-개의-나라가-있는지-출력",
+    "title": "03. 큰 데이터 다루기",
+    "section": "(1) 주어진 데이터에 총 몇개의 도시와 몇 개의 나라가 있는지 출력",
+    "text": "(1) 주어진 데이터에 총 몇개의 도시와 몇 개의 나라가 있는지 출력\n\nsol1\n\ndf = pd.read_csv('data/world_cities.csv')\n\nprint(f'{len(df[\"City / Urban area\"].unique())}/{len(df[\"Country\"].unique())}') \n\n249/61\n\n\n\n\nsol2\n\ndf['City / Urban area'].value_counts().shape\n\n(249,)\n\n\n\ndf['Country'].value_counts().shape\n\n(61,)",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "02. 데이터 변형하기"
+      "03. 큰 데이터 다루기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2",
-    "title": "02. 데이터 변형하기",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도명sqkm-가-10000-이-넘는-도시는-총-몇-개인지-확인",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도명sqkm-가-10000-이-넘는-도시는-총-몇-개인지-확인",
+    "title": "03. 큰 데이터 다루기",
+    "section": "(2) 인구 밀도(명/sqKm) 가 10000 이 넘는 도시는 총 몇 개인지 확인",
+    "text": "(2) 인구 밀도(명/sqKm) 가 10000 이 넘는 도시는 총 몇 개인지 확인\n\nsol1\n\nsum((df[\"Population\"]/df[\"Land area (in sqKm)\"])&gt;10000)\n\n19",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "01. DataFrame 다루기",
+      "03. 큰 데이터 다루기"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도가-가장-높은-도시",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#인구-밀도가-가장-높은-도시",
+    "title": "03. 큰 데이터 다루기",
+    "section": "(3) 인구 밀도가 가장 높은 도시",
+    "text": "(3) 인구 밀도가 가장 높은 도시\n\nsol1\n\nmax_value = max(df[\"Population\"]/df[\"Land area (in sqKm)\"])\n\n\ndf.loc[df[\"Population\"]/df[\"Land area (in sqKm)\"] == max_value, \"City / Urban area\"]\n\n75    Mumbai\nName: City / Urban area, dtype: object",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "01. DataFrame 다루기",
+      "03. 큰 데이터 다루기"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#도시가-4개인-나라-출력",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#도시가-4개인-나라-출력",
+    "title": "03. 큰 데이터 다루기",
+    "section": "(4) 도시가 4개인 나라 출력",
+    "text": "(4) 도시가 4개인 나라 출력\n\nsol\n\ndf[\"Country\"].value_counts()[df[\"Country\"].value_counts() == 4]\n\nCountry\nItaly    4\nName: count, dtype: int64",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "01. DataFrame 다루기",
+      "03. 큰 데이터 다루기"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-2",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-2",
+    "title": "03. 큰 데이터 다루기",
     "section": "sol2",
-    "text": "sol2\n\npass_total = df['LC'] + df['RC'] &gt;= 600\npass_both = (df['LC'] &gt;= 250) & (df['RC'] &gt;= 250)\ndf['합격 여부'] = pass_total & pass_both\n\n\ndf\n\n\n\n\n\n\n\n\n\nGender\nLC\nRC\n합격 여부\n\n\n\n\n0\nfemale\n315\n320\nTrue\n\n\n1\nfemale\n430\n245\nFalse\n\n\n2\nfemale\n430\n475\nTrue\n\n\n3\nmale\n180\n220\nFalse\n\n\n4\nmale\n325\n350\nTrue\n\n\n5\nfemale\n295\n400\nTrue\n\n\n6\nfemale\n405\n475\nTrue\n\n\n7\nmale\n155\n150\nFalse\n\n\n8\nmale\n280\n315\nFalse\n\n\n9\nfemale\n215\n475\nFalse\n\n\n\n\n\n\n\n\n- cowork 할 떄는 리스트 컴프리헨션보다 저렇게 가독성 있는 코드를 짜는게 좋을 것 같다.",
+    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_2.csv')\n\n# 과목별 인원 가져오기\nallowed = df[\"status\"] == \"allowed\"\ncourse_counts = df.loc[allowed, \"course name\"].value_counts()\n\n# 각 강의실 규모에 해당되는 과목 리스트 만들기\nauditorium_list = list(course_counts[course_counts &gt;= 80].index)\nlarge_room_list = list(course_counts[(80 &gt; course_counts) & (course_counts &gt;= 40)].index)\nmedium_room_list = list(course_counts[(40 &gt; course_counts) & (course_counts &gt;= 15)].index)\nsmall_room_list = list(course_counts[(15 &gt; course_counts) & (course_counts &gt; 4)].index)\n\n# not allowed 과목에 대해 값 지정해주기\nnot_allowed = df[\"status\"] == \"not allowed\"\ndf.loc[not_allowed, \"room assignment\"] = \"not assigned\"\n\n# allowed 과목에 대해 값 지정해주기\nfor course in auditorium_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Auditorium\"\n\nfor course in large_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Large room\"\n    \nfor course in medium_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Medium room\"\n    \nfor course in small_room_list:\n    df.loc[(df[\"course name\"] == course) & allowed, \"room assignment\"] = \"Small room\"\n    \n# 정답 출력\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom assignment\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium\n\n\n4\n2777785\n1\nmba\nallowed\nSmall room\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium room\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium room\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium room\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium room\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium room\n\n\n\n\n2000 rows × 5 columns\n\n\n\n\n- 큼.. 이건 내 코드가 더 효율적인 것 같음(가독성도!)",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "02. 데이터 변형하기"
+      "03. 큰 데이터 다루기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1-1",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol1-1",
-    "title": "02. 데이터 변형하기",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol1-5",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol1-5",
+    "title": "03. 큰 데이터 다루기",
     "section": "sol1",
-    "text": "sol1\n1 첫 번째 컬럼에 2를 곱하기\n\ndf = pd.read_csv('data/Puzzle_before.csv')\n\n\ndf[\"A\"] = df[\"A\"]*2\n\n2 B~E 열 까지 80점 이상이면 1, 아니면 0으로 값 교체\n\ndf.loc[:,\"B\":\"E\"] = df.loc[:,\"B\":\"E\"].applymap(lambda x : 1 if x &gt;=80 else 0)\n\nC:\\Users\\rkdcj\\AppData\\Local\\Temp\\ipykernel_10248\\2975510319.py:1: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.\n  df.loc[:,\"B\":\"E\"] = df.loc[:,\"B\":\"E\"].applymap(lambda x : 1 if x &gt;=80 else 0)\n\n\n3 F열의 2번째 값을 99로 교체\n\ndf.loc[2, \"F\"] = 99\n\n\ndf\n\n\n\n\n\n\n\n\n\nA\nB\nC\nD\nE\nF\n\n\n\n\n0\n2\n0\n0\n1\n0\n13\n\n\n1\n4\n0\n0\n1\n0\n24\n\n\n2\n6\n1\n0\n1\n0\n99\n\n\n3\n8\n1\n1\n0\n1\n78\n\n\n4\n10\n0\n1\n0\n1\n61",
+    "text": "sol1\n\nimport pandas as pd\nimport warnings\n\nwarnings.filterwarnings(action = \"ignore\")\ndf = pd.read_csv('data/enrolment_3.csv')\n\n\nallowed = df.status == \"allowed\"\n\n- 고유값만 출력\n\nu_df = df.loc[allowed,  [\"course name\", \"room assignment\"]].\\\n                drop_duplicates().sort_values([\"room assignment\",\"course name\"])\n\n\nu_df.head()\n\n\n\n\n\n\n\n\n\ncourse name\nroom assignment\n\n\n\n\n2\narts\nAuditorium\n\n\n60\ncommerce\nAuditorium\n\n\n1\nscience\nAuditorium\n\n\n202\neducation\nLarge room\n\n\n24\nenglish\nLarge room\n\n\n\n\n\n\n\n\n- room_index\n\nroom_index = u_df[\"room assignment\"].value_counts().index\nroom_values = u_df[\"room assignment\"].value_counts().values\n\nroom_index, room_values\n\n(Index(['Small room', 'Medium room', 'Auditorium', 'Large room'], dtype='object', name='room assignment'),\n array([53, 24,  3,  2], dtype=int64))\n\n\n- 룸 넘버링\n\nnew_df = pd.DataFrame()\nfor k in range(4) :\n    temp = u_df.loc[u_df[\"room assignment\"] == room_index[k],:]\n    temp[\"room number\"] = [i + \"-\" + str(j) for i,j in zip(temp[\"room assignment\"], range(1, room_values[k]+1))]\n    new_df = pd.concat([new_df,temp], axis = 0)\n\n\nnew_df = new_df[[\"course name\",\"room number\"]]\n\n\ndf1 = pd.merge(df, new_df, on = \"course name\",how = \"left\")\n\n\ndf1.loc[df1[\"room assignment\"] == \"not assigned\", \"room number\"] = \"not assigned\"\n\n\ndf1[\"room number\"] = [i.replace(\" room\", \"\") for i in df1[\"room number\"]]\ndf = df1.drop(\"room assignment\", axis = 1)\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns\n\n\n\n\n\n전체코드\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_3.csv')\n\n# 여기에 코드를 작성하세요\nallowed = df.status == \"allowed\"\nu_df = df.loc[allowed,  [\"course name\", \"room assignment\"]].\\\n                drop_duplicates().sort_values([\"room assignment\",\"course name\"])\nroom_index = u_df[\"room assignment\"].value_counts().index\nroom_values = u_df[\"room assignment\"].value_counts().values\n\nnew_df = pd.DataFrame()\nfor k in range(4) :\n    temp = u_df.loc[u_df[\"room assignment\"] == room_index[k],:]\n    temp[\"room number\"] = [i + \"-\" + str(j) for i,j in zip(temp[\"room assignment\"], range(1, room_values[k]+1))]\n    new_df = pd.concat([new_df,temp], axis = 0)\nnew_df = new_df[[\"course name\",\"room number\"]]\ndf1 = pd.merge(df, new_df, on = \"course name\",how = \"left\")\ndf1.loc[df1[\"room assignment\"] == \"not assigned\", \"room number\"] = \"not assigned\"\ndf1[\"room number\"] = [i.replace(\" room\", \"\") for i in df1[\"room number\"]]\ndf = df1.drop(\"room assignment\", axis = 1)\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "02. 데이터 변형하기"
+      "03. 큰 데이터 다루기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2-1",
-    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/02. 데이터 변형하기.html#sol2-1",
-    "title": "02. 데이터 변형하기",
+    "objectID": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-3",
+    "href": "posts/CS/00. 데이터 분석/01. DataFrame 다루기/03. 큰 데이터 다루기.html#sol2-3",
+    "title": "03. 큰 데이터 다루기",
     "section": "sol2",
-    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/Puzzle_before.csv')\n\ndf['A'] = df['A'] * 2\ndf[df.loc[:, 'B':'E'] &lt; 80] = 0\ndf[df.loc[:, 'B':'E'] &gt;= 80] = 1\ndf.loc[2, 'F'] = 99\n\n# 테스트 코드\ndf\n\n\n\n\n\n\n\n\n\nA\nB\nC\nD\nE\nF\n\n\n\n\n0\n2\n0\n0\n1\n0\n13\n\n\n1\n4\n0\n0\n1\n0\n24\n\n\n2\n6\n1\n0\n1\n0\n99\n\n\n3\n8\n1\n1\n0\n1\n78\n\n\n4\n10\n0\n1\n0\n1\n61",
+    "text": "sol2\n\nimport pandas as pd\n\ndf = pd.read_csv('data/enrolment_3.csv')\n\n# 과목별 인원 가져오기\nallowed = df[\"status\"] == \"allowed\"\ncourse_counts = df.loc[allowed, \"course name\"].value_counts()\n\n# 각 강의실 규모에 해당되는 과목 리스트 만들기\nauditorium_list = list(course_counts[course_counts &gt;= 80].index)\nlarge_room_list = list(course_counts[(80 &gt; course_counts) & (course_counts &gt;= 40)].index)\nmedium_room_list = list(course_counts[(40 &gt; course_counts) & (course_counts &gt;= 15)].index)\nsmall_room_list = list(course_counts[(15 &gt; course_counts) & (course_counts &gt; 4)].index)\n\n# 강의실 이름 붙이기\nfor i in range(len(auditorium_list)):\n    df.loc[(df[\"course name\"] == sorted(auditorium_list)[i]) & allowed, \"room assignment\"] = \"Auditorium-\" + str(i + 1)\n\nfor i in range(len(large_room_list)):\n    df.loc[(df[\"course name\"] == sorted(large_room_list)[i]) & allowed, \"room assignment\"] = \"Large-\" + str(i + 1)\n    \nfor i in range(len(medium_room_list)):\n    df.loc[(df[\"course name\"] == sorted(medium_room_list)[i]) & allowed, \"room assignment\"] = \"Medium-\" + str(i + 1)\n    \nfor i in range(len(small_room_list)):\n    df.loc[(df[\"course name\"] == sorted(small_room_list)[i]) & allowed, \"room assignment\"] = \"Small-\" + str(i + 1)\n\n# column 이름 바꾸기\ndf.rename(columns={\"room assignment\": \"room number\"}, inplace = True)\n    \n# 테스트 코드\ndf\n\n\n\n\n\n\n\n\n\nid\nyear\ncourse name\nstatus\nroom number\n\n\n\n\n0\n2777729\n1\ninformation technology\nnot allowed\nnot assigned\n\n\n1\n2777730\n2\nscience\nallowed\nAuditorium-3\n\n\n2\n2777765\n1\narts\nallowed\nAuditorium-1\n\n\n3\n2777766\n2\narts\nallowed\nAuditorium-1\n\n\n4\n2777785\n1\nmba\nallowed\nSmall-34\n\n\n...\n...\n...\n...\n...\n...\n\n\n1995\n2796805\n3\ncomputer application\nallowed\nMedium-7\n\n\n1996\n2796812\n1\nnursing\nallowed\nMedium-22\n\n\n1997\n2796813\n2\nnursing\nallowed\nMedium-22\n\n\n1998\n2796814\n3\nnursing\nallowed\nMedium-22\n\n\n1999\n2796815\n4\nnursing\nallowed\nMedium-22\n\n\n\n\n2000 rows × 5 columns",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "01. DataFrame 다루기",
-      "02. 데이터 변형하기"
+      "03. 큰 데이터 다루기"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html",
-    "title": "02. 통계 기본 상식식",
-    "section": "",
-    "text": "- 대게 일반적으로 많은 사람들에게 친숙한 단어임\n- 조금 전문적인 지식(통계, 수학적 지식이 포함된 정의)\n\n모든 데이터셋의 값을 더한 후, 그 개수만큼 나눈 것\n\n- 평균 구하기 예시 1\n\nx = [10.3, 9.7, 10.3, 9.5, 10.1, 10.8, 9.5, 9.4, 10.1, 10.3]\n\nsum(x)/len(x)\n\n10.0",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "02. 통계 기본 상식식"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/02. 통계 기본 상식.html#상관계수-시각화",
-    "title": "02. 통계 기본 상식식",
-    "section": "상관계수 시각화",
-    "text": "상관계수 시각화\n\n%matplotlib inline\nimport pandas as pd\nimport seaborn as sns\n\ndf = pd.read_csv('data/exam.csv')\n\ndf.corr()\n\n\n\n\n\n\n\n\n\nmath score\nreading score\nwriting score\n\n\n\n\nmath score\n1.000000\n0.817580\n0.802642\n\n\nreading score\n0.817580\n1.000000\n0.954598\n\n\nwriting score\n0.802642\n0.954598\n1.000000\n\n\n\n\n\n\n\n\n\nsns.heatmap(df.corr(), annot=True)",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "02. 통계 기본 상식식"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html",
-    "title": "00. 시각화와 그래프",
-    "section": "",
-    "text": "- 목적 1 : 분석에 도움이 된다\n\n일반적인 데이터프레임을 보는 것 보다 그래프를 보고 패턴을 찾아내면 이후에 어떤 분석을 할 지 찾아낼 수 있다.\n또한, 보이지 않는 것(이상치, 영향치)들을 파악할 수 있음\n\n- 목적 2 : 리포팅에 도움이 된다.\n\nex : 기획팀에게 보고서를 전달할 때\n\n그래프를 기반으로 보고서를 작성해서 커뮤니케이션을 원할하게 함.",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "00. 시각화와 그래프"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-gdp-데이터",
-    "title": "00. 시각화와 그래프",
-    "section": "실습 1. gdp 데이터",
-    "text": "실습 1. gdp 데이터\n한국(Korea_Rep), 미국(United_States), 영국(United_Kingdom), 독일(Germany), 중국(China), 일본(Japan)의 GDP 그래프 그리기\n\nimport pandas as pd\n\n%matplotlib inline\n\ndf = pd.read_csv(\"data/gdp.csv\",index_col = 0)\n\ndf.plot(y = [\"Korea_Rep\",\"United_States\", \n                \"United_Kingdom\",\"Germany\", \n                \"Germany\", \"China\", \"Japan\"])",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "00. 시각화와 그래프"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1",
-    "title": "00. 시각화와 그래프",
-    "section": "실습 1",
-    "text": "실습 1\n- 실리콘 밸리 남자 매지너의 인종 분포 그리기\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_summary.csv')\n\ndf.loc[(df[\"job_category\"] == \"Managers\") & (df.gender == \"Male\") & \n       (df[\"race_ethnicity\"] != \"All\"), \n                   [\"count\", \"race_ethnicity\"]].plot(kind = \"bar\", x = \"race_ethnicity\", y= \"count\")",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "00. 시각화와 그래프"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1-1",
-    "title": "00. 시각화와 그래프",
-    "section": "실습 1",
-    "text": "실습 1\n어도비 전체 직원들의 직군 분포를 파이 그래프로 그리\n\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nsol1\n- 일단 내가 풀어봤는데 그래프가 살짝 각도가 이상하게 나옴\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv('data/silicon_valley_details.csv')\n\n\ndf1 = df.loc[(df[\"company\"] == \"Adobe\") & (df[\"race\"] == \"Overall_totals\") & (df[\"count\"] !=0)].\\\n        groupby(\"job_category\", as_index = False)[[\"count\"]].sum()\n\ndf1.loc[map(lambda x : x not in [\"Previous_totals\", \"Totals\"],\n        df1[\"job_category\"])].set_index(\"job_category\")\n\n\n\n\n\n\n\n\n\ncount\n\n\njob_category\n\n\n\n\n\nAdministrative support\n323\n\n\nExecutives\n93\n\n\nManagers\n2448\n\n\nProfessionals\n3028\n\n\nSales workers\n1270\n\n\n\n\n\n\n\n\n\n\nsol2\n\n%matplotlib inline\nimport pandas as pd\n\ndf = pd.read_csv(\"data/silicon_valley_details.csv\")\ndf\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n0\n23andMe\n2016\nHispanic_or_Latino\nmale\nExecutives\n0\n\n\n1\n23andMe\n2016\nHispanic_or_Latino\nmale\nManagers\n1\n\n\n2\n23andMe\n2016\nHispanic_or_Latino\nmale\nProfessionals\n7\n\n\n3\n23andMe\n2016\nHispanic_or_Latino\nmale\nTechnicians\n0\n\n\n4\n23andMe\n2016\nHispanic_or_Latino\nmale\nSales workers\n0\n\n\n...\n...\n...\n...\n...\n...\n...\n\n\n4435\nSanmina\n2016\nOverall_totals\nNaN\nlaborers and helpers\n4\n\n\n4436\nSanmina\n2016\nOverall_totals\nNaN\nService workers\n57\n\n\n4437\nSanmina\n2016\nOverall_totals\nNaN\nTotals\n5205\n\n\n4438\nSanmina\n2016\nOverall_totals\nNaN\nPrevious_totals\n5615\n\n\n4439\nSanmina\n2016\nOverall_totals\nNaN\nManagers\n591\n\n\n\n\n4440 rows × 6 columns\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\ndf[boolean_adobe & boolean_all_races]\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n336\nAdobe\n2016\nOverall_totals\nNaN\nTechnicians\n0\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n339\nAdobe\n2016\nOverall_totals\nNaN\nCraft workers\n0\n\n\n340\nAdobe\n2016\nOverall_totals\nNaN\noperatives\n0\n\n\n341\nAdobe\n2016\nOverall_totals\nNaN\nlaborers and helpers\n0\n\n\n342\nAdobe\n2016\nOverall_totals\nNaN\nService workers\n0\n\n\n343\nAdobe\n2016\nOverall_totals\nNaN\nTotals\n7162\n\n\n344\nAdobe\n2016\nOverall_totals\nNaN\nPrevious_totals\n6581\n\n\n\n\n\n\n\n\n\nboolean_adobe = df['company'] == 'Adobe'\nboolean_all_races = df['race'] == 'Overall_totals'\nboolean_count = df['count'] != 0\nboolean_job_category = (df['job_category'] != 'Totals') & (df['job_category'] != 'Previous_totals')\n\ndf_adobe = df[boolean_adobe & boolean_all_races & boolean_count & boolean_job_category]\ndf_adobe\n\n\n\n\n\n\n\n\n\ncompany\nyear\nrace\ngender\njob_category\ncount\n\n\n\n\n333\nAdobe\n2016\nOverall_totals\nNaN\nExecutives\n93\n\n\n334\nAdobe\n2016\nOverall_totals\nNaN\nManagers\n2448\n\n\n335\nAdobe\n2016\nOverall_totals\nNaN\nProfessionals\n3028\n\n\n337\nAdobe\n2016\nOverall_totals\nNaN\nSales workers\n1270\n\n\n338\nAdobe\n2016\nOverall_totals\nNaN\nAdministrative support\n323\n\n\n\n\n\n\n\n\n\ndf_adobe.set_index('job_category', inplace=True)\n\n\ndf_adobe.plot(kind='pie', y= 'count')\n\n\n\n\n\n\n\n\n- 틀린 이유 : 굳이 count가 되어 있는 테이블을 groupby로 sum하는 과정에서 계산이 잘못된 거 같음..\n\n항상 데이터를 먼저 뜯어보는 습관을 기르자…",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "00. 시각화와 그래프"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/00. 시각화와 그래프.html#실습-1.-국가지표-분석하기",
-    "title": "00. 시각화와 그래프",
-    "section": "실습 1. 국가지표 분석하기",
-    "text": "실습 1. 국가지표 분석하기\n\nimport pandas as pd\n%matplotlib inline\n\ndf = pd.read_csv(\"data/world_indexes.csv\")\n\n\ndf.head()\n\n\n\n\n\n\n\n\n\nId\nHuman Development Index HDI-2014\nGini coefficient 2005-2013\nAdolescent birth rate 15-19 per 100k 20102015\nBirth registration funder age 5 2005-2013\nCarbon dioxide emissionsAverage annual growth\nCarbon dioxide emissions per capita 2011 Tones\nChange forest percentable 1900 to 2012\nChange mobile usage 2009 2014\nConsumer price index 2013\n...\nRenewable sources percentage of total 2012\nResearch and development expenditure 2005-2012\nSecondary 2008-2014\nShare of seats in parliament percentage held by womand 2014\nStock of immigrants percentage of population 2013\nTaxes on income profit and capital gain 205 2013\nTertiary -2008-2014\nTotal tax revenue of GDP 2005-2013\nTuberculosis rate per thousands 2012\nUnder-five Mortality 2013 thousands\n\n\n\n\n0\nNorway\n0.943877\n26.83\n7.834\n100.0\n0.778925\n9.192879\n11.914567\n5.22\n104.194175\n...\n47.752676\n1.65474\n111.06130\n39.644970\n13.772622\n31.798391\n74.10112\n27.288097\n0.14\n2.8\n\n\n1\nAustralia\n0.934958\n34.01\n12.059\n100.0\n1.090351\n16.519210\n-4.561812\n30.27\n107.789440\n...\n4.632202\n2.38562\n135.53543\n30.530974\n27.711793\n65.333748\n86.33409\n21.361426\n0.19\n4.0\n\n\n2\nSwitzerland\n0.929613\n32.35\n1.900\n100.0\n-1.101254\n4.625230\n8.567416\n16.72\n99.317229\n...\n49.659398\n2.87046\n96.30638\n28.455285\n28.906998\n22.673299\n55.56190\n9.759124\n0.22\n4.2\n\n\n3\nDenmark\n0.923328\n26.88\n5.101\n100.0\n-1.767733\n7.248329\n23.029974\n1.83\n106.057718\n...\n26.767245\n2.98416\n124.65927\n37.988827\n9.909512\n39.677938\n79.59763\n33.395651\n0.40\n3.5\n\n\n4\nNetherlands\n0.921794\n28.87\n6.165\n100.0\n-0.252734\n10.064490\n5.922602\n-4.31\n107.474154\n...\n6.671366\n2.15676\n129.91277\n36.888889\n11.724418\n23.533104\n77.34356\n19.724059\n0.17\n4.0\n\n\n\n\n5 rows × 66 columns\n\n\n\n\n다음 중 가장 연관성이 깊은 지표를 찾기!\n\n기대 수명 - 인터넷 사용자 비율\n숲 면적 비율 - 탄소 배출 증가율\n인터넷 사용자 비율 - 숲 면적 비율\n기대 수명 - 탄소 배출 증가율\n기대 수명 - 숲 면적 비율\n\n\nimport matplotlib.pyplot as plt\n\nfig, axes = plt.subplots(1,5 ,figsize = (12,4))\n\nax1,ax2,ax3,ax4,ax5 = axes\n\nax1.plot(\"Life expectancy at birth- years\",\n         'Internet users percentage of population 2014', \"b.\", data = df)\n\nax2.plot(\"Forest area percentage of total land area 2012\",\n         'Carbon dioxide emissionsAverage annual growth', \"b.\", data = df)\n\nax3.plot(\"Internet users percentage of population 2014\",\n         'Forest area percentage of total land area 2012', \"b.\", data = df)\n\nax4.plot( 'Life expectancy at birth- years',  \n         'Carbon dioxide emissionsAverage annual growth',  \"b.\", data = df)\n\nax5.plot( 'Life expectancy at birth- years',  \n         'Forest area percentage of total land area 2012',  \"b.\", data = df)\n\n\n\n\n\n\n\n\n- 그래프를 그려 시각화해본 결과 1. 기대수명-인터넷 사용자 비율이 가장 연관성이 있어 보인다.",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "00. 시각화와 그래프"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html",
     "title": "01. Seaborn 시각화",
     "section": "",
     "text": "- 기존 pandas에서 제공하는 그래프보다 다양하고 근사한 그래프를 그릴 수 있다\n- Statistical Data Visualizaion 이라고 소개하고 있음\n- 용어 정리\n\nPDF(확률밀도함수) : 데이터셋의 분포를 나타낸다.\n\n특정 구간에 대한 확률값을 구하고 싶으면 해당 구간의 면적을 구하면 된다.\n그래프 아래의 모든 면적을 더하면 1이 된다.\n연속형 변수, 예를 들어 어떤 학생의 키가 173.5일 확률은 0이다. 왜냐하면 면적아래의 넓이를 특정값으로 구할 수 없기 때문이다.\n주사위, 동전을 던지는 예제에서는 특정 값에 대한 학률을 구할 수 있음!",
@@ -1010,13 +1059,12 @@
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "01. Seaborn 시각화"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html#kde-활용-예시",
     "title": "01. Seaborn 시각화",
     "section": "kde 활용 예시",
     "text": "kde 활용 예시\n- 기존의 그래프 그리기\n\ndf.plot(kind = \"hist\", y = \"Height\", bins = 15)\n\n\n\n\n\n\n\n\n- seaborn을 사용하면 히스토그램위에 kde를 얹을 수 있다.\n\nsns.displot(df[\"Height\"], bins = 15, kde = True)\n\n\n\n\n\n\n\n\n- boxplot 그리기\n\n기존의 방식\n\n\ndf.plot(kind = \"box\", y = \"Height\")\n\n\n\n\n\n\n\n\n- 오 boxplot에서 kde plot 그리기 \\(\\to\\) sns.violinplot\n\n근데 난 별로…\n\n\nsns.violinplot(y = df[\"Height\"])\n\n\n\n\n\n\n\n\n- 키와 몸무게의 연광성 보기\n\n기존의 방식\n\n\ndf.plot(kind = \"scatter\", x = \"Height\", y = \"Weight\")\n\n\n\n\n\n\n\n\n- seaborn\n\nsns.kdeplot(df[\"Height\"], df[\"Weight\"])\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n등고선처럼 표시가 되어있다?\n\n- 각각에 대한 kde그리기\n\nsns.kdeplot(df[\"Height\"])\n\n\n\n\n\n\n\n\n\nsns.kdeplot(df[\"Weight\"])\n\n\n\n\n\n\n\n\n- 아 아래 그래프는 x축에는 키에 대한 kde, y축에는 몸무게에 대한 kde를 그린 것이다.\n\nsns.kdeplot(df[\"Height\"], df[\"Weight\"])\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n- 음… 한번에 보자\n\nfig, axes = plt.subplots(1,3, figsize = (12,4))\n\nax1,ax2,ax3 = axes\n\nsns.kdeplot(df[\"Height\"], ax = ax1)\nsns.kdeplot(df[\"Weight\"], ax = ax2)\nsns.kdeplot(df[\"Height\"], df[\"Weight\"], ax = ax3)\n\nfig.tight_layout()\n\nC:\\Users\\rkdcj\\Anaconda3\\lib\\site-packages\\seaborn\\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: y. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n3번쨰 그림 해석 : 선끼리 가까우면 가파르게 올라가는 것, 멀어지면 완만하게 올라가거나 내려가는 것을 의마한다.\n근데.. 이거 굳이 쓰지말자..해석하는데 머리 아프다..",
@@ -1025,13 +1073,12 @@
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "01. Seaborn 시각화"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html",
     "title": "03. EDA",
     "section": "",
     "text": "- Exploratory Data Analysis\n\n데이터셋을 다양한 관점에서 살펴보고 탐색하며 인사이트를 찾는 것!\n데이터의 분포, 연관성 등을 살펴보며 데이터를 분석한다.\n이를 통해 중요한 비즈니스 문제 등을 해결하기 위한 인사이트를 도출할 수 있다.\nEDA는 뚜렷한 공식이 없다. 그러나 시각화 기법이 가장 많이 사용된다.",
@@ -1040,97 +1087,62 @@
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "03. EDA"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1",
     "title": "03. EDA",
     "section": "ex1",
-    "text": "ex1\noccupations.csv 을 보고, 여성분들이 가장 많이 종사하고 있는 직종이 무엇인지 파악해 보세요.\n- 상위직종 3개 골라보기\n\ndf = pd.read_csv(\"data/occupations.csv\")\n\ndf.loc[df.gender == \"F\"].occupation.value_counts()\n\nstudent          60\nother            36\nadministrator    36\nlibrarian        29\neducator         26\nwriter           19\nartist           13\nhealthcare       11\nmarketing        10\nhomemaker         6\nprogrammer        6\nnone              4\nexecutive         3\nscientist         3\nsalesman          3\nengineer          2\nlawyer            2\nentertainment     2\nretired           1\ntechnician        1\nName: occupation, dtype: int64",
+    "text": "ex1\noccupations.csv 을 보고, 여성분들이 가장 많이 종사하고 있는 직종이 무엇인지 파악해 보세요.\n- 상위직종 3개 골라보기\n\ndf = pd.read_csv(\"data/occupations.csv\")\n\ndf.loc[df.gender == \"F\"].occupation.value_counts()\n\noccupation\nstudent          60\nother            36\nadministrator    36\nlibrarian        29\neducator         26\nwriter           19\nartist           13\nhealthcare       11\nmarketing        10\nhomemaker         6\nprogrammer        6\nnone              4\nexecutive         3\nscientist         3\nsalesman          3\nengineer          2\nlawyer            2\nentertainment     2\nretired           1\ntechnician        1\nName: count, dtype: int64",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "03. EDA"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex2",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex2",
     "title": "03. EDA",
     "section": "ex2",
-    "text": "ex2\n- 남자는?\n\ndf.loc[df.gender == \"M\"].occupation.value_counts()\n\nstudent          136\nother             69\neducator          69\nengineer          65\nprogrammer        60\nadministrator     43\nexecutive         29\nscientist         28\ntechnician        26\nwriter            26\nlibrarian         22\nentertainment     16\nmarketing         16\nartist            15\nretired           13\nlawyer            10\nsalesman           9\ndoctor             7\nnone               5\nhealthcare         5\nhomemaker          1\nName: occupation, dtype: int64",
+    "text": "ex2\n- 남자는?\n\ndf.loc[df.gender == \"M\"].occupation.value_counts()\n\noccupation\nstudent          136\nother             69\neducator          69\nengineer          65\nprogrammer        60\nadministrator     43\nexecutive         29\nscientist         28\ntechnician        26\nwriter            26\nlibrarian         22\nentertainment     16\nmarketing         16\nartist            15\nretired           13\nlawyer            10\nsalesman           9\ndoctor             7\nnone               5\nhealthcare         5\nhomemaker          1\nName: count, dtype: int64",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "03. EDA"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1-1",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1-1",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1-1",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1-1",
     "title": "03. EDA",
     "section": "ex1",
-    "text": "ex1\n5라고 대답한 사람들은 아침에 일어나는 걸 아주 어려워 하는 사람들이고, 1이라고 대답한 사람들은 아침에 쉽게 일어난다.\n\n아침에 일찍 일어나느 사람들이 가장 좋아할 만한 음악 장르는 무엇인가?\n\n\ndf.corr()[\"Getting up\"][1:19].sort_values(ascending = True)\n\nOpera                      -0.071819\nSlow songs or fast songs   -0.052613\nFolk                       -0.049612\nPunk                       -0.029189\nMetal or Hardrock          -0.026769\nCountry                    -0.025315\nLatino                     -0.015060\nReggae, Ska                -0.008434\nMusical                     0.011869\nClassical music             0.014285\nSwing, Jazz                 0.019556\nTechno, Trance              0.019863\nDance                       0.027249\nAlternative                 0.027540\nRock n roll                 0.028889\nHiphop, Rap                 0.038980\nPop                         0.079101\nRock                        0.105245\nName: Getting up, dtype: float64",
+    "text": "ex1\n5라고 대답한 사람들은 아침에 일어나는 걸 아주 어려워 하는 사람들이고, 1이라고 대답한 사람들은 아침에 쉽게 일어난다.\n\n아침에 일찍 일어나느 사람들이 가장 좋아할 만한 음악 장르는 무엇인가?\n\n\ndf.select_dtypes(\"number\").corr()[\"Getting up\"].sort_values(ascending = False)\n\nGetting up                1.000000\nCheating in school        0.163920\nFun with friends          0.117071\nEntertainment spending    0.116225\nRock                      0.105245\n                            ...   \nReliability              -0.139184\nHealthy eating           -0.145313\nWorkaholism              -0.163420\nFinances                 -0.202493\nPrioritising workload    -0.256098\nName: Getting up, Length: 139, dtype: float64",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "03. EDA"
     ]
   },
   {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1.-영화카페-운영하기",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex1.-영화카페-운영하기",
+    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1.-타이타닉-eda",
+    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html#ex1.-타이타닉-eda",
     "title": "03. EDA",
-    "section": "ex1. 영화카페 운영하기",
-    "text": "ex1. 영화카페 운영하기",
+    "section": "ex1. 타이타닉 EDA",
+    "text": "ex1. 타이타닉 EDA\n\ndf = pd.read_csv(\"data/titanic.csv\")\ndf.head()\n\n\n\n\n\n\n\n\n\nPassengerId\nSurvived\nPclass\nName\nSex\nAge\nSibSp\nParch\nTicket\nFare\nCabin\nEmbarked\n\n\n\n\n0\n1\n0\n3\nBraund, Mr. Owen Harris\nmale\n22.0\n1\n0\nA/5 21171\n7.2500\nNaN\nS\n\n\n1\n2\n1\n1\nCumings, Mrs. John Bradley (Florence Briggs Th...\nfemale\n38.0\n1\n0\nPC 17599\n71.2833\nC85\nC\n\n\n2\n3\n1\n3\nHeikkinen, Miss. Laina\nfemale\n26.0\n0\n0\nSTON/O2. 3101282\n7.9250\nNaN\nS\n\n\n3\n4\n1\n1\nFutrelle, Mrs. Jacques Heath (Lily May Peel)\nfemale\n35.0\n1\n0\n113803\n53.1000\nC123\nS\n\n\n4\n5\n0\n3\nAllen, Mr. William Henry\nmale\n35.0\n0\n0\n373450\n8.0500\nNaN\nS\n\n\n\n\n\n\n\n\n\nQ1\n- 타이타닉의 승객은 30대와 40대가 가장 많다?\n\n\n: 20대와 30대가 가장 많다.\n\n\n\nsns.histplot(data = df, x = \"Age\")\n\n\n\n\n\n\n\n\n\n\nQ2\n- 가장 높은 요금을 낸 사람은 30대이다.\n\nimport plotly.express as px\nimport plotly.io as pio\npio.renderers.default = \"plotly_mimetype+notebook_connected\"\n\n\ndf[\"Age\"].describe()\n\ncount    714.000000\nmean      29.699118\nstd       14.526497\nmin        0.420000\n25%       20.125000\n50%       28.000000\n75%       38.000000\nmax       80.000000\nName: Age, dtype: float64\n\n\n\nimport numpy as np\n\n\nbins = [-np.inf, 19,29,39,49,59, np.inf]\nlabels = [\"20대 미만\", \"20대\", \"30대\", \"40대\", \"50대\", \"60대 이상\"] \n\n\ndf[\"Age_label\"] =  pd.cut(df[\"Age\"], bins = bins, labels = labels)\n\n\nimport warnings\n\nwarnings.filterwarnings(action = \"ignore\")\n\n\ndf.groupby(\"Age_label\")[\"Fare\"].sum()\n\nAge_label\n20대 미만    5214.3376\n20대       6001.3662\n30대       6743.0081\n40대       3382.2044\n50대       2300.8000\n60대 이상    1130.1667\nName: Fare, dtype: float64\n\n\n- (O) : 30대가 가장 많은 요금을 지불했음\n\n\nQ3\n- (X) : 생존자가 사망자보다 더 많다.\n\ndf[\"Survived\"].value_counts()\n\nSurvived\n0    549\n1    342\nName: count, dtype: int64\n\n\n\n\nQ4\n- (O) : 가장 많은 사람이 탑승한 곳은 3등실이다.\n\ndf.Pclass.value_counts()\n\nPclass\n3    491\n1    216\n2    184\nName: count, dtype: int64\n\n\n\n\nQ5\n- (O) : 가장 생존율이 높은 객실 등급은 1등실이다.\n\ndf.groupby(\"Pclass\")[\"Survived\"].value_counts(normalize=True)\n\nPclass  Survived\n1       1           0.629630\n        0           0.370370\n2       0           0.527174\n        1           0.472826\n3       0           0.757637\n        1           0.242363\nName: proportion, dtype: float64\n\n\n\n\nQ6\n- (X) : 나이가 어릴수록 생존율이 높다.\n\ndf.select_dtypes(\"number\").corr()[\"Age\"]\n\nPassengerId    0.036847\nSurvived      -0.077221\nPclass        -0.369226\nAge            1.000000\nSibSp         -0.308247\nParch         -0.189119\nFare           0.096067\nName: Age, dtype: float64\n\n\n- 저렇게 보면 나이가 어릴수록 생존율이 높다고 볼 수 있음\n\n그러나 분포의 그렇게 큰 차이가 보이지 않으므로 정확한 답을 내리기 어렵다….\n\n\nsns.stripplot(data=df, x=\"Survived\", y=\"Age\", hue = \"Survived\")\n\n\n\n\n\n\n\n\n\n\nQ7\n- (O) : 나이보다 성별이 생존율에 더 많은 영향을 미친다.\n\ndf[\"Sex\"] = df[\"Sex\"].replace([\"male\",\"female\"],[0,1])\n\n\ndf.select_dtypes(\"number\").corr()[\"Survived\"].sort_values(ascending = False)\n\nSurvived       1.000000\nSex            0.543351\nFare           0.257307\nParch          0.081629\nPassengerId   -0.005007\nSibSp         -0.035322\nAge           -0.077221\nPclass        -0.338481\nName: Survived, dtype: float64\n\n\n\n# 생존 여부에 따른 나이 및 성별 분포\nsns.stripplot(data=df, x=\"Survived\", y=\"Age\", hue=\"Sex\")\n\n\n\n\n\n\n\n\n- 나이 분포는 비슷한 데 비해, 성별의 분포는 확연히 차이가 난다.\n\n따라서, 생존율은 나이보다는 확실히 성별에 영향을 많이 받았다는 걸 알 수 있습니다.",
     "crumbs": [
       "Posts",
       "CS",
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "03. EDA"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2.-영화장르-분석하기",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex2.-영화장르-분석하기",
-    "title": "03. EDA",
-    "section": "ex2. 영화장르 분석하기",
-    "text": "ex2. 영화장르 분석하기",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
-      "03. EDA"
-    ]
-  },
-  {
-    "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex3.-타이타닉-eda",
-    "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/데이터 분석과 시각화/03. EDA.html#ex3.-타이타닉-eda",
-    "title": "03. EDA",
-    "section": "ex3. 타이타닉 EDA",
-    "text": "ex3. 타이타닉 EDA",
-    "crumbs": [
-      "Posts",
-      "CS",
-      "00. 데이터 분석",
-      "02. 데이터 분석과 시각화",
-      "데이터 분석과 시각화",
       "03. EDA"
     ]
   }
