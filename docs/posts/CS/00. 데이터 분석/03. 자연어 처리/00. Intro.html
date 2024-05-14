@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="GC">
-<meta name="dcterms.date" content="2024-04-22">
+<meta name="dcterms.date" content="2024-05-14">
 
-<title>끄적끄적 - 02. 통계 기본 상식식</title>
+<title>끄적끄적 - 00. Intro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,52 +22,18 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
-<link href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html" rel="next">
-<link href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html" rel="prev">
+<link href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html" rel="next">
+<link href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html" rel="prev">
 <script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,9 +70,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -174,7 +137,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html">02. 데이터 분석과 시각화</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html">02. 통계 기본 상식식</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">00. Intro</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -333,13 +296,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
  <span class="menu-text">02. 데이터 분석과 시각화</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html" class="sidebar-item-text sidebar-link">
@@ -354,7 +317,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. 통계 기본 상식식</span></a>
   </div>
 </li>
@@ -374,16 +337,16 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
  <span class="menu-text">03. 자연어 처리</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
@@ -411,14 +374,26 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#평균" id="toc-평균" class="nav-link active" data-scroll-target="#평균">평균</a></li>
-  <li><a href="#중간값" id="toc-중간값" class="nav-link" data-scroll-target="#중간값">중간값</a></li>
-  <li><a href="#평균-vs-중간값" id="toc-평균-vs-중간값" class="nav-link" data-scroll-target="#평균-vs-중간값">평균 vs 중간값</a></li>
-  <li><a href="#q1-q3-구하기" id="toc-q1-q3-구하기" class="nav-link" data-scroll-target="#q1-q3-구하기">Q1, Q3 구하기</a></li>
-  <li><a href="#이상치-정의" id="toc-이상치-정의" class="nav-link" data-scroll-target="#이상치-정의">이상치 정의</a></li>
-  <li><a href="#상관계수" id="toc-상관계수" class="nav-link" data-scroll-target="#상관계수">상관계수</a>
+  <li><a href="#자연어-처리란" id="toc-자연어-처리란" class="nav-link active" data-scroll-target="#자연어-처리란">자연어 처리란?</a>
   <ul class="collapse">
-  <li><a href="#상관계수-시각화" id="toc-상관계수-시각화" class="nav-link" data-scroll-target="#상관계수-시각화">상관계수 시각화</a></li>
+  <li><a href="#종류" id="toc-종류" class="nav-link" data-scroll-target="#종류">종류</a></li>
+  </ul></li>
+  <li><a href="#자연어-처리를-하는-방법" id="toc-자연어-처리를-하는-방법" class="nav-link" data-scroll-target="#자연어-처리를-하는-방법">자연어 처리를 하는 방법</a>
+  <ul class="collapse">
+  <li><a href="#규칙-기반-접근법" id="toc-규칙-기반-접근법" class="nav-link" data-scroll-target="#규칙-기반-접근법">규칙 기반 접근법</a></li>
+  <li><a href="#통계-기반-접근법" id="toc-통계-기반-접근법" class="nav-link" data-scroll-target="#통계-기반-접근법">통계 기반 접근법</a></li>
+  </ul></li>
+  <li><a href="#자연어-처리가-어려운-이유" id="toc-자연어-처리가-어려운-이유" class="nav-link" data-scroll-target="#자연어-처리가-어려운-이유">자연어 처리가 어려운 이유</a>
+  <ul class="collapse">
+  <li><a href="#특성-1.-중의성" id="toc-특성-1.-중의성" class="nav-link" data-scroll-target="#특성-1.-중의성">특성 1. 중의성</a></li>
+  <li><a href="#특성-2.-의미-중복성" id="toc-특성-2.-의미-중복성" class="nav-link" data-scroll-target="#특성-2.-의미-중복성">특성 2. 의미 중복성</a></li>
+  <li><a href="#특성-3.-관계성" id="toc-특성-3.-관계성" class="nav-link" data-scroll-target="#특성-3.-관계성">특성 3. 관계성</a></li>
+  <li><a href="#특성-4.-한국어" id="toc-특성-4.-한국어" class="nav-link" data-scroll-target="#특성-4.-한국어">특성 4. 한국어</a>
+  <ul class="collapse">
+  <li><a href="#접사와-조사-처리" id="toc-접사와-조사-처리" class="nav-link" data-scroll-target="#접사와-조사-처리">(1) 접사와 조사 처리</a></li>
+  <li><a href="#유연한-어순" id="toc-유연한-어순" class="nav-link" data-scroll-target="#유연한-어순">(2) 유연한 어순</a></li>
+  <li><a href="#잘-지켜지지-않는-띄어쓰기" id="toc-잘-지켜지지-않는-띄어쓰기" class="nav-link" data-scroll-target="#잘-지켜지지-않는-띄어쓰기">(3) 잘 지켜지지 않는 띄어쓰기</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -426,9 +401,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/00. 시각화와 그래프.html">02. 데이터 분석과 시각화</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/02. 통계 기본 상식.html">02. 통계 기본 상식식</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">00. Intro</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">02. 통계 기본 상식식</h1>
+<h1 class="title">00. Intro</h1>
 </div>
 
 
@@ -445,7 +420,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 22, 2024</p>
+      <p class="date">May 14, 2024</p>
     </div>
   </div>
   
@@ -457,201 +432,105 @@ window.Quarto = {
 </header>
 
 
-<section id="평균" class="level1">
-<h1>평균</h1>
-<p><code>-</code> 대게 일반적으로 많은 사람들에게 친숙한 단어임</p>
-<p><code>-</code> 조금 전문적인 지식(통계, 수학적 지식이 포함된 정의)</p>
+<section id="자연어-처리란" class="level1">
+<h1>자연어 처리란?</h1>
+<p><code>-</code> 언어의 종류</p>
+<ol type="1">
+<li>인공어 : 정보 전달을 위해 인위적으로 만들어진 언어</li>
+</ol>
 <ul>
-<li>모든 데이터셋의 값을 더한 후, 그 개수만큼 나눈 것</li>
+<li>프로그래밍 언어(C, Python, R 등등…)</li>
 </ul>
-<p><code>-</code> 평균 구하기 예시 1</p>
-<div id="bceaaeb4-07ad-4e56-ab41-593db7097f47" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="op">=</span> [<span class="fl">10.3</span>, <span class="fl">9.7</span>, <span class="fl">10.3</span>, <span class="fl">9.5</span>, <span class="fl">10.1</span>, <span class="fl">10.8</span>, <span class="fl">9.5</span>, <span class="fl">9.4</span>, <span class="fl">10.1</span>, <span class="fl">10.3</span>]</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="bu">sum</span>(x)<span class="op">/</span><span class="bu">len</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>10.0</code></pre>
-</div>
-</div>
+<ol start="2" type="1">
+<li>자연어 : 사람들의 일상 생활에서 자연 발생된 언어</li>
+</ol>
+<ul>
+<li>영어, 중국어, 한국어 등등…</li>
+</ul>
+<p><code>-</code> 자연어 처리 (NLP, Natural Language Processing)</p>
+<ul>
+<li>자연어 데이터를 컴퓨터가 처리할 수 있는 형태로 가공하여 의미 있는 분석을 하는 모든 과정</li>
+</ul>
+<section id="종류" class="level2">
+<h2 class="anchored" data-anchor-id="종류">종류</h2>
+<p><code>-</code> NLU, Natural Language Understanding</p>
+<ul>
+<li>감성분석, 스팸메일 분류 등</li>
+</ul>
+<p><code>-</code> NLG, Natural Language Generation</p>
+<ul>
+<li>신문기사 작성, 챗 GPT 등</li>
+</ul>
+<p><code>-</code> 위 둘은, 자연어 처리의 하위 분야들로, 이름 그대로 자연어의 의미를 잏하고, 새로운 자연어를 생성하기 위한 기술들이 포함된다.</p>
 <hr>
 </section>
-<section id="중간값" class="level1">
-<h1>중간값</h1>
-<p><code>-</code> 좀 익숙하지 않은 단어(Median) * 데이터를 크기에 따라 오름차순으로 정렬 했을 때 정가운데에 있는 값</p>
-<p><code>-</code> 근데 만약 데이터의 개수가 짝수이면?</p>
+</section>
+<section id="자연어-처리를-하는-방법" class="level1">
+<h1>자연어 처리를 하는 방법</h1>
+<section id="규칙-기반-접근법" class="level2">
+<h2 class="anchored" data-anchor-id="규칙-기반-접근법">규칙 기반 접근법</h2>
+<p><code>-</code> Rule Based Approach</p>
+<p><code>-</code> 100일, 100미터, 100원 이렇듯이 앞에 숫자가 오고, 뒤에 문자가 온다는 규칙성이 있음</p>
 <ul>
-<li>중간에 있는 두 개의 값을 더해서 2로 나눈다.</li>
+<li><p>해당 규칙성을 토대로 숫자 뒤에 나오는 단어에 따라 부여된 의미들을 파악할 수 있다.</p></li>
+<li><p>또한, 규칙 기반 접근법은 일정한 패턴을 가지는 자연어에 대해서 안정적으로 좋은 성능을 낼 수 있기 때문에 실제 상용 서비스에서도 많이 활용되고 있다.</p></li>
 </ul>
+</section>
+<section id="통계-기반-접근법" class="level2">
+<h2 class="anchored" data-anchor-id="통계-기반-접근법">통계 기반 접근법</h2>
+<p><code>-</code> Statistiacl Based Approach</p>
+<p>그러나 자연어에는 일정한 규칙이 없는 경우도 많다…. 그럴 때, 통계 기반 접근법을 사용!</p>
+<p><code>-</code> 출현 빈도 술를 기반으로 문서에서 중요한 내용 파악 등</p>
+<p><code>-</code> 또한, 머신러닝, 딥러닝을 활용한 자연어 처리 기법도 통계 기반 접근법이다.</p>
+<p><code>-</code> 일관된 패턴을 파악하기 어려운 자연어에섣고 유의미한 정보를 찾을 수 이기 때문에 통계 기반 접근법은 많은 관심을 받고 있음</p>
 <hr>
 </section>
-<section id="평균-vs-중간값" class="level1">
-<h1>평균 vs 중간값</h1>
-<p><code>-</code> 우리는 중간값보다 평균이 더 익숙함</p>
-<ul>
-<li><p>근데 데이터 분석에서는 중간값이 더 유용한 경우가 많음</p>
-<ul>
-<li>평균값은 이상치 등으로 이상해질 수 있지만, 중앙값은 영향은 덜 받는다.</li>
-</ul></li>
-</ul>
-<hr>
 </section>
-<section id="q1-q3-구하기" class="level1">
-<h1>Q1, Q3 구하기</h1>
-<p><code>-</code> Q1 : 데이터를 오름차 순으로 정렬 했을 때 <code>25%</code>지점에 있는 값</p>
-<p><code>-</code> Q3 : 데이터를 오름차 순으로 정렬 했을 때 <code>75%</code>지점에 있는 값</p>
-<p><code>1</code> 데이터의 개수가 홀수 인 경우</p>
-<div id="e608ba71-ba13-471c-9b71-1b1d951fc7ff" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="op">=</span> [<span class="dv">32</span>, <span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">96</span>, <span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">156</span>]</span>
-<span id="cb3-2"><a href="#cb3-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>[32, 48, 56, 78, 86, 96, 100, 120, 156]</code></pre>
-</div>
-</div>
-<ul>
-<li>데이터의 개수가 총 9개이므로 첫 번째 값부터 중간값까지 5개의 값 중에서 중간에 있는 값이 <code>Q1</code>이 된다.</li>
-</ul>
-<p>여기에서는 3번째 값인 <code>56</code>이 중간값이 됨.</p>
-<ul>
-<li>이와 마찬가지로 <code>Q3=100</code>이란 사실을 알 수 있음</li>
-</ul>
-<p><code>2</code> 데이터의 개수가 짝수인 경우</p>
-<div id="2902803c-a61b-4277-b2a0-c7dcb276d6e4" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>x <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">24</span>, <span class="dv">35</span>, <span class="dv">57</span>, <span class="dv">63</span>, <span class="dv">125</span>]</span>
-<span id="cb5-2"><a href="#cb5-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>[7, 15, 20, 24, 35, 57, 63, 125]</code></pre>
-</div>
-</div>
-<ul>
-<li><p>step1 : 중간값은 <code>(24+35)/2 = 29.5</code></p></li>
-<li><p>step2 : 짝수일 경우 Q1을 구하는 방법(위 예시의 경우)</p>
-<ul>
-<li>(n+1)을 하는 이유는 데이터가 홀수건, 짝수건 일관성 있게 사용하기 위함이다.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[ (8+1) \times \frac 14 = 2.25\]</span></p>
-<ul>
-<li>step3 : <code>2.25</code>번째 값이므로 2번째 값인 <code>15</code>와 <code>20</code>사이의 어떤 값(25%에 해당하는 지점)을 구하면 될 것 같다. 그 값은 다음과 같이 구한다.</li>
-</ul>
-<p><span class="math display">\[15 \times0.25 + 20 \times 0.75= 18.75\]</span></p>
-<ul>
-<li>step4 : Q3 구하기, 흠..여섯 번째와 일곱 번째에 어떤 임의의 값이다.</li>
-</ul>
-<p><span class="math display">\[(8+1) \times \frac 34 = 6.75\]</span></p>
-<ul>
-<li>step5 : <code>6.75</code>번쨰 값이므로 6번째 값인 <code>57</code>과 7번째 값인 <code>63</code>사이의 어떤 값(75%지점)을 구하면 될 것 같음</li>
-</ul>
-<p><span class="math display">\[57\times 0.75 + 63 \times 0.25 = 58.5\]</span></p>
+<section id="자연어-처리가-어려운-이유" class="level1">
+<h1>자연어 처리가 어려운 이유</h1>
+<section id="특성-1.-중의성" class="level2">
+<h2 class="anchored" data-anchor-id="특성-1.-중의성">특성 1. 중의성</h2>
+<p>문장 1. She had the lead in a new film</p>
+<p>문장 2. She found lead.</p>
+<p>위 문장에서 <code>lead</code>는 <code>이끈다</code>, <code>납</code>이라는 두가지 의미를 가짐</p>
+<p>이런 중의적인 단어, 문장을 파악하는 것은 사람에게도 쉽지 않다. 마찬가지로 컴퓨터도 중의적인 문장에 굉장히 취약함…</p>
 </section>
-<section id="이상치-정의" class="level1">
-<h1>이상치 정의</h1>
-<p><code>1</code> IQR = Q3-Q1</p>
-<p><code>2</code> <span class="math inline">\((\text{Q1}- 1.5 \times \text{IQR},\,\text{Q3}+ 1.5 \times \text{IQR})\)</span></p>
-<ul>
-<li>해당 구간을 벗어난 값을 이상치라고 정의한다.</li>
-</ul>
-<hr>
+<section id="특성-2.-의미-중복성" class="level2">
+<h2 class="anchored" data-anchor-id="특성-2.-의미-중복성">특성 2. 의미 중복성</h2>
+<p>문장 1. 비행기가 1시에 <code>떠날</code> 예정입니다.</p>
+<p>문장 2. 비행기 <code>출발</code> 시간은 1시입니다.</p>
+<p>이렇게 동일한 의미를 다양한 방식으로 표현하는걸 <code>패러프레이징(Paraphrasing)</code>이라고 하며 컴퓨터가 이해하하는 데 굉장히 어려움…</p>
 </section>
-<section id="상관계수" class="level1">
-<h1>상관계수</h1>
-<p><code>-</code> 변수 간 어떤 연관성이 있는지 <span class="math inline">\(\to\)</span> 주의! 인과관계를 설명하는 것은 아님!</p>
+<section id="특성-3.-관계성" class="level2">
+<h2 class="anchored" data-anchor-id="특성-3.-관계성">특성 3. 관계성</h2>
+<p>파랑과 빨강 중 분홍과 더 유사한 단어? <span class="math inline">\(\to\)</span> 빨강</p>
+<p>단어 간에는 의미를 기준으로 관계가 형성됨. 그러나 컴퓨터는 이를 이해하기 어려움…</p>
+</section>
+<section id="특성-4.-한국어" class="level2">
+<h2 class="anchored" data-anchor-id="특성-4.-한국어">특성 4. 한국어</h2>
+<p>일반적으로 한국어는 다른 언어보다 자연어 처리가 더 어렵다….</p>
+<section id="접사와-조사-처리" class="level3">
+<h3 class="anchored" data-anchor-id="접사와-조사-처리">(1) 접사와 조사 처리</h3>
+<p>한국어는 교착어, 즉 어근에 붙는 접사에 따라 의미가 변하는 언어이다.</p>
+<p>보통 자연어 러치를 하려면 어떠한 단어의 어근을 찾아서 사용하는 게 일반적이다. 그러나 한국어는 교착어이기 때문에 조사의 종류에 따라 의미 차이에 큰 변화가 생김</p>
+</section>
+<section id="유연한-어순" class="level3">
+<h3 class="anchored" data-anchor-id="유연한-어순">(2) 유연한 어순</h3>
+<ol type="1">
+<li><p>나는 공부하러 간다.</p></li>
+<li><p>공부하러 나는 간다.</p></li>
+<li><p>나는 간다. 공부하러</p></li>
+</ol>
+<p>위 같은 유연한 어순 때문에 컴퓨터가 다음에 출현할 단어를 예측하는 것이 어렵다.</p>
+</section>
+<section id="잘-지켜지지-않는-띄어쓰기" class="level3">
+<h3 class="anchored" data-anchor-id="잘-지켜지지-않는-띄어쓰기">(3) 잘 지켜지지 않는 띄어쓰기</h3>
 <ul>
-<li><p>상관계수는 단순히 두 변수가 직선관계에 있는지를 가늠하는 정도를 나타내는 것이다.</p>
-<ul>
-<li><p>즉, 상관계수가 0에 가깝다고 해서 두 변수 사이에 아무런 함수관계가 없다는 것을 의미하지는 않는다!</p></li>
-<li><p>아래와 같은 경우 상관계수를 구해보면 <code>0.0138119</code>가 나온다.</p></li>
-<li><p>그러면 두 변수 사이에는 어떤 인과관계가 없는거야?</p></li>
-</ul></li>
+<li>이건 뭐 한국인이라면 다들 알법한 문제이다….</li>
 </ul>
-<div id="96ca89e7-a238-4aec-b3d2-fab33c5ac86e" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>np.corrcoef(x1,y1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
-<pre><code>array([[1.        , 0.01388119],
-       [0.01388119, 1.        ]])</code></pre>
-</div>
-</div>
-<div id="ca02f545-5a6a-4e10-99ff-faa0dc162f63" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-3"><a href="#cb9-3"></a>np.random.seed(<span class="dv">202150256</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a>x1 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">100</span>,endpoint<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a>y1 <span class="op">=</span> x1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">0.1</span>,size<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb9-7"><a href="#cb9-7"></a></span>
-<span id="cb9-8"><a href="#cb9-8"></a>plt.plot(x1,y1,<span class="st">"o"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>plt.title(<span class="st">"y=x**2"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02. 통계 기본 상식_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 우리는 저 그래프를 보고 경험적으로 <span class="math inline">\(y = x^2\)</span> 형태를 띄고 있음을 알고 있다.</p>
-<section id="상관계수-시각화" class="level2">
-<h2 class="anchored" data-anchor-id="상관계수-시각화">상관계수 시각화</h2>
-<div id="91b5e079-b66a-444c-809b-e315bab96a99" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/exam.csv'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a>df.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="80">
-<div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">math score</th>
-<th data-quarto-table-cell-role="th">reading score</th>
-<th data-quarto-table-cell-role="th">writing score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">math score</td>
-<td>1.000000</td>
-<td>0.817580</td>
-<td>0.802642</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">reading score</td>
-<td>0.817580</td>
-<td>1.000000</td>
-<td>0.954598</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">writing score</td>
-<td>0.802642</td>
-<td>0.954598</td>
-<td>1.000000</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div>
-<div id="13f469d1-1687-4acd-b7fa-2d980ce2ee41" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>sns.heatmap(df.corr(), annot<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02. 통계 기본 상식_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-
-
+</section>
 </section>
 </section>
 
@@ -1067,13 +946,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/01. Searborn 시각화.html" class="pagination-link" aria-label="01. Seaborn 시각화">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01. Seaborn 시각화</span>
+      <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html" class="pagination-link" aria-label="04. 인사이트 도출">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">04. 인사이트 도출</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/03. EDA.html" class="pagination-link" aria-label="03. EDA">
-        <span class="nav-page-text">03. EDA</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html" class="pagination-link" aria-label="01. 자연어 전처리">
+        <span class="nav-page-text">01. 자연어 전처리</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

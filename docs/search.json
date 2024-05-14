@@ -1,5 +1,285 @@
 [
   {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html",
+    "title": "01. 자연어 전처리",
+    "section": "",
+    "text": "1 맞춤법과 띄어쓰기 교정\n\nex 1. Oh, Hi helo. Nice to meetyou.\n\nstep 1. 띄어쓰기 수정 : Oh, Hi hello. Nice to meet you.\nstep 2. 문장의 의미를 표현하는데 크게 기여하지 않는 단어 삭제\n\nOh, Hi hello. Nice to meet you.\n\nstep 3. 중복된 의미 단어 제거\n\nOh, Hi hello. Nice to meet you.\n\n\n\n2 컴퓨터가 자연어를 잘 이해할 수 있도록 각 단어에 숫자 인덱스를 부여\n\n{‘Hi’:0, ‘Nice’:1, ‘to’:2, ‘meet’:3, ‘you’:4}",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#ex1",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#ex1",
+    "title": "01. 자연어 전처리",
+    "section": "",
+    "text": "1 맞춤법과 띄어쓰기 교정\n\nex 1. Oh, Hi helo. Nice to meetyou.\n\nstep 1. 띄어쓰기 수정 : Oh, Hi hello. Nice to meet you.\nstep 2. 문장의 의미를 표현하는데 크게 기여하지 않는 단어 삭제\n\nOh, Hi hello. Nice to meet you.\n\nstep 3. 중복된 의미 단어 제거\n\nOh, Hi hello. Nice to meet you.\n\n\n\n2 컴퓨터가 자연어를 잘 이해할 수 있도록 각 단어에 숫자 인덱스를 부여\n\n{‘Hi’:0, ‘Nice’:1, ‘to’:2, ‘meet’:3, ‘you’:4}",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#nltk",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#nltk",
+    "title": "01. 자연어 전처리",
+    "section": "NLTK",
+    "text": "NLTK\n1 터미널에서 아래와 같은 커맨드르 실행\nconda install nltk\n2 패키지에서 함수 로드\n\nfrom nltk.tokenize import word_tokenize\n\n3 nltk에서 제공하는 토큰화 모듈인 punkt를 다운로드\n\npunkt : 마침표나 약어(Mr., Dr.)와 같은 특별한 언어적 특성을 고려하여 토큰화를 할 수 있게 해주는 모듈\n\n\nimport nltk\nnltk.download(\"punkt\")\n\n[nltk_data] Downloading package punkt to\n[nltk_data]     C:\\Users\\rkdcj\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Unzipping tokenizers\\punkt.zip.\n\n\nTrue",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#단어-토큰화-수행",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#단어-토큰화-수행",
+    "title": "01. 자연어 전처리",
+    "section": "단어 토큰화 수행",
+    "text": "단어 토큰화 수행\n\ntext = \"Although it's not a happily-ever-after ending, it is very realistic.\"\n\n# 단어 토큰화\ntokenized_words = word_tokenize(text)\n\nprint(tokenized_words)\n\n['Although', 'it', \"'s\", 'not', 'a', 'happily-ever-after', 'ending', ',', 'it', 'is', 'very', 'realistic', '.']\n\n\n- 기본적으로 띄어쓰기, 어퍼스트로피(’), 콤마(,)를 기준으로 토큰화를 수행하고 있으며 하이픈(-)은 토큰화의 기준으로 사용하지 않음\n\n어떠한 기준을 가지고 단어 토큰화를 하는게 더 좋다고는할 수 없다. 분석에 활용하려는 코퍼스의 특성에 따라 적절한 토큰화 기준을 사용하면 된다.\nnltk 공식문서",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#등장빈도가-적은-단어",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#등장빈도가-적은-단어",
+    "title": "01. 자연어 전처리",
+    "section": "등장빈도가 적은 단어",
+    "text": "등장빈도가 적은 단어\n\nfrom text import TEXT\n\n\ncorpus = TEXT\n\nprint(corpus)\n\nAfter reading the comments for this movie, I am not sure whether I should be angry, sad or sickened. Seeing comments typical of people who a)know absolutely nothing about the military or b)who base everything they think they know on movies like this or on CNN reports about Abu-Gharib makes me wonder about the state of intellectual stimulation in the world. At the time I type this the number of people in the US military: 1.4 million on Active Duty with another almost 900,000 in the Guard and Reserves for a total of roughly 2.3 million. The number of people indicted for abuses at at Abu-Gharib: Currently less than 20 That makes the total of people indicted .00083% of the total military. Even if you indict every single military member that ever stepped in to Abu-Gharib, you would not come close to making that a whole number.  The flaws in this movie would take YEARS to cover. I understand that it's supposed to be sarcastic, but in reality, the writer and director are trying to make commentary about the state of the military without an enemy to fight. In reality, the US military has been at its busiest when there are not conflicts going on. The military is the first called for disaster relief and humanitarian aid missions. When the tsunami hit Indonesia, devestating the region, the US military was the first on the scene. When the chaos of the situation overwhelmed the local governments, it was military leadership who looked at their people, the same people this movie mocks, and said make it happen. Within hours, food aid was reaching isolated villages. Within days, airfields were built, cargo aircraft started landing and a food distribution system was up and running. Hours and days, not weeks and months. Yes there are unscrupulous people in the US military. But then, there are in every walk of life, every occupation. But to see people on this website decide that 2.3 million men and women are all criminal, with nothing on their minds but thoughts of destruction or mayhem is an absolute disservice to the things that they do every day. One person on this website even went so far as to say that military members are in it for personal gain. Wow! Entry level personnel make just under $8.00 an hour assuming a 40 hour work week. Of course, many work much more than 40 hours a week and those in harm's way typically put in 16-18 hour days for months on end. That makes the pay well under minimum wage. So much for personal gain. I beg you, please make yourself familiar with the world around you. Go to a nearby base, get a visitor pass and meet some of the men and women you are so quick to disparage. You would be surprised. The military no longer accepts people in lieu of prison time. They require a minimum of a GED and prefer a high school diploma. The middle ranks are expected to get a minimum of undergraduate degrees and the upper ranks are encouraged to get advanced degrees.\n\n\n\n\n빈도가 2이하인 단어들만 찾기\n\nfrom collections import Counter\n\n1 토큰화\n\nt_words = word_tokenize(corpus)\n#t_words\n\n2 단어 빈도 수 카운트\n\nvocab = Counter(t_words)\n#vocab\n\n3 단어 빈도수가 2이하인 단어 리스트 추출\n\nuncommon_words = [key for key, value in vocab.items() if value &lt;=2]\n#uncommon_words\n\n4 빈도수가 2이하인 단어들만 제거한 결과를 따로 저장\n\nc_words = [word for word in t_words if word not in uncommon_words]\n#c_words",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#길이가-짧은-단어",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#길이가-짧은-단어",
+    "title": "01. 자연어 전처리",
+    "section": "길이가 짧은 단어",
+    "text": "길이가 짧은 단어\n영어 단어의 경우, 알파벳 하나 또는 두개로 구성된 단어는 코퍼스의 의미를 나타내는 데 중요하지 않을 수 있다.\n그래서 이러한 단어들은 제거하는 것이 좋음\n1 길이가 2이하인 단어 제거\n\nc_f_len = []\n\nfor word in c_words :\n    if len(word) &gt; 2:\n        c_f_len.append(word)\n\n2 정제 전과 후의 결과 비교\n\nprint('정제 전:', c_words[:10])\nprint('정제 후:', c_f_len[:10])\n\n정제 전: ['the', 'for', 'this', 'movie', ',', 'I', 'not', 'I', 'be', ',']\n정제 후: ['the', 'for', 'this', 'movie', 'not', 'people', 'who', 'about', 'the', 'military']",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#함수-생성",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#함수-생성",
+    "title": "01. 자연어 전처리",
+    "section": "함수 생성",
+    "text": "함수 생성\n- 위에서 만든 정제 기준을 언제든 활용할 수 있도록 함수로 작성\n\nfrom collections import Counter\n\n# 등장 빈도 기준 정제 함수\ndef clean_by_freq(tokenized_words, cut_off_count):\n    # 파이썬의 Counter 모듈을 통해 단어의 빈도수 카운트하여 단어 집합 생성\n    vocab = Counter(tokenized_words)\n    \n    # 빈도수가 cut_off_count 이하인 단어 set 추출\n    uncommon_words = {key for key, value in vocab.items() if value &lt;= cut_off_count}\n    \n    # uncommon_words에 포함되지 않는 단어 리스트 생성\n    cleaned_words = [word for word in tokenized_words if word not in uncommon_words]\n\n    return cleaned_words\n\n# 단어 길이 기준 정제 함수\ndef clean_by_len(tokenized_words, cut_off_length):\n    # 길이가 cut_off_length 이하인 단어 제거\n    cleaned_by_freq_len = []\n    \n    for word in tokenized_words:\n        if len(word) &gt; cut_off_length:\n            cleaned_by_freq_len.append(word)\n\n    return cleaned_by_freq_len",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step1.-불용어-세트-준비",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step1.-불용어-세트-준비",
+    "title": "01. 자연어 전처리",
+    "section": "step1. 불용어 세트 준비",
+    "text": "step1. 불용어 세트 준비\n- nltk에서는 기본 불용어 목록 179개를 제공한다.\n\n아래와 같은 방법으로 불용어 목록에 접근할 수 있다.\n\n1 불용어 목록 로드\n\nfrom nltk.corpus import stopwords\n\nnltk.download(\"stopwords\")\n\n[nltk_data] Downloading package stopwords to\n[nltk_data]     C:\\Users\\rkdcj\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Unzipping corpora\\stopwords.zip.\n\n\nTrue\n\n\n2 불용어들을 세트 자료형으로 저장\n\nstopwords_set = set(stopwords.words(\"english\"))\n\nprint(f\"불용어 개수: {len(stopwords_set)}\")\n\n불용어 개수: 179\n\n\n3 불용어 추가 및 삭제\n\nstopwords_set.add(\"hello\")\nstopwords_set.remove(\"the\")\nstopwords_set.remove(\"me\")\n\nprint(f\"불용어 개수: {len(stopwords_set)}\")\n\n불용어 개수: 178",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step2.-불용어-제거하기",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step2.-불용어-제거하기",
+    "title": "01. 자연어 전처리",
+    "section": "step2. 불용어 제거하기",
+    "text": "step2. 불용어 제거하기\n\nstop_words_set = set(stopwords.words('english'))\n\n# 불용어 제거\ncleaned_words = []\n\nfor word in c_f_len:\n    if word not in stop_words_set:\n        cleaned_words.append(word)\n\n\n# 불용어 제거 결과 확인\nprint('불용어 제거 전:', len(c_f_len))\nprint('불용어 제거 후:', len(cleaned_words))\n\n불용어 제거 전: 169\n불용어 제거 후: 67",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step3.-불용어-처리-함수-만들기",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step3.-불용어-처리-함수-만들기",
+    "title": "01. 자연어 전처리",
+    "section": "step3. 불용어 처리 함수 만들기",
+    "text": "step3. 불용어 처리 함수 만들기\n\n# 불용어 제거 함수\ndef clean_by_stopwords(tokenized_words, stop_words_set):\n    cleaned_words = []\n    \n    for word in tokenized_words:\n        if word not in stop_words_set:\n            cleaned_words.append(word)\n            \n    return cleaned_words",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#방법-1.-대소문자-통합",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#방법-1.-대소문자-통합",
+    "title": "01. 자연어 전처리",
+    "section": "방법 1. 대소문자 통합",
+    "text": "방법 1. 대소문자 통합\n\ntext = \"What can I do for you? Do your homework now.\"\n\n# 소문자로 변환\nprint(text.lower())\n\nwhat can i do for you? do your homework now.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#방법-2.-규칙-기반-정규화",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#방법-2.-규칙-기반-정규화",
+    "title": "01. 자연어 전처리",
+    "section": "방법 2. 규칙 기반 정규화",
+    "text": "방법 2. 규칙 기반 정규화\n1 동의어 사전 작성\n\nsynonym_dict = {'US':'USA', 'U.S':'USA', 'Ummm':'Umm', 'Ummmm':'Umm' }\n\n2 단어 토큰화\n\ntext = \"She became a US citizen. Ummmm, I think, maybe and or.\"\nnormalized_words = []\n\ntokenized_words = nltk.word_tokenize(text)\n\n3 동의어 사전에 있는 단어라면, value에 해당하는 값으로 변환\n\nfor word in tokenized_words : \n    if word in synonym_dict.keys() :\n        word = synonym_dict[word]\n    \n    normalized_words.append(word)\n\n4 결과 확인\n\nprint(normalized_words)\n\n['She', 'became', 'a', 'USA', 'citizen', '.', 'Umm', ',', 'I', 'think', ',', 'maybe', 'and', 'or', '.']",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#nltk-어간추출",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#nltk-어간추출",
+    "title": "01. 자연어 전처리",
+    "section": "NLTK 어간추출",
+    "text": "NLTK 어간추출\n1 함수 로드\n\nfrom nltk.stem import PorterStemmer\n\nporter_stemmer = PorterStemmer()\nporter_stemmed_words = []\n\n2 단어 토큰화\n\ntext = \"You are so lovely. I am loving you now.\"\ntokenized_words = nltk.word_tokenize(text)\n\n3 어간 추출\n\nfor word in tokenized_words:\n    stem = porter_stemmer.stem(word)\n    porter_stemmed_words.append(stem)\n\n\nporter_stemmed_words\n\n['you', 'are', 'so', 'love', '.', 'i', 'am', 'love', 'you', 'now', '.']",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#extra.-랭커스터-스테머-알고리즘",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#extra.-랭커스터-스테머-알고리즘",
+    "title": "01. 자연어 전처리",
+    "section": "extra. 랭커스터 스테머 알고리즘",
+    "text": "extra. 랭커스터 스테머 알고리즘\n\nfrom nltk.stem import LancasterStemmer\n\nlancaster_stemmer = LancasterStemmer()\ntext = \"You are so lovely. I am loving you now.\"\nlancaster_stemmed_words = []\n\n# 랭커스터 스테머의 어간 추출\nfor word in tokenized_words:\n    stem = lancaster_stemmer.stem(word)\n    lancaster_stemmed_words.append(stem)\n\n\nlancaster_stemmed_words\n\n['you', 'ar', 'so', 'lov', '.', 'i', 'am', 'lov', 'you', 'now', '.']\n\n\n- 차이점 : 랭커스터 스테머 알고리즘은 뒤에 e와 같은 묵음 처리 부분을 어간에 포함시키지 않는다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step1.-데이터-로드",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step1.-데이터-로드",
+    "title": "01. 자연어 전처리",
+    "section": "step1. 데이터 로드",
+    "text": "step1. 데이터 로드\n\nimport warnings\n\nwarnings.filterwarnings(action = \"ignore\")\n\n\nimport pandas as pd\n\ndf = pd.read_csv('imdb.tsv', delimiter='\\\\t')\ndf\n\n\n\n\n\n\n\n\n\nreview\n\n\n\n\n0\n\"Watching Time Chasers, it obvious that it was...\n\n\n1\nI saw this film about 20 years ago and remembe...\n\n\n2\nMinor Spoilers In New York, Joan Barnard (Elvi...\n\n\n3\nI went to see this film with a great deal of e...\n\n\n4\n\"Yes, I agree with everyone on this site this ...\n\n\n5\n\"Jennifer Ehle was sparkling in \\\"\"Pride and P...\n\n\n6\nAmy Poehler is a terrific comedian on Saturday...\n\n\n7\n\"A plane carrying employees of a large biotech...\n\n\n8\nA well made, gritty science fiction movie, it ...\n\n\n9\n\"Incredibly dumb and utterly predictable story...",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step2.-대소문자-통합",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step2.-대소문자-통합",
+    "title": "01. 자연어 전처리",
+    "section": "step2. 대소문자 통합",
+    "text": "step2. 대소문자 통합\n\ndf['review'] = df['review'].str.lower()",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step3.-단어-토큰화",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step3.-단어-토큰화",
+    "title": "01. 자연어 전처리",
+    "section": "step3. 단어 토큰화",
+    "text": "step3. 단어 토큰화\n\ndf['word_tokens'] = df['review'].apply(word_tokenize)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step4.-데이터-정제",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step4.-데이터-정제",
+    "title": "01. 자연어 전처리",
+    "section": "step4. 데이터 정제",
+    "text": "step4. 데이터 정제\n\n%load_ext autoreload\n%autoreload 2\n\nfrom preprocess import clean_by_freq\nfrom preprocess import clean_by_len\nfrom preprocess import clean_by_stopwords\n\n- 이건 뭔데?\n%load_ext autoreload\n%autoreload 2\n\nipynb 파일에서 직접 만든 파이썬 모듈(.py)을 불러와 사용할 때, 파이썬 모듈 파일이 중간에 수정되면 해당 내용이 자동으로 반영되지 않는 문제가 발생\n그래서, preprocess.py 파일을 수정할 때마다 커널을 Restart해야함\n이러한 번거러움을 줄이기 위해 위의 코드를 실행한다.\n\n\nstopwords_set = set(stopwords.words('english'))\n\ndf['cleaned_tokens'] = df['word_tokens'].apply(lambda x: clean_by_freq(x, 1))\ndf['cleaned_tokens'] = df['cleaned_tokens'].apply(lambda x: clean_by_len(x, 2))\ndf['cleaned_tokens'] = df['cleaned_tokens'].apply(lambda x: clean_by_stopwords(x, stopwords_set))",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step5.-어간-추출",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step5.-어간-추출",
+    "title": "01. 자연어 전처리",
+    "section": "step5. 어간 추출",
+    "text": "step5. 어간 추출\n\nfrom preprocess import stemming_by_porter\n\ndf['stemmed_tokens'] = df['cleaned_tokens'].apply(stemming_by_porter)",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step6.-결과-확인",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html#step6.-결과-확인",
+    "title": "01. 자연어 전처리",
+    "section": "step6. 결과 확인",
+    "text": "step6. 결과 확인\n\ndf.head()\n\n\n\n\n\n\n\n\n\nreview\nword_tokens\ncleaned_tokens\nstemmed_tokens\n\n\n\n\n0\n\"watching time chasers, it obvious that it was...\n[``, watching, time, chasers, ,, it, obvious, ...\n[one, film, said, really, bad, movie, like, sa...\n[one, film, said, realli, bad, movi, like, sai...\n\n\n1\ni saw this film about 20 years ago and remembe...\n[i, saw, this, film, about, 20, years, ago, an...\n[film, film]\n[film, film]\n\n\n2\nminor spoilers in new york, joan barnard (elvi...\n[minor, spoilers, in, new, york, ,, joan, barn...\n[new, york, joan, barnard, elvire, audrey, bar...\n[new, york, joan, barnard, elvir, audrey, barn...\n\n\n3\ni went to see this film with a great deal of e...\n[i, went, to, see, this, film, with, a, great,...\n[went, film, film, went, jump, send, n't, jump...\n[went, film, film, went, jump, send, n't, jump...\n\n\n4\n\"yes, i agree with everyone on this site this ...\n[``, yes, ,, i, agree, with, everyone, on, thi...\n[site, movie, bad, even, movie, made, movie, s...\n[site, movi, bad, even, movi, made, movi, spec...",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "01. 자연어 전처리"
+    ]
+  },
+  {
     "objectID": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html",
     "href": "posts/CS/00. 데이터 분석/02. 데이터 분석과 시각화/04. 인사이트 도출.html",
     "title": "04. 인사이트 도출",
@@ -588,7 +868,7 @@
     "href": "index.html",
     "title": "끄적끄적",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nApr 30, 2024\n\n\n04. 인사이트 도출\n\n\nGC \n\n\n\n\nApr 23, 2024\n\n\n03. EDA\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n00. 시각화와 그래프\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n01. Seaborn 시각화\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n02. 통계 기본 상식식\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. CA (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMay 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nMay 14, 2024\n\n\n01. 자연어 전처리\n\n\nGC \n\n\n\n\nApr 30, 2024\n\n\n04. 인사이트 도출\n\n\nGC \n\n\n\n\nApr 23, 2024\n\n\n03. EDA\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n00. 시각화와 그래프\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n01. Seaborn 시각화\n\n\nGC \n\n\n\n\nApr 22, 2024\n\n\n02. 통계 기본 상식식\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n01. DataFrame 인덱싱\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n02. 데이터 변형하기\n\n\nGC \n\n\n\n\nApr 19, 2024\n\n\n03. 큰 데이터 다루기\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n00. Intro\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n01. numpy\n\n\nGC \n\n\n\n\nApr 14, 2024\n\n\n02. pandas\n\n\ngc \n\n\n\n\nApr 14, 2024\n\n\nextra 00. R vs Python\n\n\ngc \n\n\n\n\nMar 18, 2024\n\n\n00. CA (1)\n\n\nGC \n\n\n\n\nMar 17, 2024\n\n\n01. 제안전략수립\n\n\ngc \n\n\n\n\nFeb 25, 2023\n\n\n00. B2B 세일즈\n\n\nGC \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/b2b/2024-03-17-01. 제안전략수립.html",
@@ -1144,6 +1424,118 @@
       "00. 데이터 분석",
       "02. 데이터 분석과 시각화",
       "03. EDA"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html",
+    "title": "00. Intro",
+    "section": "",
+    "text": "- 언어의 종류\n\n인공어 : 정보 전달을 위해 인위적으로 만들어진 언어\n\n\n프로그래밍 언어(C, Python, R 등등…)\n\n\n자연어 : 사람들의 일상 생활에서 자연 발생된 언어\n\n\n영어, 중국어, 한국어 등등…\n\n- 자연어 처리 (NLP, Natural Language Processing)\n\n자연어 데이터를 컴퓨터가 처리할 수 있는 형태로 가공하여 의미 있는 분석을 하는 모든 과정\n\n\n\n- NLU, Natural Language Understanding\n\n감성분석, 스팸메일 분류 등\n\n- NLG, Natural Language Generation\n\n신문기사 작성, 챗 GPT 등\n\n- 위 둘은, 자연어 처리의 하위 분야들로, 이름 그대로 자연어의 의미를 잏하고, 새로운 자연어를 생성하기 위한 기술들이 포함된다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#종류",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#종류",
+    "title": "00. Intro",
+    "section": "",
+    "text": "- NLU, Natural Language Understanding\n\n감성분석, 스팸메일 분류 등\n\n- NLG, Natural Language Generation\n\n신문기사 작성, 챗 GPT 등\n\n- 위 둘은, 자연어 처리의 하위 분야들로, 이름 그대로 자연어의 의미를 잏하고, 새로운 자연어를 생성하기 위한 기술들이 포함된다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#규칙-기반-접근법",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#규칙-기반-접근법",
+    "title": "00. Intro",
+    "section": "규칙 기반 접근법",
+    "text": "규칙 기반 접근법\n- Rule Based Approach\n- 100일, 100미터, 100원 이렇듯이 앞에 숫자가 오고, 뒤에 문자가 온다는 규칙성이 있음\n\n해당 규칙성을 토대로 숫자 뒤에 나오는 단어에 따라 부여된 의미들을 파악할 수 있다.\n또한, 규칙 기반 접근법은 일정한 패턴을 가지는 자연어에 대해서 안정적으로 좋은 성능을 낼 수 있기 때문에 실제 상용 서비스에서도 많이 활용되고 있다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#통계-기반-접근법",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#통계-기반-접근법",
+    "title": "00. Intro",
+    "section": "통계 기반 접근법",
+    "text": "통계 기반 접근법\n- Statistiacl Based Approach\n그러나 자연어에는 일정한 규칙이 없는 경우도 많다…. 그럴 때, 통계 기반 접근법을 사용!\n- 출현 빈도 술를 기반으로 문서에서 중요한 내용 파악 등\n- 또한, 머신러닝, 딥러닝을 활용한 자연어 처리 기법도 통계 기반 접근법이다.\n- 일관된 패턴을 파악하기 어려운 자연어에섣고 유의미한 정보를 찾을 수 이기 때문에 통계 기반 접근법은 많은 관심을 받고 있음",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-1.-중의성",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-1.-중의성",
+    "title": "00. Intro",
+    "section": "특성 1. 중의성",
+    "text": "특성 1. 중의성\n문장 1. She had the lead in a new film\n문장 2. She found lead.\n위 문장에서 lead는 이끈다, 납이라는 두가지 의미를 가짐\n이런 중의적인 단어, 문장을 파악하는 것은 사람에게도 쉽지 않다. 마찬가지로 컴퓨터도 중의적인 문장에 굉장히 취약함…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-2.-의미-중복성",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-2.-의미-중복성",
+    "title": "00. Intro",
+    "section": "특성 2. 의미 중복성",
+    "text": "특성 2. 의미 중복성\n문장 1. 비행기가 1시에 떠날 예정입니다.\n문장 2. 비행기 출발 시간은 1시입니다.\n이렇게 동일한 의미를 다양한 방식으로 표현하는걸 패러프레이징(Paraphrasing)이라고 하며 컴퓨터가 이해하하는 데 굉장히 어려움…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-3.-관계성",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-3.-관계성",
+    "title": "00. Intro",
+    "section": "특성 3. 관계성",
+    "text": "특성 3. 관계성\n파랑과 빨강 중 분홍과 더 유사한 단어? \\(\\to\\) 빨강\n단어 간에는 의미를 기준으로 관계가 형성됨. 그러나 컴퓨터는 이를 이해하기 어려움…",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
+    ]
+  },
+  {
+    "objectID": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-4.-한국어",
+    "href": "posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html#특성-4.-한국어",
+    "title": "00. Intro",
+    "section": "특성 4. 한국어",
+    "text": "특성 4. 한국어\n일반적으로 한국어는 다른 언어보다 자연어 처리가 더 어렵다….\n\n(1) 접사와 조사 처리\n한국어는 교착어, 즉 어근에 붙는 접사에 따라 의미가 변하는 언어이다.\n보통 자연어 러치를 하려면 어떠한 단어의 어근을 찾아서 사용하는 게 일반적이다. 그러나 한국어는 교착어이기 때문에 조사의 종류에 따라 의미 차이에 큰 변화가 생김\n\n\n(2) 유연한 어순\n\n나는 공부하러 간다.\n공부하러 나는 간다.\n나는 간다. 공부하러\n\n위 같은 유연한 어순 때문에 컴퓨터가 다음에 출현할 단어를 예측하는 것이 어렵다.\n\n\n(3) 잘 지켜지지 않는 띄어쓰기\n\n이건 뭐 한국인이라면 다들 알법한 문제이다….",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "00. 데이터 분석",
+      "03. 자연어 처리",
+      "00. Intro"
     ]
   }
 ]
