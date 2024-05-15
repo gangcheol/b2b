@@ -1,5 +1,15 @@
 from collections import Counter
 from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+from nltk.tokenize import sent_tokenize
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet as wn
+from nltk.corpus import sentiwordnet as swn
+
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 # 등장 빈도 기준 정제 함수
 def clean_by_freq(tokenized_words, cut_off_count):
@@ -44,3 +54,68 @@ def stemming_by_porter(tokenized_words):
         stem = porter_stemmer.stem(word)
         porter_stemmed_words.append(stem)
     return porter_stemmed_words
+
+# 품사 태깅 함수
+def pos_tagger(tokenized_sents):
+    pos_tagged_words = []
+
+    for sentence in tokenized_sents:
+        # 단어 토큰화
+        tokenized_words = word_tokenize(sentence)
+    
+        # 품사 태깅
+        pos_tagged = pos_tag(tokenized_words)
+        pos_tagged_words.extend(pos_tagged)
+    
+    return pos_tagged_words
+
+
+def penn_to_wn(tag):
+    if tag.startswith('J'):
+        return wn.ADJ
+    elif tag.startswith('N'):
+        return wn.NOUN
+    elif tag.startswith('R'):
+        return wn.ADV
+    elif tag.startswith('V'):
+        return wn.VERB
+
+def words_lemmatizer(pos_tagged_words):
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_words = []
+
+    for word, tag in pos_tagged_words:
+        wn_tag = penn_to_wn(tag)
+
+        if wn_tag in (wn.NOUN, wn.ADJ, wn.ADV, wn.VERB):
+            lemmatized_words.append(lemmatizer.lemmatize(word, wn_tag))
+        else:
+            lemmatized_words.append(word)
+
+    return lemmatized_words
+
+
+def swn_polarity(pos_tagged_words):
+    senti_score = 0
+
+    for word, tag in pos_tagged_words:
+        # PennTreeBank 기준 품사를 WordNet 기준 품사로 변경
+        wn_tag = penn_to_wn(tag)
+        if wn_tag not in (wn.NOUN, wn.ADJ, wn.ADV, wn.VERB):
+            continue
+    
+        # Synset 확인, 어휘 사전에 없을 경우에는 스킵
+        if not wn.synsets(word, wn_tag):
+            continue
+        else:
+            synsets = wn.synsets(word, wn_tag)
+    
+        # SentiSynset 확인
+        synset = synsets[0]
+        swn_synset = swn.senti_synset(synset.name())
+
+        # 감성 지수 계산
+        word_senti_score = (swn_synset.pos_score() - swn_synset.neg_score())
+        senti_score += word_senti_score
+
+    return senti_score

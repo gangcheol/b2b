@@ -9,7 +9,7 @@
 <meta name="author" content="GC">
 <meta name="dcterms.date" content="2024-05-14">
 
-<title>끄적끄적 - 01. 자연어 전처리</title>
+<title>끄적끄적 - 01. 자연어 전처리 (1)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
+<link href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/02. 자연어 전처리 (2).html" rel="next">
 <link href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html" rel="prev">
 <script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
@@ -173,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html">01. 자연어 전처리</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리 (1).html">01. 자연어 전처리 (1)</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -388,8 +389,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">01. 자연어 전처리</span></a>
+  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리 (1).html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">01. 자연어 전처리 (1)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/02. 자연어 전처리 (2).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. 자연어 전처리 (2)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/03. 감성 분석.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. 감성 분석</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/04. 한국어 자연어 처리.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. 한국어 자연어 처리</span></a>
   </div>
 </li>
       </ul>
@@ -460,9 +479,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리.html">01. 자연어 전처리</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. 데이터 분석</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/00. Intro.html">03. 자연어 처리</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/01. 자연어 전처리 (1).html">01. 자연어 전처리 (1)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">01. 자연어 전처리</h1>
+<h1 class="title">01. 자연어 전처리 (1)</h1>
 </div>
 
 
@@ -502,11 +521,11 @@ window.Quarto = {
 <li><p>step 1. 띄어쓰기 수정 : Oh, Hi hello. Nice to <code>meet you</code>.</p></li>
 <li><p>step 2. 문장의 의미를 표현하는데 크게 기여하지 않는 단어 삭제</p>
 <ul>
-<li><sub>Oh</sub>, Hi hello. Nice to <code>meet you</code>.</li>
+<li><del>Oh</del>, Hi hello. Nice to <code>meet you</code>.</li>
 </ul></li>
 <li><p>step 3. 중복된 의미 단어 제거</p>
 <ul>
-<li><sub>Oh</sub>, Hi <sub>hello</sub>. Nice to <code>meet you</code>.</li>
+<li><del>Oh</del>, Hi <del>hello</del>. Nice to <code>meet you</code>.</li>
 </ul></li>
 </ul>
 </blockquote>
@@ -543,29 +562,29 @@ window.Quarto = {
 <p><code>1</code> 터미널에서 아래와 같은 커맨드르 실행</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>conda install nltk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>2</code> 패키지에서 함수 로드</p>
-<div id="c054a4a4-01ba-4c8a-bd8c-a2d90864d202" class="cell" data-execution_count="3">
+<div id="c054a4a4-01ba-4c8a-bd8c-a2d90864d202" class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>3</code> <code>nltk</code>에서 제공하는 토큰화 모듈인 <code>punkt</code>를 다운로드</p>
 <ul>
 <li><code>punkt</code> : 마침표나 약어(Mr., Dr.)와 같은 특별한 언어적 특성을 고려하여 토큰화를 할 수 있게 해주는 모듈</li>
 </ul>
-<div id="50f75bb0-80a3-41a5-a310-bbe08a408160" class="cell" data-execution_count="4">
+<div id="50f75bb0-80a3-41a5-a310-bbe08a408160" class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> nltk</span>
 <span id="cb3-2"><a href="#cb3-2"></a>nltk.download(<span class="st">"punkt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[nltk_data] Downloading package punkt to
 [nltk_data]     C:\Users\rkdcj\AppData\Roaming\nltk_data...
-[nltk_data]   Unzipping tokenizers\punkt.zip.</code></pre>
+[nltk_data]   Package punkt is already up-to-date!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="89">
 <pre><code>True</code></pre>
 </div>
 </div>
 </section>
 <section id="단어-토큰화-수행" class="level2">
 <h2 class="anchored" data-anchor-id="단어-토큰화-수행">단어 토큰화 수행</h2>
-<div id="0acb9ec7-0de3-4aeb-a79e-fd52cfbadb1f" class="cell" data-execution_count="6">
+<div id="0acb9ec7-0de3-4aeb-a79e-fd52cfbadb1f" class="cell" data-execution_count="90">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>text <span class="op">=</span> <span class="st">"Although it's not a happily-ever-after ending, it is very realistic."</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="co"># 단어 토큰화</span></span>
@@ -589,10 +608,10 @@ window.Quarto = {
 <p><code>-</code> 분석 목적에 적합하지 않은 단어들을 코퍼스에서 제거하는 과정</p>
 <section id="등장빈도가-적은-단어" class="level2">
 <h2 class="anchored" data-anchor-id="등장빈도가-적은-단어">등장빈도가 적은 단어</h2>
-<div id="ec1d5dca-87e8-4189-8a18-393ad645752b" class="cell" data-execution_count="7">
+<div id="ec1d5dca-87e8-4189-8a18-393ad645752b" class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> text <span class="im">import</span> TEXT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="7accb232-9922-4cb7-ba89-dc3955465352" class="cell" data-execution_count="8">
+<div id="7accb232-9922-4cb7-ba89-dc3955465352" class="cell" data-execution_count="92">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>corpus <span class="op">=</span> TEXT</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(corpus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,26 +622,26 @@ window.Quarto = {
 </div>
 <section id="빈도가-2이하인-단어들만-찾기" class="level3">
 <h3 class="anchored" data-anchor-id="빈도가-2이하인-단어들만-찾기">빈도가 2이하인 단어들만 찾기</h3>
-<div id="f6b56029-5058-4f48-b32f-79cd3229bfc2" class="cell" data-execution_count="9">
+<div id="f6b56029-5058-4f48-b32f-79cd3229bfc2" class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>1</code> 토큰화</p>
-<div id="69bd24b3-c3d7-4a07-b6a5-9af1e7080a2f" class="cell" data-execution_count="13">
+<div id="69bd24b3-c3d7-4a07-b6a5-9af1e7080a2f" class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>t_words <span class="op">=</span> word_tokenize(corpus)</span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="co">#t_words</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>2</code> 단어 빈도 수 카운트</p>
-<div id="7f7c3bb6-6d03-42aa-9081-f633b0a34609" class="cell" data-execution_count="16">
+<div id="7f7c3bb6-6d03-42aa-9081-f633b0a34609" class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>vocab <span class="op">=</span> Counter(t_words)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">#vocab</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>3</code> 단어 빈도수가 2이하인 단어 리스트 추출</p>
-<div id="e9ab4b12-7536-4346-9c91-ee3ae5b42352" class="cell" data-execution_count="19">
+<div id="e9ab4b12-7536-4346-9c91-ee3ae5b42352" class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>uncommon_words <span class="op">=</span> [key <span class="cf">for</span> key, value <span class="kw">in</span> vocab.items() <span class="cf">if</span> value <span class="op">&lt;=</span><span class="dv">2</span>]</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co">#uncommon_words</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>4</code> 빈도수가 2이하인 단어들만 제거한 결과를 따로 저장</p>
-<div id="1976cf05-482c-4c6c-89dd-70801b017c30" class="cell" data-execution_count="23">
+<div id="1976cf05-482c-4c6c-89dd-70801b017c30" class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>c_words <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> t_words <span class="cf">if</span> word <span class="kw">not</span> <span class="kw">in</span> uncommon_words]</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">#c_words</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -634,7 +653,7 @@ window.Quarto = {
 <p>영어 단어의 경우, 알파벳 하나 또는 두개로 구성된 단어는 코퍼스의 의미를 나타내는 데 중요하지 않을 수 있다.</p>
 <p>그래서 이러한 단어들은 제거하는 것이 좋음</p>
 <p><code>1</code> 길이가 2이하인 단어 제거</p>
-<div id="b35ee599-1404-4559-b164-a41bdc18f15b" class="cell" data-execution_count="24">
+<div id="b35ee599-1404-4559-b164-a41bdc18f15b" class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>c_f_len <span class="op">=</span> []</span>
 <span id="cb16-2"><a href="#cb16-2"></a></span>
 <span id="cb16-3"><a href="#cb16-3"></a><span class="cf">for</span> word <span class="kw">in</span> c_words :</span>
@@ -642,7 +661,7 @@ window.Quarto = {
 <span id="cb16-5"><a href="#cb16-5"></a>        c_f_len.append(word)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>2</code> 정제 전과 후의 결과 비교</p>
-<div id="e1d80f56-6357-4ace-992a-47c91cfa5ba0" class="cell" data-execution_count="27">
+<div id="e1d80f56-6357-4ace-992a-47c91cfa5ba0" class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="bu">print</span>(<span class="st">'정제 전:'</span>, c_words[:<span class="dv">10</span>])</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="bu">print</span>(<span class="st">'정제 후:'</span>, c_f_len[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -654,7 +673,7 @@ window.Quarto = {
 <section id="함수-생성" class="level2">
 <h2 class="anchored" data-anchor-id="함수-생성">함수 생성</h2>
 <p><code>-</code> 위에서 만든 정제 기준을 언제든 활용할 수 있도록 함수로 작성</p>
-<div id="896629de-154e-4512-8245-5ccdfd94eceb" class="cell" data-execution_count="28">
+<div id="896629de-154e-4512-8245-5ccdfd94eceb" class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb19-2"><a href="#cb19-2"></a></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="co"># 등장 빈도 기준 정제 함수</span></span>
@@ -694,21 +713,21 @@ window.Quarto = {
 <li>아래와 같은 방법으로 불용어 목록에 접근할 수 있다.</li>
 </ul>
 <p><code>1</code> 불용어 목록 로드</p>
-<div id="2d2c5a47-65a3-4262-b227-9f5c1db8dd38" class="cell" data-execution_count="31">
+<div id="2d2c5a47-65a3-4262-b227-9f5c1db8dd38" class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
 <span id="cb20-2"><a href="#cb20-2"></a></span>
 <span id="cb20-3"><a href="#cb20-3"></a>nltk.download(<span class="st">"stopwords"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[nltk_data] Downloading package stopwords to
 [nltk_data]     C:\Users\rkdcj\AppData\Roaming\nltk_data...
-[nltk_data]   Unzipping corpora\stopwords.zip.</code></pre>
+[nltk_data]   Package stopwords is already up-to-date!</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="101">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p><code>2</code> 불용어들을 세트 자료형으로 저장</p>
-<div id="959789a5-ece0-4003-bc3e-eb72006db115" class="cell" data-execution_count="32">
+<div id="959789a5-ece0-4003-bc3e-eb72006db115" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>stopwords_set <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">"english"</span>))</span>
 <span id="cb23-2"><a href="#cb23-2"></a></span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="bu">print</span>(<span class="ss">f"불용어 개수: </span><span class="sc">{</span><span class="bu">len</span>(stopwords_set)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -717,7 +736,7 @@ window.Quarto = {
 </div>
 </div>
 <p><code>3</code> 불용어 추가 및 삭제</p>
-<div id="3d284d4e-66e3-4782-84a8-98bafdb3bf05" class="cell" data-execution_count="33">
+<div id="3d284d4e-66e3-4782-84a8-98bafdb3bf05" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>stopwords_set.add(<span class="st">"hello"</span>)</span>
 <span id="cb25-2"><a href="#cb25-2"></a>stopwords_set.remove(<span class="st">"the"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3"></a>stopwords_set.remove(<span class="st">"me"</span>)</span>
@@ -730,7 +749,7 @@ window.Quarto = {
 </section>
 <section id="step2.-불용어-제거하기" class="level2">
 <h2 class="anchored" data-anchor-id="step2.-불용어-제거하기">step2. 불용어 제거하기</h2>
-<div id="3fdcd8ba-9cda-45b1-a0a9-72271a9ea066" class="cell" data-execution_count="35">
+<div id="3fdcd8ba-9cda-45b1-a0a9-72271a9ea066" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>stop_words_set <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">'english'</span>))</span>
 <span id="cb27-2"><a href="#cb27-2"></a></span>
 <span id="cb27-3"><a href="#cb27-3"></a><span class="co"># 불용어 제거</span></span>
@@ -740,7 +759,7 @@ window.Quarto = {
 <span id="cb27-7"><a href="#cb27-7"></a>    <span class="cf">if</span> word <span class="kw">not</span> <span class="kw">in</span> stop_words_set:</span>
 <span id="cb27-8"><a href="#cb27-8"></a>        cleaned_words.append(word)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="807f23dc-2a4c-49be-88f4-28899b7d1101" class="cell" data-execution_count="38">
+<div id="807f23dc-2a4c-49be-88f4-28899b7d1101" class="cell" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># 불용어 제거 결과 확인</span></span>
 <span id="cb28-2"><a href="#cb28-2"></a><span class="bu">print</span>(<span class="st">'불용어 제거 전:'</span>, <span class="bu">len</span>(c_f_len))</span>
 <span id="cb28-3"><a href="#cb28-3"></a><span class="bu">print</span>(<span class="st">'불용어 제거 후:'</span>, <span class="bu">len</span>(cleaned_words))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -752,7 +771,7 @@ window.Quarto = {
 </section>
 <section id="step3.-불용어-처리-함수-만들기" class="level2">
 <h2 class="anchored" data-anchor-id="step3.-불용어-처리-함수-만들기">step3. 불용어 처리 함수 만들기</h2>
-<div id="009a8e3d-0f8a-4946-b691-0ba824aceb01" class="cell" data-execution_count="40">
+<div id="009a8e3d-0f8a-4946-b691-0ba824aceb01" class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># 불용어 제거 함수</span></span>
 <span id="cb30-2"><a href="#cb30-2"></a><span class="kw">def</span> clean_by_stopwords(tokenized_words, stop_words_set):</span>
 <span id="cb30-3"><a href="#cb30-3"></a>    cleaned_words <span class="op">=</span> []</span>
@@ -771,7 +790,7 @@ window.Quarto = {
 <p>의미가 같은 단어들을 하나로 통일하는 과정</p>
 <section id="방법-1.-대소문자-통합" class="level2">
 <h2 class="anchored" data-anchor-id="방법-1.-대소문자-통합">방법 1. 대소문자 통합</h2>
-<div id="4fb44694-5097-43cd-9860-9688526535f0" class="cell" data-execution_count="41">
+<div id="4fb44694-5097-43cd-9860-9688526535f0" class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>text <span class="op">=</span> <span class="st">"What can I do for you? Do your homework now."</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a></span>
 <span id="cb31-3"><a href="#cb31-3"></a><span class="co"># 소문자로 변환</span></span>
@@ -784,18 +803,18 @@ window.Quarto = {
 <section id="방법-2.-규칙-기반-정규화" class="level2">
 <h2 class="anchored" data-anchor-id="방법-2.-규칙-기반-정규화">방법 2. 규칙 기반 정규화</h2>
 <p><code>1</code> 동의어 사전 작성</p>
-<div id="de6a0883-c3c5-4398-acea-b785b716f412" class="cell" data-execution_count="42">
+<div id="de6a0883-c3c5-4398-acea-b785b716f412" class="cell" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>synonym_dict <span class="op">=</span> {<span class="st">'US'</span>:<span class="st">'USA'</span>, <span class="st">'U.S'</span>:<span class="st">'USA'</span>, <span class="st">'Ummm'</span>:<span class="st">'Umm'</span>, <span class="st">'Ummmm'</span>:<span class="st">'Umm'</span> }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>2</code> 단어 토큰화</p>
-<div id="1b69eb8c-e94d-4eb2-a467-49957069e5a1" class="cell" data-execution_count="43">
+<div id="1b69eb8c-e94d-4eb2-a467-49957069e5a1" class="cell" data-execution_count="109">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>text <span class="op">=</span> <span class="st">"She became a US citizen. Ummmm, I think, maybe and or."</span></span>
 <span id="cb34-2"><a href="#cb34-2"></a>normalized_words <span class="op">=</span> []</span>
 <span id="cb34-3"><a href="#cb34-3"></a></span>
 <span id="cb34-4"><a href="#cb34-4"></a>tokenized_words <span class="op">=</span> nltk.word_tokenize(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>3</code> 동의어 사전에 있는 단어라면, <code>value</code>에 해당하는 값으로 변환</p>
-<div id="5575630c-80fb-4d6a-913c-3b6efc7e1457" class="cell" data-execution_count="44">
+<div id="5575630c-80fb-4d6a-913c-3b6efc7e1457" class="cell" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="cf">for</span> word <span class="kw">in</span> tokenized_words : </span>
 <span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">if</span> word <span class="kw">in</span> synonym_dict.keys() :</span>
 <span id="cb35-3"><a href="#cb35-3"></a>        word <span class="op">=</span> synonym_dict[word]</span>
@@ -803,7 +822,7 @@ window.Quarto = {
 <span id="cb35-5"><a href="#cb35-5"></a>    normalized_words.append(word)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>4</code> 결과 확인</p>
-<div id="24540afc-2815-44c1-94bd-881f6ab74cd6" class="cell" data-execution_count="46">
+<div id="24540afc-2815-44c1-94bd-881f6ab74cd6" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="bu">print</span>(normalized_words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>['She', 'became', 'a', 'USA', 'citizen', '.', 'Umm', ',', 'I', 'think', ',', 'maybe', 'and', 'or', '.']</code></pre>
@@ -830,33 +849,33 @@ window.Quarto = {
 <section id="nltk-어간추출" class="level2">
 <h2 class="anchored" data-anchor-id="nltk-어간추출">NLTK 어간추출</h2>
 <p><code>1</code> 함수 로드</p>
-<div id="03589f3d-ef3c-4a0a-850f-c94a03f2d924" class="cell" data-execution_count="50">
+<div id="03589f3d-ef3c-4a0a-850f-c94a03f2d924" class="cell" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> PorterStemmer</span>
 <span id="cb38-2"><a href="#cb38-2"></a></span>
 <span id="cb38-3"><a href="#cb38-3"></a>porter_stemmer <span class="op">=</span> PorterStemmer()</span>
 <span id="cb38-4"><a href="#cb38-4"></a>porter_stemmed_words <span class="op">=</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>2</code> 단어 토큰화</p>
-<div id="f25dae3a-9de9-4458-ab8d-be9ddcf0ef9b" class="cell" data-execution_count="51">
+<div id="f25dae3a-9de9-4458-ab8d-be9ddcf0ef9b" class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>text <span class="op">=</span> <span class="st">"You are so lovely. I am loving you now."</span></span>
 <span id="cb39-2"><a href="#cb39-2"></a>tokenized_words <span class="op">=</span> nltk.word_tokenize(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>3</code> 어간 추출</p>
-<div id="32a631a6-f2d4-46ef-a5c4-03123ffba305" class="cell" data-execution_count="52">
+<div id="32a631a6-f2d4-46ef-a5c4-03123ffba305" class="cell" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="cf">for</span> word <span class="kw">in</span> tokenized_words:</span>
 <span id="cb40-2"><a href="#cb40-2"></a>    stem <span class="op">=</span> porter_stemmer.stem(word)</span>
 <span id="cb40-3"><a href="#cb40-3"></a>    porter_stemmed_words.append(stem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e785f22d-050b-4c57-b7cb-fd935fc2d7fd" class="cell" data-execution_count="53">
+<div id="e785f22d-050b-4c57-b7cb-fd935fc2d7fd" class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>porter_stemmed_words</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="115">
 <pre><code>['you', 'are', 'so', 'love', '.', 'i', 'am', 'love', 'you', 'now', '.']</code></pre>
 </div>
 </div>
 </section>
 <section id="extra.-랭커스터-스테머-알고리즘" class="level2">
 <h2 class="anchored" data-anchor-id="extra.-랭커스터-스테머-알고리즘">extra. 랭커스터 스테머 알고리즘</h2>
-<div id="0f9cd3a6-21e7-4ae5-a3f9-c28e6775dcbe" class="cell" data-execution_count="54">
+<div id="0f9cd3a6-21e7-4ae5-a3f9-c28e6775dcbe" class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> LancasterStemmer</span>
 <span id="cb43-2"><a href="#cb43-2"></a></span>
 <span id="cb43-3"><a href="#cb43-3"></a>lancaster_stemmer <span class="op">=</span> LancasterStemmer()</span>
@@ -868,9 +887,9 @@ window.Quarto = {
 <span id="cb43-9"><a href="#cb43-9"></a>    stem <span class="op">=</span> lancaster_stemmer.stem(word)</span>
 <span id="cb43-10"><a href="#cb43-10"></a>    lancaster_stemmed_words.append(stem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a45e977b-dde7-4915-892d-b3183d464dc1" class="cell" data-execution_count="55">
+<div id="a45e977b-dde7-4915-892d-b3183d464dc1" class="cell" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>lancaster_stemmed_words</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="117">
 <pre><code>['you', 'ar', 'so', 'lov', '.', 'i', 'am', 'lov', 'you', 'now', '.']</code></pre>
 </div>
 </div>
@@ -886,17 +905,17 @@ window.Quarto = {
 </ul>
 <section id="step1.-데이터-로드" class="level2">
 <h2 class="anchored" data-anchor-id="step1.-데이터-로드">step1. 데이터 로드</h2>
-<div id="546379a8-f225-4ad6-9b01-8eeb77db9978" class="cell" data-execution_count="59">
+<div id="546379a8-f225-4ad6-9b01-8eeb77db9978" class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="im">import</span> warnings</span>
 <span id="cb46-2"><a href="#cb46-2"></a></span>
 <span id="cb46-3"><a href="#cb46-3"></a>warnings.filterwarnings(action <span class="op">=</span> <span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5357c651-ff7d-4395-be8d-1aa6923b196b" class="cell" data-execution_count="61">
+<div id="5357c651-ff7d-4395-be8d-1aa6923b196b" class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb47-2"><a href="#cb47-2"></a></span>
 <span id="cb47-3"><a href="#cb47-3"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'imdb.tsv'</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\\</span><span class="st">t'</span>)</span>
 <span id="cb47-4"><a href="#cb47-4"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="119">
 <div>
 <div>
 
@@ -959,55 +978,59 @@ window.Quarto = {
 </section>
 <section id="step2.-대소문자-통합" class="level2">
 <h2 class="anchored" data-anchor-id="step2.-대소문자-통합">step2. 대소문자 통합</h2>
-<div id="b39dabc7-299f-4861-8098-170fa8799aca" class="cell" data-execution_count="62">
+<div id="b39dabc7-299f-4861-8098-170fa8799aca" class="cell" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df[<span class="st">'review'</span>] <span class="op">=</span> df[<span class="st">'review'</span>].<span class="bu">str</span>.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step3.-단어-토큰화" class="level2">
 <h2 class="anchored" data-anchor-id="step3.-단어-토큰화">step3. 단어 토큰화</h2>
-<div id="ed4192d2-ce59-45d7-92e4-33214583d8f9" class="cell" data-execution_count="63">
+<div id="ed4192d2-ce59-45d7-92e4-33214583d8f9" class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a>df[<span class="st">'word_tokens'</span>] <span class="op">=</span> df[<span class="st">'review'</span>].<span class="bu">apply</span>(word_tokenize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step4.-데이터-정제" class="level2">
 <h2 class="anchored" data-anchor-id="step4.-데이터-정제">step4. 데이터 정제</h2>
-<div id="2482faaa-dd63-49f5-a961-7e3d8b43e963" class="cell" data-execution_count="66">
+<div id="2482faaa-dd63-49f5-a961-7e3d8b43e963" class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb50-2"><a href="#cb50-2"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
 <span id="cb50-3"><a href="#cb50-3"></a></span>
 <span id="cb50-4"><a href="#cb50-4"></a><span class="im">from</span> preprocess <span class="im">import</span> clean_by_freq</span>
 <span id="cb50-5"><a href="#cb50-5"></a><span class="im">from</span> preprocess <span class="im">import</span> clean_by_len</span>
 <span id="cb50-6"><a href="#cb50-6"></a><span class="im">from</span> preprocess <span class="im">import</span> clean_by_stopwords</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload</code></pre>
+</div>
 </div>
 <p><code>-</code> 이건 뭔데?</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a><span class="op">%</span>load_ext autoreload</span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="op">%</span>load_ext autoreload</span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>ipynb</code> 파일에서 직접 만든 파이썬 모듈(<code>.py</code>)을 불러와 사용할 때, 파이썬 모듈 파일이 중간에 수정되면 해당 내용이 자동으로 반영되지 않는 문제가 발생</p></li>
 <li><p>그래서, <code>preprocess.py</code> 파일을 수정할 때마다 커널을 <code>Restart</code>해야함</p></li>
 <li><p>이러한 번거러움을 줄이기 위해 위의 코드를 실행한다.</p></li>
 </ul>
-<div id="aabf19f6-9169-445d-8240-7025100aa5d5" class="cell" data-execution_count="68">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>stopwords_set <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">'english'</span>))</span>
-<span id="cb52-2"><a href="#cb52-2"></a></span>
-<span id="cb52-3"><a href="#cb52-3"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'word_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_freq(x, <span class="dv">1</span>))</span>
-<span id="cb52-4"><a href="#cb52-4"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_len(x, <span class="dv">2</span>))</span>
-<span id="cb52-5"><a href="#cb52-5"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_stopwords(x, stopwords_set))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="aabf19f6-9169-445d-8240-7025100aa5d5" class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>stopwords_set <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">'english'</span>))</span>
+<span id="cb53-2"><a href="#cb53-2"></a></span>
+<span id="cb53-3"><a href="#cb53-3"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'word_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_freq(x, <span class="dv">1</span>))</span>
+<span id="cb53-4"><a href="#cb53-4"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_len(x, <span class="dv">2</span>))</span>
+<span id="cb53-5"><a href="#cb53-5"></a>df[<span class="st">'cleaned_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: clean_by_stopwords(x, stopwords_set))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step5.-어간-추출" class="level2">
 <h2 class="anchored" data-anchor-id="step5.-어간-추출">step5. 어간 추출</h2>
-<div id="8af13d67-d889-4f79-b09d-a73492ce4b0c" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a><span class="im">from</span> preprocess <span class="im">import</span> stemming_by_porter</span>
-<span id="cb53-2"><a href="#cb53-2"></a></span>
-<span id="cb53-3"><a href="#cb53-3"></a>df[<span class="st">'stemmed_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(stemming_by_porter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8af13d67-d889-4f79-b09d-a73492ce4b0c" class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="im">from</span> preprocess <span class="im">import</span> stemming_by_porter</span>
+<span id="cb54-2"><a href="#cb54-2"></a></span>
+<span id="cb54-3"><a href="#cb54-3"></a>df[<span class="st">'stemmed_tokens'</span>] <span class="op">=</span> df[<span class="st">'cleaned_tokens'</span>].<span class="bu">apply</span>(stemming_by_porter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step6.-결과-확인" class="level2">
 <h2 class="anchored" data-anchor-id="step6.-결과-확인">step6. 결과 확인</h2>
-<div id="f883bff6-3dde-4af2-8fb4-5c43c8c407d7" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
+<div id="f883bff6-3dde-4af2-8fb4-5c43c8c407d7" class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
 <div>
 <div>
 
@@ -1487,6 +1510,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../../../posts/CS/00. 데이터 분석/03. 자연어 처리/02. 자연어 전처리 (2).html" class="pagination-link" aria-label="02. 자연어 전처리 (2)">
+        <span class="nav-page-text">02. 자연어 전처리 (2)</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
