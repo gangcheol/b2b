@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="GC">
+<meta name="dcterms.date" content="2024-05-17">
 
-<title>끄적끄적 - About</title>
+<title>끄적끄적 - 00. Intro</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +25,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./posts/b2b/2024-02-25-00. B2B 세일즈.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../posts/CS/01. AI/00. 추천 시스템/01. 내용 기반 추천.html" rel="next">
+<link href="../../../../posts/CS/00. DA/03. 자연어 처리/04. 한국어 자연어 처리.html" rel="prev">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,8 +71,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -79,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">끄적끄적</span>
     </a>
   </div>
@@ -105,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./about.html">About</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">01. AI</li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/00. 추천 시스템/00. Intro.html">00. 추천 시스템</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/00. 추천 시스템/00. Intro.html">00. Intro</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -151,13 +183,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/b2b/2024-02-25-00. B2B 세일즈.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. B2B 세일즈</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/b2b/2024-03-17-01. 제안전략수립.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. 제안전략수립</span></a>
   </div>
 </li>
@@ -174,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. CA (1)</span></a>
   </div>
 </li>
@@ -182,13 +214,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">CS</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
@@ -209,25 +241,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/01. numpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. numpy</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/02. pandas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. pandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/extra 00. R vs Python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">extra 00. R vs Python</span></a>
   </div>
 </li>
@@ -244,19 +276,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/01. DataFrame 다루기/01. DataFrame 인덱싱.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/01. DataFrame 다루기/01. DataFrame 인덱싱.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. DataFrame 인덱싱</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/01. DataFrame 다루기/02. 데이터 변형하기.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/01. DataFrame 다루기/02. 데이터 변형하기.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. 데이터 변형하기</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/01. DataFrame 다루기/03. 큰 데이터 다루기.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/01. DataFrame 다루기/03. 큰 데이터 다루기.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03. 큰 데이터 다루기</span></a>
   </div>
 </li>
@@ -273,31 +305,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/02. 데이터 분석과 시각화/00. 시각화와 그래프.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/02. 데이터 분석과 시각화/00. 시각화와 그래프.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. 시각화와 그래프</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/02. 데이터 분석과 시각화/01. Searborn 시각화.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/02. 데이터 분석과 시각화/01. Searborn 시각화.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. Seaborn 시각화</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/02. 데이터 분석과 시각화/02. 통계 기본 상식.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/02. 데이터 분석과 시각화/02. 통계 기본 상식.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. 통계 기본 상식식</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/02. 데이터 분석과 시각화/03. EDA.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/02. 데이터 분석과 시각화/03. EDA.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03. EDA</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/02. 데이터 분석과 시각화/04. 인사이트 도출.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/02. 데이터 분석과 시각화/04. 인사이트 도출.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">04. 인사이트 도출</span></a>
   </div>
 </li>
@@ -314,31 +346,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/03. 자연어 처리/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/03. 자연어 처리/00. Intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/03. 자연어 처리/01. 자연어 전처리 (1).html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/03. 자연어 처리/01. 자연어 전처리 (1).html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. 자연어 전처리 (1)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/03. 자연어 처리/02. 자연어 전처리 (2).html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/03. 자연어 처리/02. 자연어 전처리 (2).html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. 자연어 전처리 (2)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/03. 자연어 처리/03. 감성 분석.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/03. 자연어 처리/03. 감성 분석.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03. 감성 분석</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/00. DA/03. 자연어 처리/04. 한국어 자연어 처리.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/00. DA/03. 자연어 처리/04. 한국어 자연어 처리.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">04. 한국어 자연어 처리</span></a>
   </div>
 </li>
@@ -348,31 +380,31 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
  <span class="menu-text">01. AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
  <span class="menu-text">00. 추천 시스템</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/01. AI/00. 추천 시스템/00. Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/01. AI/00. 추천 시스템/00. Intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/CS/01. AI/00. 추천 시스템/01. 내용 기반 추천.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/01. AI/00. 추천 시스템/01. 내용 기반 추천.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. 내용 기반 추천</span></a>
   </div>
 </li>
@@ -390,21 +422,39 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">0. Intro</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">01. AI</li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/00. 추천 시스템/00. Intro.html">00. 추천 시스템</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/00. 추천 시스템/00. Intro.html">00. Intro</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">00. Intro</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>GC </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 17, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -414,9 +464,100 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<section id="intro" class="level1">
+<h1>0. Intro</h1>
+<p><code>-</code> 넷플릭스, 음악 추천, 페이스북(인스타) 친구 추천 등등 모두 AI를 활용한 추천 시스템을 이용한다.</p>
+<p><code>-</code> 좋은 추천 시스템 <span class="math inline">\(\to\)</span> 사회적 이익, 많은 매출 등으로 이어진다.</p>
+<p><code>-</code> 대부분의 경우 머신러닝을 활용해서 추천 시스템이 만들어진다.</p>
+<p><code>-</code> 어떤 머신러닝 주제들보다 우리 생활 속에 깊게 자리잡고 있음</p>
+<p><code>-</code> 정의 : 어떤 작업(<code>추천</code>)을 할 때, 경험(<code>유저의 행동 패턴</code>)을 통해, 그 작업에 대한 성능(<code>추천을 더 정확하게!</code>)이 향상되는 프로그램(<span class="math inline">\(\star\star\star\)</span>)</p>
+<blockquote class="blockquote">
+<p>example : 상품에 대한 영화 평점데이터(rating data)</p>
+<ul>
+<li>목적 : 아래와 같이 빈칸(<code>-</code>)들 즉, 주어진 평점 데이터를 바탕으로 어떤 대상이 어떤 영화를 보았을 때 평점이 얼마인지 예측하는 것!</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">러브 액츄얼리</th>
+<th style="text-align: center;">반지의 제왕</th>
+<th style="text-align: center;">해리 포터</th>
+<th style="text-align: center;">극한 직업</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">현승</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">영훈</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">동욱</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">종훈</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">우재</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>즉, 유저와 상품의 관계를 표현한 데이터 사용</li>
+<li>유저와 상호 작요이 없었던 상품에 대한 선호도를 예측</li>
+<li>선호도가 높게 예측되는 상품들을 유저에게 추천</li>
+</ul>
+</blockquote>
+<p><code>-</code> 사용되는 데이터 종류</p>
+<ol type="1">
+<li>직접 데이터(explicit data)
+<ul>
+<li>유저가 직접적으로 상품에 대한 만족/선호도를 표시한 데이터</li>
+<li>유저 영화 평점 데이터, 유튜브 좋아요/싫어요 데이터</li>
+<li>유저 선호도를 정확하게 나타낸다.</li>
+</ul></li>
+<li>간접 데이터(implicit data)
+<ul>
+<li>유저가 직접적 선호도를 표시하지는 않았지만 유추할 수 있는 데이터</li>
+<li>유튜브 유저 영상 시청 데이터</li>
+<li>아마존 유저 구매 데이터</li>
+<li>데이터 형태는 똑같이 표현함</li>
+<li>무엇을 의미하는 지 정확하지 않음</li>
+<li>데이터를 수집하기 쉬워 직접 데이터보다 자주 이용된다.(<span class="math inline">\(\star\star\star\)</span>)</li>
+</ul></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -830,10 +971,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../../posts/CS/00. DA/03. 자연어 처리/04. 한국어 자연어 처리.html" class="pagination-link" aria-label="04. 한국어 자연어 처리">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">04. 한국어 자연어 처리</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./posts/b2b/2024-02-25-00. B2B 세일즈.html" class="pagination-link" aria-label="00. B2B 세일즈">
-        <span class="nav-page-text">00. B2B 세일즈</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/01. AI/00. 추천 시스템/01. 내용 기반 추천.html" class="pagination-link" aria-label="01. 내용 기반 추천">
+        <span class="nav-page-text">01. 내용 기반 추천</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
