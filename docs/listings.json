@@ -2,8 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/CS/01. AI/00. 추천 시스템/00. Intro.html",
-      "/posts/CS/01. AI/00. 추천 시스템/01. 내용 기반 추천.html",
+      "/posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html",
+      "/posts/CS/01. AI/07. 추천 시스템/00. Intro.html",
+      "/posts/CS/01. AI/07. 추천 시스템/01. 내용 기반 추천.html",
       "/posts/CS/00. DA/03. 자연어 처리/02. 자연어 전처리 (2).html",
       "/posts/CS/00. DA/03. 자연어 처리/03. 감성 분석.html",
       "/posts/CS/00. DA/03. 자연어 처리/04. 한국어 자연어 처리.html",
