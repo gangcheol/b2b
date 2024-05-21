@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="GC">
-<meta name="dcterms.date" content="2024-04-14">
+<meta name="dcterms.date" content="2024-05-21">
 
-<title>끄적끄적 - 00. Intro</title>
+<title>끄적끄적 - 01. 신경망 표현</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
-<link href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/01. numpy.html" rel="next">
-<link href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" rel="prev">
+<link href="../../../../posts/CS/01. AI/07. 추천 시스템/00. Intro.html" rel="next">
+<link href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html" rel="prev">
 <script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -142,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. DA</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html">00. Intro</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">01. AI</li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html">01. 인공 신경망 이론</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/01. 신경망  표현.html">01. 신경망 표현</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -228,25 +257,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
  <span class="menu-text">00. DA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
  <span class="menu-text">00. 데이터 사이언스 시작하기</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Intro</span></a>
   </div>
 </li>
@@ -385,22 +414,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
  <span class="menu-text">01. AI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true">
  <span class="menu-text">01. 인공 신경망 이론</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html" class="sidebar-item-text sidebar-link">
@@ -409,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/01. 신경망  표현.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/01. 신경망  표현.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">01. 신경망 표현</span></a>
   </div>
 </li>
@@ -454,36 +483,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
-  <li><a href="#오해" id="toc-오해" class="nav-link" data-scroll-target="#오해">오해</a>
-  <ul class="collapse">
-  <li><a href="#오해-1" id="toc-오해-1" class="nav-link" data-scroll-target="#오해-1">오해 1</a></li>
-  <li><a href="#오해-2" id="toc-오해-2" class="nav-link" data-scroll-target="#오해-2">오해 2</a></li>
-  </ul></li>
-  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python">Why, python?</a>
-  <ul class="collapse">
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  <li><a href="#내-생각" id="toc-내-생각" class="nav-link" data-scroll-target="#내-생각">내 생각</a></li>
-  </ul></li>
-  <li><a href="#데이터-사이언스-단계" id="toc-데이터-사이언스-단계" class="nav-link" data-scroll-target="#데이터-사이언스-단계">데이터 사이언스 단계</a>
-  <ul class="collapse">
-  <li><a href="#문제-정의하기" id="toc-문제-정의하기" class="nav-link" data-scroll-target="#문제-정의하기">1. 문제 정의하기</a></li>
-  <li><a href="#데이터-모으기" id="toc-데이터-모으기" class="nav-link" data-scroll-target="#데이터-모으기">2. 데이터 모으기</a></li>
-  <li><a href="#데이터-다듬기" id="toc-데이터-다듬기" class="nav-link" data-scroll-target="#데이터-다듬기">3. 데이터 다듬기</a></li>
-  <li><a href="#데이터-분석" id="toc-데이터-분석" class="nav-link" data-scroll-target="#데이터-분석">4. 데이터 분석</a></li>
-  <li><a href="#커뮤니케이션" id="toc-커뮤니케이션" class="nav-link" data-scroll-target="#커뮤니케이션">5. 커뮤니케이션</a></li>
-  </ul></li>
-  <li><a href="#실습" id="toc-실습" class="nav-link" data-scroll-target="#실습">실습</a></li>
+  <li><a href="#층과-뉴런" id="toc-층과-뉴런" class="nav-link active" data-scroll-target="#층과-뉴런">1. 층과 뉴런</a></li>
+  <li><a href="#가중치와-편향" id="toc-가중치와-편향" class="nav-link" data-scroll-target="#가중치와-편향">2. 가중치와 편향</a></li>
+  <li><a href="#가중치와-편향-초기화" id="toc-가중치와-편향-초기화" class="nav-link" data-scroll-target="#가중치와-편향-초기화">3. 가중치와 편향 초기화</a></li>
+  <li><a href="#입력-변수와-목표변수" id="toc-입력-변수와-목표변수" class="nav-link" data-scroll-target="#입력-변수와-목표변수">4. 입력 변수와 목표변수</a></li>
+  <li><a href="#순전파" id="toc-순전파" class="nav-link" data-scroll-target="#순전파">5. 순전파</a></li>
+  <li><a href="#가설-함수와-손실-함수" id="toc-가설-함수와-손실-함수" class="nav-link" data-scroll-target="#가설-함수와-손실-함수">6. 가설 함수와 손실 함수</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">00. DA</li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html">00. 데이터 사이언스 시작하기</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/00. Intro.html">00. Intro</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item">CS</li><li class="breadcrumb-item">01. AI</li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html">01. 인공 신경망 이론</a></li><li class="breadcrumb-item"><a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/01. 신경망  표현.html">01. 신경망 표현</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">00. Intro</h1>
+<h1 class="title">01. 신경망 표현</h1>
 </div>
 
 
@@ -500,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 14, 2024</p>
+      <p class="date">May 21, 2024</p>
     </div>
   </div>
   
@@ -512,110 +526,227 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="intro" class="level1">
-<h1>Intro</h1>
-<p><code>1</code> 데이터 사이언스를 배워야 하는 이유</p>
+<section id="층과-뉴런" class="level1">
+<h1>1. 층과 뉴런</h1>
+<p><code>1</code> 입력층을 제외한 층의 수가 총 층의 수이며 <span class="math inline">\(L\)</span>로 표기한다.</p>
+<p><code>2</code> 뉴런의 출력을 나타내는 법</p>
 <ul>
-<li>분야를 막론하고 데이터는 너무나 중요하게 여겨지고 있음(음악 추천, 대선 예측 등등….)</li>
+<li><p><span class="math inline">\(a^{[i]}\)</span> : activation의 앞글자를 땀, <span class="math inline">\(i\)</span>번째 층의 출력</p></li>
+<li><p><span class="math inline">\(a^{[i]}_{j}\)</span> : <span class="math inline">\(i\)</span>번째 층의 <span class="math inline">\(j\)</span>번째 출력</p></li>
+<li><p><span class="math inline">\(n^{[i]}\)</span> : <span class="math inline">\(i\)</span>번째 층의 뉴런 수</p></li>
+<li><p>종합 1 : 2번째 층의 마지막(<span class="math inline">\(n\)</span>) 번째 뉴런 출력은? <span class="math inline">\(\to a^{[2]}_{n^{[2]}}\)</span></p></li>
+<li><p>첫 번째 층의 모든 뉴런의 출력은?</p></li>
 </ul>
-<p><code>2</code> 정의 : 한 가지로 정의되어 있지 않음</p>
+<p><span class="math display">\[a^{[1]} = \begin{bmatrix} a_{1}^{[1]} \\  
+                            a_{2}^{[1]} \\
+                            \dots \\
+                            a_{n^{[1]}}^{[1]}\end{bmatrix}\]</span></p>
+<hr>
+</section>
+<section id="가중치와-편향" class="level1">
+<h1>2. 가중치와 편향</h1>
+<p><code>1</code> 가중치는 <code>0.4, 0.6, 1</code> 처럼 전 층 뉴런의 곱해지는 숫자들이며 알파벳 <span class="math inline">\(W\)</span>를 사용해 표기한다.</p>
+<p><code>2</code> 가중치를 나타내는 법</p>
 <ul>
-<li><p>위키피디아 : 데이터 마이닝과 유사하게 정형, 비정형 형태를 포함한 <code>다양한 데이터</code>로부터 <code>지식</code>과 <code>인사이트</code>를 추출하는데 과학적 방법론, 프로세스 알고리즘, 시스템을 동원하는 융합 분야다.</p></li>
-<li><p>journal of Data Science : 데이터와 연관된 모든 것을 의미.</p></li>
-<li><p>Drew Conway : 프로그래밍, 수학과 통계, 특정분야에 대한 전문성을 가지고 데이터로부터 현실 문제를 해결하는 것</p></li>
-<li><p>결론 : 가치를 더할 수 있는일을 데이터를 활용하여 해결하는 것!</p></li>
+<li><p><span class="math inline">\(W^{[i]}\)</span> : <span class="math inline">\(i-1\)</span>과 <span class="math inline">\(i\)</span>번째 층 사이에 있는 가중치들</p></li>
+<li><p><span class="math inline">\(w^{[i]}_{j,k}\)</span> : <span class="math inline">\(i-1\)</span>층의 <span class="math inline">\(j\)</span>번째 뉴런, <span class="math inline">\(i\)</span>번째 층의 <span class="math inline">\(k\)</span>번째 뉴런 사이의 가중치</p></li>
+<li><p>가중치를 행렬로 나타내는 법(ex : 2번째 층의 가중치들)</p></li>
 </ul>
-<hr>
-</section>
-<section id="오해" class="level1">
-<h1>오해</h1>
-<section id="오해-1" class="level2">
-<h2 class="anchored" data-anchor-id="오해-1">오해 1</h2>
-<p>인공지능과 딥러닝만이 DS가 아니다!</p>
-<p><code>-</code> DS 단계</p>
-<ol type="1">
-<li><p>데이터 수집</p></li>
-<li><p>데이터를 옮기고 저장</p></li>
-<li><p>데이터를 정리</p></li>
-<li><p>데이터 분석, A/B test</p></li>
-<li><p>인공지능, 딥러닝</p></li>
-</ol>
+<p><span class="math display">\[W^{[2]} = \begin{bmatrix} w_{1,1}^{[2]} &amp; w_{2,1}^{[2]} \cdots &amp; w_{n^{[1]},1}^{[2]} \\
+                            w_{1,2}^{[2]} &amp; w_{2,2}^{[2]} \cdots &amp; w_{n^{[1]},2}^{[2]} \\
+                            \cdots &amp; \cdots &amp; \cdots \\
+                            w_{1,n^{[2]}}^{[2]} &amp; w_{2,n^{[2]}}^{[2]} \cdots &amp; w_{n^{[1]},n^{[2]}}^{[2]} \\
+                            \end{bmatrix}\]</span></p>
+<p><code>3</code> 편향을 나타내는 법(<span class="math inline">\(b\)</span>)</p>
 <ul>
-<li><p><code>1</code> ~ <code>3</code>은 데이터 엔지니어의 역할이기도 하다.</p></li>
-<li><p>또한, 실제 기업에서는 <code>1</code> ~ <code>4</code> 까지만 가도 유의미한 가치를 창출할 수 있다.</p></li>
+<li><p><span class="math inline">\(b^{[i]}\)</span> : <span class="math inline">\(i\)</span>번째 층의 편향</p></li>
+<li><p><span class="math inline">\(b^{[i]}_{j}\)</span> : <span class="math inline">\(i\)</span>번째 층의 <span class="math inline">\(j\)</span>번째 뉴런의 편향</p></li>
+<li><p>첫 번째 층 뉴런들의 편향 벡터 표현</p></li>
 </ul>
-</section>
-<section id="오해-2" class="level2">
-<h2 class="anchored" data-anchor-id="오해-2">오해 2</h2>
-<p>다시 말하지만, 데이터 사이언스는 단순히 <code>수학, 통계, 컴퓨팅 능력</code>이 아닌 <code>해당 비즈니스 영역에서 협업</code>을 통해 <code>문제를 해결</code>할 줄 알아야한다.</p>
+<p><span class="math display">\[b^{[i]} = \begin{bmatrix} b_{1}^{[1]} \\  
+                            b_{2}^{[1]} \\
+                            \dots \\
+                            b_{n^{[1]}}^{[1]}\end{bmatrix}\]</span></p>
 <hr>
 </section>
-</section>
-<section id="why-python" class="level1">
-<h1>Why, python?</h1>
-<section id="r" class="level2">
-<h2 class="anchored" data-anchor-id="r">R</h2>
-<p><code>1</code> 통계와 시각화에 특화된 언어</p>
-<p><code>2</code> 그러나, R을 배운다고 다른 프로그래밍을 잘하는 것은 아님…</p>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<p><code>1</code> 웹사이트 개발, 이미지 처리, 업무 자동화, 데이터 시각화, 게임 개발, 앱 서버 개발 등 다른 영역에 다채롭게 활용할 수 있음</p>
-<p><code>2</code> DS 토픽에 한정해서는 R이 인기가 많았으나, numpy, pandas, tensorflow의 등장으로 python이 R을 앞지름</p>
-</section>
-<section id="내-생각" class="level2">
-<h2 class="anchored" data-anchor-id="내-생각">내 생각</h2>
-<p><code>1</code> 흠…. 이건 좀 내 의견은 반대이다.. 내가 둘 다 배워봐서 그런걸 수도 있지만, R이 tidyverse, tidymodel에 등장으로 훨씬 처음에 배우기 좋은 것 같음</p>
-<p><code>2</code> 그리고 도메인, 개별 성향에 따라 다르기 때문에 무작정 어떤 언어가 더 쉽다고 말할 순 없는 것 같다..</p>
-<p><code>3</code> 그냥, python으로 할 수 있는 범위가 많기 때문에 사람들이 배우기 더 쉬워하는 것 같다.</p>
-<hr>
-</section>
-</section>
-<section id="데이터-사이언스-단계" class="level1">
-<h1>데이터 사이언스 단계</h1>
-<section id="문제-정의하기" class="level2">
-<h2 class="anchored" data-anchor-id="문제-정의하기">1. 문제 정의하기</h2>
-<p><code>1</code> 목표 설정</p>
-<p><code>2</code> 기간 설정</p>
-<p><code>3</code> 평가 방법 설정</p>
-<p><code>4</code> 필요한 데이터 설정</p>
-</section>
-<section id="데이터-모으기" class="level2">
-<h2 class="anchored" data-anchor-id="데이터-모으기">2. 데이터 모으기</h2>
-<p><code>1</code> 웹 크롤링, 자료 모으기, 파일 읽고 쓰기</p>
-</section>
-<section id="데이터-다듬기" class="level2">
-<h2 class="anchored" data-anchor-id="데이터-다듬기">3. 데이터 다듬기</h2>
-<p><code>1</code> 데이터 관찰, 오류 제거, 정리</p>
-</section>
-<section id="데이터-분석" class="level2">
-<h2 class="anchored" data-anchor-id="데이터-분석">4. 데이터 분석</h2>
-<p><code>1</code> 데이터 파악, 변형, 통계 분석, 인사이트 도출</p>
-</section>
-<section id="커뮤니케이션" class="level2">
-<h2 class="anchored" data-anchor-id="커뮤니케이션">5. 커뮤니케이션</h2>
-<p><code>1</code> 다양한 시각화, 커뮤니케이션, 리포트를 활용해 구성원들과 소통하며 문제 해결</p>
-<hr>
-</section>
-</section>
-<section id="실습" class="level1">
-<h1>실습</h1>
-<p>“토마토”나 “기러기”처럼 거꾸로 읽어도 똑같은 단어를 <code>팔린드롬(palindrome)</code>이라고 부릅니다. 문자열 word가 팔린드롬인지 확인하는 함수 <code>is_palindrome</code>를 쓰세요. is_palindrome은 word가 팔린드롬이면 True를, 팔린드롬이 아니면 False를 리턴합니다.</p>
-<div id="16398d1d-b4a6-4e6a-86ca-42ac348ebd9a" class="cell" data-execution_count="63">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> is_palindrome(word):</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co"># 문자열을 거꾸로 뒤집어서 비교합니다.</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> word <span class="op">==</span> word[::<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># 예시를 통해 함수를 테스트합니다.</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="bu">print</span>(is_palindrome(<span class="st">"토마토"</span>))  <span class="co"># True</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="bu">print</span>(is_palindrome(<span class="st">"기러기"</span>))  <span class="co"># True</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="bu">print</span>(is_palindrome(<span class="st">"hello"</span>))   <span class="co"># False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>True
-True
-False</code></pre>
+<section id="가중치와-편향-초기화" class="level1">
+<h1>3. 가중치와 편향 초기화</h1>
+<p><code>1</code> 리스트안에 들어 있는 내용이 <code>[10,5,5,3]</code>이라면, 입력층에는 뉴런이 10개, 1번째 층에는 5개, 2번째 층에는 5개, 3번째 층에는 3개가 있다.</p>
+<p><code>2</code> 첫 번째 층의 가중치 행렬은 <code>5 x 10</code> 차원의 행렬로 나타낼 수 있다.</p>
+<p><code>3</code> 즉, <span class="math inline">\(i\)</span>번째 층의 가중치 행렬의 차원은 <span class="math inline">\(n^{[i]} \times n^{[i-1]}\)</span>만큼의 차원을 가진다.</p>
+<p><code>4</code> <span class="math inline">\(i\)</span>번째 층의 편향은 <span class="math inline">\(i\)</span>번째 층의 뉴런 숫자만큼의 차원을 가진다. <span class="math inline">\(n^{[i]} \times 1\)</span></p>
+<div id="ac6d4063-296a-4973-997a-66eb5e09ee94" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">def</span> initialize_parameters(neurons_per_layer):</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="co">"""신경망의 가중치와 편향을 초기화해주는 함수"""</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    L <span class="op">=</span> <span class="bu">len</span>(neurons_per_layer)<span class="op">-</span> <span class="dv">1</span> </span>
+<span id="cb1-9"><a href="#cb1-9"></a>    parameters <span class="op">=</span> {}</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    </span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, L<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        parameters[<span class="st">'W'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> np.random.randn(neurons_per_layer[l],neurons_per_layer[l<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> np.sqrt(<span class="dv">1</span><span class="op">/</span>neurons_per_layer[l])</span>
+<span id="cb1-13"><a href="#cb1-13"></a>        parameters[<span class="st">'b'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> np.random.randn(neurons_per_layer[l])<span class="op">*</span>np.sqrt(<span class="dv">1</span><span class="op">/</span>neurons_per_layer[l])</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        </span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="cf">return</span> parameters</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a>neurons_per_layer <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">3</span>]</span>
+<span id="cb1-19"><a href="#cb1-19"></a>initialize_parameters(neurons_per_layer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>{'W1': array([[ 0.22213732, -0.06183368,  0.28965512,  0.68111966, -0.10471657,
+         -0.10470923,  0.70624544,  0.34320724, -0.20995533,  0.24264023],
+        [-0.20724669, -0.20828068,  0.10820882, -0.85564494, -0.77140671,
+         -0.25146263, -0.45295185,  0.14053568, -0.40608071, -0.63160142],
+        [ 0.65545806, -0.10097023,  0.03019953, -0.63716676, -0.24345536,
+          0.04960609, -0.51473998,  0.16801726, -0.26861379, -0.13044941],
+        [-0.26909138,  0.82836399, -0.00603614, -0.47302271,  0.36785327,
+         -0.54597788,  0.09340664, -0.87639112, -0.59398286,  0.08803902],
+        [ 0.33025229,  0.07663823, -0.05171948, -0.13465767, -0.66121514,
+         -0.32192412, -0.20600392,  0.47275943,  0.15367077, -0.78845553]]),
+ 'b1': array([ 0.14493476, -0.17221403, -0.30272872,  0.27354995,  0.461077  ]),
+ 'W2': array([[ 0.41648113, -0.37530949, -0.13828398,  0.14814551,  0.43627704],
+        [-0.21429323, -0.08302922, -0.49476804, -0.53495987,  0.36337259],
+        [ 0.60652898, -0.03220391,  0.44879356,  0.16172855, -0.28850632],
+        [ 0.16162103,  0.68783086, -0.01602189,  0.69972991, -1.17158563],
+        [ 0.36756597,  0.03892863, -0.13372015,  0.04103667, -0.88886784]]),
+ 'b2': array([-0.09824025,  0.1597056 ,  0.66093431, -0.23177749, -0.36156933]),
+ 'W3': array([[-0.28968956,  0.52850766,  0.18980454, -0.3058572 ,  0.29633509],
+        [ 0.05604775,  0.55924745, -0.40533054, -0.18917583, -0.22638375],
+        [-0.84496075,  0.17096512,  0.15072033,  0.00295226, -0.13543894]]),
+ 'b3': array([-0.81716468, -0.24285969, -0.19786632])}</code></pre>
 </div>
 </div>
+<hr>
+</section>
+<section id="입력-변수와-목표변수" class="level1">
+<h1>4. 입력 변수와 목표변수</h1>
+<p><code>1</code> MNIST data</p>
+<center>
+<img src="3.png" width="500">
+</center>
+<ul>
+<li><p><span class="math inline">\(x^{(i)}\)</span> : <span class="math inline">\(i\)</span>번째 데이터의 입력 변수(벡터 값임)</p></li>
+<li><p><span class="math inline">\(x^{(i)}_{j}\)</span> : <span class="math inline">\(i\)</span>번째 데이터의 <span class="math inline">\(j\)</span>번째 픽셀 값</p></li>
+<li><p><span class="math inline">\(y^{(i)}\)</span> : <span class="math inline">\(i\)</span>번째 데이터의 목표 변수 (lable 값) <span class="math inline">\(\to\)</span> 모델링 시에는 <code>one-hot encoding</code>을 통해 범주형 변수로 바꿔준다.</p></li>
+</ul>
+<p><span class="math display">\[y^{(1)}  = \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}\]</span></p>
+<hr>
+</section>
+<section id="순전파" class="level1">
+<h1>5. 순전파</h1>
+<p>인풋 데이터가 들어가서 마지막 층까지 처리돼서 출력되는 과정</p>
+<p><code>1</code> 수학적 표현</p>
+<ul>
+<li>입력층과 첫 번째 층 사이 순전파에서 첫 번째 뉴런의 출력</li>
+</ul>
+<p><span class="math display">\[z_{1}^{[1]} = w_{1,1}^{[1]}a_{1}^{[0]} + w_{2,1}^{[1]}a_{2}^{[0]} + \cdots +  w_{n^{[0]},1}^{[1]}a_{n^{[0]}}^{[0]} + b^{[1]}_1\]</span></p>
+<ul>
+<li>첫 번째 뉴런의 활성화 함수(<code>여기선 시그모이드</code>)를 거친 최종 출력</li>
+</ul>
+<p><span class="math display">\[a_1^{[1]} = \sigma(z_1^{[1]})\]</span></p>
+<p><code>2</code> 일반화된 표현</p>
+<p><span class="math display">\[z^{[l]} = W^{(l)}a^{[l-1]} + b^{[l]}\]</span></p>
+<p><span class="math display">\[a^{[l]} = \sigma(z^{[l]})\]</span></p>
+<p><code>3</code> 코드구현</p>
+<div id="ac423463-122c-422c-a737-40ed3cf11765" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 인공 신경망 구현에 사용할 라이브러리 임포트</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># numpy 임의성 조절</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># 데이터 셋 가지고 오기</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>dataset <span class="op">=</span> pd.read_csv(<span class="st">'./data/MNIST_preprocessed.csv'</span>, sep<span class="op">=</span><span class="st">','</span>, header<span class="op">=</span><span class="va">None</span>).values</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># 입력, 목표 변수 데이터 셋 나누기</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>X <span class="op">=</span> dataset[:, <span class="dv">0</span>:<span class="dv">784</span>]</span>
+<span id="cb3-13"><a href="#cb3-13"></a>Y <span class="op">=</span> dataset[:, <span class="dv">784</span>:]</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co"># training, testing 데이터 셋 나누기</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>X_train, X_test <span class="op">=</span> X[<span class="dv">0</span>:<span class="dv">250</span>,], X[<span class="dv">250</span>:,]</span>
+<span id="cb3-17"><a href="#cb3-17"></a>Y_train, Y_test <span class="op">=</span> Y[<span class="dv">0</span>:<span class="dv">250</span>,], Y[<span class="dv">250</span>:,]</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="kw">def</span> sigmoid(x):</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    <span class="co">"""시그모이드 함수"""</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x))</span>
+<span id="cb3-22"><a href="#cb3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="kw">def</span> initialize_parameters(nodes_per_layer):</span>
+<span id="cb3-24"><a href="#cb3-24"></a>    <span class="co">"""신경망의 가중치와 편향을 초기화해주는 함수"""</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>    L <span class="op">=</span> <span class="bu">len</span>(nodes_per_layer) <span class="op">-</span> <span class="dv">1</span>  <span class="co"># 층 개수 저장</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>    parameters <span class="op">=</span> {}</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    </span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="co"># 1층 부터 L 층까지 돌면서 가중치와 편향 초기화</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, L<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb3-30"><a href="#cb3-30"></a>        parameters[<span class="st">'W'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> np.random.randn(nodes_per_layer[l], nodes_per_layer[l<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> np.sqrt(<span class="fl">1.</span> <span class="op">/</span> nodes_per_layer[l])</span>
+<span id="cb3-31"><a href="#cb3-31"></a>        parameters[<span class="st">'b'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> np.random.randn(nodes_per_layer[l]) <span class="op">*</span> np.sqrt(<span class="fl">1.</span> <span class="op">/</span> nodes_per_layer[l])</span>
+<span id="cb3-32"><a href="#cb3-32"></a>        </span>
+<span id="cb3-33"><a href="#cb3-33"></a>    <span class="cf">return</span> parameters</span>
+<span id="cb3-34"><a href="#cb3-34"></a></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="kw">def</span> feed_forward(x, parameters):</span>
+<span id="cb3-36"><a href="#cb3-36"></a>    <span class="co">"""순전파 함수"""</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a>    cache <span class="op">=</span> {<span class="st">'a0'</span>: x}</span>
+<span id="cb3-38"><a href="#cb3-38"></a>    L <span class="op">=</span> <span class="bu">len</span>(parameters) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a>    </span>
+<span id="cb3-40"><a href="#cb3-40"></a>    <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, L<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb3-41"><a href="#cb3-41"></a>        <span class="co"># 전 층 뉴런의 출력, 현재 층 뉴런들의 가중치, 편향 데이터를 가지고 온다.</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>        a_prev <span class="op">=</span> cache[<span class="st">'a'</span> <span class="op">+</span> <span class="bu">str</span>(l<span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb3-43"><a href="#cb3-43"></a>        W <span class="op">=</span> parameters[<span class="st">'W'</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
+<span id="cb3-44"><a href="#cb3-44"></a>        b <span class="op">=</span> parameters[<span class="st">'b'</span> <span class="op">+</span> <span class="bu">str</span>(l)]</span>
+<span id="cb3-45"><a href="#cb3-45"></a>        </span>
+<span id="cb3-46"><a href="#cb3-46"></a>        <span class="co"># 데이터로 z와 a를 계산한다.</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>        z <span class="op">=</span> W <span class="op">@</span> a_prev <span class="op">+</span> b</span>
+<span id="cb3-48"><a href="#cb3-48"></a>        a <span class="op">=</span> sigmoid(z)</span>
+<span id="cb3-49"><a href="#cb3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50"></a>        <span class="co"># 결과 값을 캐쉬에 저장한다.</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a>        cache[<span class="st">'z'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> z</span>
+<span id="cb3-52"><a href="#cb3-52"></a>        cache[<span class="st">'a'</span> <span class="op">+</span> <span class="bu">str</span>(l)] <span class="op">=</span> a</span>
+<span id="cb3-53"><a href="#cb3-53"></a>                </span>
+<span id="cb3-54"><a href="#cb3-54"></a>    <span class="cf">return</span> a, cache</span>
+<span id="cb3-55"><a href="#cb3-55"></a></span>
+<span id="cb3-56"><a href="#cb3-56"></a></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co"># 테스트 코드</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a>neurons_per_layer <span class="op">=</span> [<span class="dv">784</span>, <span class="dv">128</span>, <span class="dv">64</span>, <span class="dv">10</span>]</span>
+<span id="cb3-59"><a href="#cb3-59"></a>parameters <span class="op">=</span> initialize_parameters(neurons_per_layer)</span>
+<span id="cb3-60"><a href="#cb3-60"></a>feed_forward(X_train[<span class="dv">0</span>], parameters)[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([0.39847399, 0.63077823, 0.79833093, 0.9305652 , 0.67941177,
+       0.67579947, 0.05318345, 0.37468731, 0.12677545, 0.64191774])</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="가설-함수와-손실-함수" class="level1">
+<h1>6. 가설 함수와 손실 함수</h1>
+<p><code>1</code> 신경망 학습 : 입력 변수에 대한 목표 변수를 잘 예측하는 가중치와 편향을 찾는 것</p>
+<p><code>2</code> 가설 함수 : 주어진 입력 변수를 통해 예측값을 계산하는 함수</p>
+<ul>
+<li>예측값은 순전파를 통해 계산되며 신경망의 가중치와 편향에 따라 달라진다.</li>
+</ul>
+<p><span class="math display">\[h_{w}(x) = a^{[L]} = \sigma(W^{[L]}a^{[L-1]} + b^{[L]})\]</span></p>
+<p><code>3</code> 손실 함수 <span class="math inline">\(J(W)\)</span></p>
+<ul>
+<li><p>학습을 통해 가중치와 편향을 변경하는 기준</p></li>
+<li><p>종류가 매우 다양, 대표적인 예 : 평균 제곱 오차</p></li>
+</ul>
+<p><span class="math display">\[J(W) = \frac {1}{2mn^{[L]}}\sum_{i=1}^{m}\sum_{k=1}^{n^{[L]}} (h_w(x^{(i)})_k - y_k^{(i)})^2\]</span></p>
+<ul>
+<li><p>식이 좀 어렵게 보이지만, 그냥 모든 데이터에 대해서 모든 뉴런의 예측 제곱 오차 평균을 구하겠다는 내용임</p></li>
+<li><p>예제 : 하나의 데이터에 대해서 신경망의 가설함수 아웃풋과 실제 목표 변수가 다음과 같이 있다고 하자.</p></li>
+</ul>
+<p><span class="math display">\[h_{W}(x^{(i)}) = \begin{bmatrix} 0.1 \\ 0.4 \\ 0.95 \\ 0.5 \\ 0.2 \\ 0.4 \\ 0.2 \\ 0.2 \\ 0.1 \\ 0.0 \end{bmatrix}, \quad y^{(i)} = \begin{bmatrix} 0 \\ 0 \\ 1 \\0 \\0 \\ 0\\ 0  \\0 \\ 0\\ 0\end{bmatrix}, \quad (h_w(x^{(i)})_k - y_k^{(i)})^2 = \begin{bmatrix} 0.01 \\ 0.16 \\ 0.0025 \\ 0.25 \\ 0.04 \\ 0.16 \\ 0.04 \\ 0.04 \\ 0.01 \\ 0 \end{bmatrix}\]</span></p>
+<ul>
+<li>이렇게 하면 하나의 데이터데 대한 평균 제곱 오차를 구한 것이며, 이를 모든 학습 데이터에 대해서 반복하여 합하면 된다. 그리고 이를 총 데이터 개수와 출력층 뉴런의 개수로 나누어 주는 것이다.</li>
+</ul>
 
 
 </section>
@@ -1032,13 +1163,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../../posts/CA/2023-03-19-00. 코드잇 기업분석 (1).html" class="pagination-link" aria-label="00. CA (1)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">00. CA (1)</span>
+      <a href="../../../../posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html" class="pagination-link" aria-label="00. Intro">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">00. Intro</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../../posts/CS/00. DA/00. 데이터 사이언스 시작하기/01. numpy.html" class="pagination-link" aria-label="01. numpy">
-        <span class="nav-page-text">01. numpy</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../../posts/CS/01. AI/07. 추천 시스템/00. Intro.html" class="pagination-link" aria-label="00. Intro">
+        <span class="nav-page-text">00. Intro</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
