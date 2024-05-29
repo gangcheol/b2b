@@ -56,6 +56,34 @@
     ]
   },
   {
+    "objectID": "posts/CS/01. AI/01. 인공 신경망 이론/02. 신경망 학습.html#신경망의-손실함수",
+    "href": "posts/CS/01. AI/01. 인공 신경망 이론/02. 신경망 학습.html#신경망의-손실함수",
+    "title": "02. 신경망 학습",
+    "section": "신경망의 손실함수",
+    "text": "신경망의 손실함수\n\\[J(W) = \\frac {1}{2mn^{[L]}}\\sum_{i=1}^{m}\\sum_{k=1}^{n^{[L]}} (h_w(x^{(i)})_k - y_k^{(i)})^2\\]\n- \\(h_{W}(x^{(i)})\\) 부분은 신경망 마지막 출력, \\(a^{[L]}\\)과 같다.\n\n\\(a^{[L]} = \\sigma(W^{[L]}a^{[L-1]} + b^{[L]})\\)\n\n- 마찬가지로, \\(a^{[L]}\\)의 변수 중 하나인 \\(a^{[L-1]}\\)도 숫자 값으로 계산되긴 하지만, 자신만의 함수이기도 하다.\n\n\\(a^{[L-1]} = \\sigma(W^{[L-1]}a^{[L-2]} + b^{[L-1]})\\)\n\n- 즉, 출력층을 계산하는 함수 \\(h_{W}(x)\\), 또는 \\(a^{[L]}\\)은 엄청나게 복잡한 합성 함수이라는 것을 알 수 있다.\n\n이는, 엄청나게 복잡한 연산이 신경망 구조에서 이루어짐을 뜻한다.",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "01. AI",
+      "01. 인공 신경망 이론",
+      "02. 신경망 학습"
+    ]
+  },
+  {
+    "objectID": "posts/CS/01. AI/01. 인공 신경망 이론/02. 신경망 학습.html#참고-함성-함수-연쇄법칙",
+    "href": "posts/CS/01. AI/01. 인공 신경망 이론/02. 신경망 학습.html#참고-함성-함수-연쇄법칙",
+    "title": "02. 신경망 학습",
+    "section": "참고, 함성 함수 연쇄법칙",
+    "text": "참고, 함성 함수 연쇄법칙\n\\[f(x) = f(l(m(n(x))))\\]\n\\[\\frac{\\partial f}{\\partial x} = \\frac{\\partial n}{\\partial x} \\cdot \\frac{\\partial m}{\\partial n} \\cdot \\frac{\\partial l}{\\partial m} \\cdot \\frac{\\partial f}{\\partial l}\\]",
+    "crumbs": [
+      "Posts",
+      "CS",
+      "01. AI",
+      "01. 인공 신경망 이론",
+      "02. 신경망 학습"
+    ]
+  },
+  {
     "objectID": "posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html",
     "href": "posts/CS/01. AI/01. 인공 신경망 이론/00. Intro.html",
     "title": "00. Intro",
